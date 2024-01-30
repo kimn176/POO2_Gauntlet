@@ -1,68 +1,123 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package projet_poo2;
 
-import javafx.scene.Node;
-import javafx.scene.control.Slider;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 
-/**
- *
- * @author kimngan
- */
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-public class Carte  {
+public class Carte extends GridPane {
 
-    private static final String FLOOR_IMAGE_PATH = "sprites/floor.png";
-    private static final int GRID_ROWS = 30;
-    private static final int GRID_COLS = 30;
-    private static final double INITIAL_TILE_SIZE = 20.0;
+    final int size;
+    final Map<String, Image> imageMap = new HashMap<>();
+    public String current = "floor";
+    private FlowPane[][] panes;
 
-    private GridPane cartePane;
-    private Slider zoomSlider;
+    public Carte(int size){
+        super();
+        /*
+        super.setVgap(10);
+        super.setHgap(10);
+         */
+        this.size = size;
+        this.panes = new FlowPane[this.size][this.size];
+        this.loadImage();
+        this.init();
+    }
     
-    
-    public Carte(Slider zoomSlider) {
-        this.zoomSlider = zoomSlider;
-        initializeCarte();
+    private void loadImage(){
+        
+        List<String> imageNameList = new ArrayList<>(){{
+            add("exit");
+            add("key");
+            add("keyring");
+            add("potion_life");
+            add("potion_defense");
+            add("potion_magic");
+            add("potion_physical");
+            add("potion_poison");
+            add("potion_speed");
+            add("food");
+            add("treasure");
+            add("wall");
+            add("smart_bomb");
+            add("spawner_ghost");
+            add("spawner_grunt");
+            add("floor");
+        }};
+
+        for(String imageName : imageNameList)
+            imageMap.put(imageName, new Image(getClass().getResource("sprites/"+imageName+".png").toExternalForm()));
+        
     }
 
-    public void initializeCarte() {
-        cartePane = new GridPane();
-        updateSize();
+    public final Map<String, Image> allPage(){
+        return imageMap;
+    }
 
-        // Remplissez la carte avec des images de sol
-        for (int i = 0; i < GRID_ROWS; i++) {
-            for (int j = 0; j < GRID_COLS; j++) {
-                Image floorImage = new Image(getClass().getResource(FLOOR_IMAGE_PATH).toExternalForm());
-                ImageView imageView = new ImageView(floorImage);
-                imageView.setFitWidth(20);
-                imageView.setFitHeight(20);
+    public void init(){
 
-                cartePane.add(imageView, j, i);
+        for(int x = 0; x<size; x++){
+            for(int y = 0; y<size; y++){
+                generatePane(x, y);
             }
         }
-    }
-    
 
-    public GridPane getCartePane() {
-        return cartePane;
     }
-    
-    void updateSize() {
-        double tileSize = INITIAL_TILE_SIZE * zoomSlider.getValue();
-        for (Node node : cartePane.getChildren()) {
-            if (node instanceof ImageView) {
-                ImageView imageView = (ImageView) node;
-                imageView.setFitWidth(tileSize);
-                imageView.setFitHeight(tileSize);
-            }
-        }
+
+    public void generatePane(int x, int y){
+
+        Image image = this.allPage().get("floor");
+
+        FlowPane box = new FlowPane();
+
+        GridPane.setHgrow(box, Priority.ALWAYS);
+        GridPane.setVgrow(box, Priority.ALWAYS);
+
+        box.setAlignment(Pos.CENTER);
+        box.setBackground(new Background(new BackgroundImage(image, null, null, null, null)));
+
+        BorderStroke borderStroke = new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(0), BorderWidths.DEFAULT);
+        Border border = new Border(borderStroke);
+
+        box.setBorder(border);
+
+        Button button = new Button();
+
+        box.getChildren().add(button);
+
+        button.setOnAction(action -> {
+            System.out.println("Button "+x+" "+y);
+            setCell(x, y, allPage().get(current));
+        });
+
+        button.setBackground(Background.EMPTY);
+
+        panes[x][y] = box;
+
+        super.add(box, x, y);
     }
-    
+
+    public void setCell(int x, int y, Image image){
+
+        if(x>size || y>size)
+            return;
+
+        panes[x][y].setBackground(new Background(new BackgroundImage(image, null, null, null, null)));
+
+    }
+
+    public static String toRGBCode( Color color )
+    {
+        return String.format( "#%02X%02X%02X",
+                (int)( color.getRed() * 255 ),
+                (int)( color.getGreen() * 255 ),
+                (int)( color.getBlue() * 255 ) );
+    }
 
 }
