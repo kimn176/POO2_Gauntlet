@@ -8,26 +8,18 @@ package projet_poo2;
  *
  * @author kimngan
  */
-import javafx.application.Application;
-import static javafx.application.Application.launch;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.Slider;
+
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
-import javafx.stage.Stage;
 
-public class Editeur2D extends Application {
+public class Editeur2D extends BorderPane {
     
     private Carte carte;
 
-    @Override
-    public void start(Stage primaryStage) {
+    public Editeur2D(Projet_POO2 projet_poo2) {
         // Créer la barre de menu
         MenuBar menuBar = new MenuBar();
         Menu menuFile = new Menu("Fichier");
@@ -43,8 +35,8 @@ public class Editeur2D extends Application {
 
         // Créer le bandeau gauche
         FlowPane leftPane = new FlowPane();
-        leftPane.setPrefWidth(200);
-        leftPane.setStyle("-fx-background-color: lightgray");
+        this.setPrefWidth(200);
+        this.setStyle("-fx-background-color: lightgray");
         
         // Des objets dans le bandeau gauche
         Button exit = createObjectButton("", "sprites/exit.png");
@@ -64,7 +56,7 @@ public class Editeur2D extends Application {
         Button spawner_grunt = createObjectButton("", "sprites/spawner_grunt.png");
         Button floor = createObjectButton("", "sprites/floor.png");
         
-        leftPane.getChildren().addAll(exit,key,keyring,potion_life, potion_defense, 
+        leftPane.getChildren().addAll(exit,key,keyring,potion_life, potion_defense,
                 potion_magic, potion_physical, potion_poison, potion_speed, food, 
                 treasure, wall, smart_bomb, spawner_ghost, spawner_grunt, floor);
         
@@ -81,15 +73,12 @@ public class Editeur2D extends Application {
         carte = new Carte(zoomSlider);
 
         // Créer la scène
-        BorderPane root = new BorderPane();
-        root.setTop(menuBar);
-        root.setLeft(leftPane);
-        root.setCenter(carte.getCartePane());
+        this.setTop(menuBar);
+        this.setLeft(leftPane);
+        this.setCenter(carte.getCartePane());
 
-        Scene scene = new Scene(root, 1000, 800);
-        primaryStage.setTitle("Plan Editeur du Gaunlet");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        menuItemQuitter.setOnAction(action -> projet_poo2.showHome());
+
     }
     
     
@@ -106,7 +95,4 @@ public class Editeur2D extends Application {
         return button;
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
 }
