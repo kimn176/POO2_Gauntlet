@@ -4,6 +4,8 @@
  */
 package projet_poo2;
 
+import java.awt.Toolkit;
+import java.net.URL;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -60,7 +62,7 @@ public class Page_accueil extends Application {
         jouerButton.setOnAction(e -> System.out.println("Action Jouer"));
         optionsButton.setOnAction(e -> System.out.println("Action Options"));
         quitterButton.setOnAction(e -> primaryStage.close());
-       
+        
         Scene scene = new Scene(root, 1000, 800);
         primaryStage.setTitle("Page d'Accueil du Jeu");
         primaryStage.setScene(scene);
