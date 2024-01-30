@@ -16,7 +16,7 @@ public class Carte extends GridPane {
     final int size;
     final Map<String, Image> imageMap = new HashMap<>();
     public String current = "floor";
-    private FlowPane[][] panes;
+    private Button[][] panes;
 
     public Carte(int size){
         super();
@@ -25,7 +25,7 @@ public class Carte extends GridPane {
         super.setHgap(10);
          */
         this.size = size;
-        this.panes = new FlowPane[this.size][this.size];
+        this.panes = new Button[this.size][this.size];
         this.loadImage();
         this.init();
     }
@@ -74,33 +74,27 @@ public class Carte extends GridPane {
 
         Image image = this.allPage().get("floor");
 
-        FlowPane box = new FlowPane();
+        Button button = new Button();
+        button.setMaxSize(Integer.MAX_VALUE, Integer.MAX_VALUE);
 
-        GridPane.setHgrow(box, Priority.ALWAYS);
-        GridPane.setVgrow(box, Priority.ALWAYS);
-
-        box.setAlignment(Pos.CENTER);
-        box.setBackground(new Background(new BackgroundImage(image, null, null, null, null)));
+        GridPane.setHgrow(button, Priority.ALWAYS);
+        GridPane.setVgrow(button, Priority.ALWAYS);
 
         BorderStroke borderStroke = new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(0), BorderWidths.DEFAULT);
         Border border = new Border(borderStroke);
 
-        box.setBorder(border);
-
-        Button button = new Button();
-
-        box.getChildren().add(button);
+        button.setBorder(border);
 
         button.setOnAction(action -> {
             System.out.println("Button "+x+" "+y);
             setCell(x, y, allPage().get(current));
         });
 
-        button.setBackground(Background.EMPTY);
+        button.setBackground(new Background(new BackgroundImage(image, null, null, null, null)));
 
-        panes[x][y] = box;
+        panes[x][y] = button;
 
-        super.add(box, x, y);
+        super.add(button, x, y);
     }
 
     public void setCell(int x, int y, Image image){
