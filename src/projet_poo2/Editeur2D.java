@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package projet_poo2;
 
 /**
@@ -9,17 +5,25 @@ package projet_poo2;
  * @author kimngan
  */
 
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.VBox;
+import projet_poo2.grid.Carte;
+import projet_poo2.image.ImageData;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class Editeur2D extends BorderPane {
 
     private final Projet_POO2 projet_poo2;
+    private final ImageManager imageManager = new ImageManager();
+
+    private ImageData selectionReminder = null;
+    private int selX = 0, selY = 0;
 
     public Editeur2D(Projet_POO2 projet_poo2) {
 
@@ -27,13 +31,24 @@ public class Editeur2D extends BorderPane {
 
         this.createTopBar();
 
-        Carte carte = new Carte(10);
-
+        Carte carte = new Carte(imageManager, 20);
+        carte.setOnClick((actionEvent, gridCase) -> {
+            if(selectionReminder != null)
+                carte.setCell(gridCase.getX(), gridCase.getY(), selectionReminder.generateView(selX,selY));
+            else
+                carte.setCell(gridCase.getX(), gridCase.getY(), null);
+        });
         this.createLeftPane(carte);
 
         // Créer la scène
-        this.setCenter(carte);
 
+        ScrollPane scrollPane = new ScrollPane(carte);
+        this.setCenter(scrollPane);
+
+    }
+
+    public ImageManager getImageManager() {
+        return imageManager;
     }
 
     private void createTopBar(){
@@ -56,36 +71,87 @@ public class Editeur2D extends BorderPane {
     private Slider createLeftPane(Carte carte){
 
         Slider zoomSlider = new Slider();
-        zoomSlider.setMax(10);
+        zoomSlider.setMax(3);
         zoomSlider.setMin(1);
         zoomSlider.setValue(1);
-        zoomSlider.setOnMouseReleased(event -> {
-            double newSize = 200*zoomSlider.getValue();
-        });
+
+        zoomSlider.setOnMouseDragged(event-> carte.scale(zoomSlider.getValue()));
+        zoomSlider.setOnMouseReleased(event-> carte.scale(zoomSlider.getValue()));
 
         // Créer le bandeau gauche
-        FlowPane leftPane = new FlowPane();
-        this.setPrefWidth(200);
-        this.setStyle("-fx-background-color: lightgray");
+        VBox leftPane = new VBox();
+        leftPane.setAlignment(Pos.CENTER);
 
-        for(Map.Entry<String, Image> imageEntry : carte.allPage().entrySet()){
+        //this.setStyle("-fx-background-color: lightgray");
 
-            ImageView imageView = new ImageView(imageEntry.getValue());
-            imageView.setFitWidth(50);
-            imageView.setFitHeight(50);
+        List<Button> buttonList = new ArrayList<>();
 
-            Button button = new Button(imageEntry.getKey(), imageView);
-            button.setPrefSize(80, 80); // Ajuster la taille du bouton
+        for(Map.Entry<String, ImageData> imageEntry : imageManager.getMap().entrySet()){
 
-            leftPane.getChildren().add(button);
+            if(!imageEntry.getValue().canBePlaced())
+                continue;
 
-            button.setOnAction(action -> carte.current = imageEntry.getKey());
+            ImageData imageData = imageEntry.getValue();
+
+            for(int x = 0; x<imageData.getNumbX(); x++){
+
+                for(int y = 0; y<imageData.getNumbY(); y++) {
+
+                    ImageView imageView = imageEntry.getValue().generateView(x, y);
+                    imageView.setFitWidth(50);
+                    imageView.setFitHeight(50);
+
+                    Button button = new Button("", imageView);
+
+                    button.setPrefWidth(150.0);
+                    button.setAlignment(Pos.CENTER);
+                    button.setStyle("-fx-background-color: transparent; -fx-border-style: none");
+
+                    int finalX = x;
+                    int finalY = y;
+                    button.setOnAction(action -> {
+                        for (Button bc : buttonList){
+                            bc.setStyle("-fx-background-color: transparent; -fx-border-style: none");
+                        }
+                        button.setStyle("-fx-background-color: red; -fx-border-style: none");
+                        this.selectionReminder = imageEntry.getValue();
+                        this.selX = finalX;
+                        this.selY = finalY;
+                        if(imageEntry.getKey().equals("floor"))
+                            this.selectionReminder = null;
+                    });
+
+                    buttonList.add(button);
+                    leftPane.getChildren().add(button);
+
+                }
+
+            }
 
         }
 
+        Button button = new Button("Reset");
+        button.setPrefWidth(150.0);
+        button.setAlignment(Pos.CENTER);
+        button.setStyle("-fx-background-color: transparent; -fx-border-color: blue");
+        button.setOnAction(action->{
+            for(int x = 0; x<carte.getSize(); x++){
+                for(int y = 0; y<carte.getSize(); y++){
+                    carte.setCell(x, y, null);
+                }
+            }
+        });
+
+        leftPane.getChildren().add(button);
+
         leftPane.getChildren().add(zoomSlider);
 
-        this.setLeft(leftPane);
+
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setContent(leftPane);
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setFitToWidth(true);
+        this.setLeft(scrollPane);
 
         return zoomSlider;
     }
