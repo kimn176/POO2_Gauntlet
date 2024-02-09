@@ -30,7 +30,7 @@ public class Page_accueil extends StackPane {
         this.setBackground(new Background(background));
 
         // Création de boutons
-        Button jouerButton = new Button("Jouer");
+        Button jouerButton = new Button("Editeur");
         Button optionsButton = new Button("Options");
         Button quitterButton = new Button("Quitter");
 

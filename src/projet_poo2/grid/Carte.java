@@ -107,15 +107,17 @@ public class Carte extends GridPane {
             return;
         }
 
-        panes[x][y].setImageData(imageData);
+        CarteGridCase carteGridCase = panes[x][y];
+
+        carteGridCase.setImageData(imageData);
         if(imageData.getId() == 0){
-            panes[x][y].getButton().setGraphic(null);
+            carteGridCase.getButton().setGraphic(null);
             return;
         }
         ImageView image = imageData.generateView();
         image.setPreserveRatio(true);
         image.setFitWidth(50 * scale);
-        panes[x][y].getButton().setGraphic(image);
+        carteGridCase.getButton().setGraphic(image);
     }
 
     public CarteGridCase getCase(int x, int y){
