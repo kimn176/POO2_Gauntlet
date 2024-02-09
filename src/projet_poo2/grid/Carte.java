@@ -64,7 +64,7 @@ public class Carte extends GridPane {
 
     public void generatePane(int x, int y){
 
-        Image image = this.imageManager.getImageData("floor").generateView(0,0).getImage();
+        Image image = this.imageManager.getImageData(0).getImage();
 
         Button button = new Button();
 

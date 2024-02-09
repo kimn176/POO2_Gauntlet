@@ -8,37 +8,53 @@ import java.util.Map;
 
 public class ImageManager {
 
-    private Map<String, ImageData> map = new HashMap<>();
+    private Map<Integer, ImageData> map = new HashMap<>();
+    private int id = 0;
 
     public ImageManager(){
         this.loadImage();
     }
 
-    public Map<String, ImageData> getMap() {
+    public Map<Integer, ImageData> getMap() {
         return map;
     }
 
     private void loadImage(){
-        map.put("exit", new ImageData(new Image(getClass().getResource("sprites/exit.png").toExternalForm()), 1,1));
-        map.put("key", new ImageData(new Image(getClass().getResource("sprites/key.png").toExternalForm()), 1,1));
-        map.put("keyring", new ImageData(new Image(getClass().getResource("sprites/keyring.png").toExternalForm()), 1,1, false));
-        map.put("potion_life", new ImageData(new Image(getClass().getResource("sprites/potion_life.png").toExternalForm()), 1,1));
-        map.put("potion_defense", new ImageData(new Image(getClass().getResource("sprites/potion_defense.png").toExternalForm()), 1,1));
-        map.put("potion_magic", new ImageData(new Image(getClass().getResource("sprites/potion_magic.png").toExternalForm()), 1,1));
-        map.put("potion_physical", new ImageData(new Image(getClass().getResource("sprites/potion_physical.png").toExternalForm()), 1,1));
-        map.put("potion_poison", new ImageData(new Image(getClass().getResource("sprites/potion_poison.png").toExternalForm()), 1,1));
-        map.put("potion_speed", new ImageData(new Image(getClass().getResource("sprites/potion_speed.png").toExternalForm()), 1,1));
-        map.put("food", new ImageData(new Image(getClass().getResource("sprites/food.png").toExternalForm()), 1,1));
-        map.put("treasure", new ImageData(new Image(getClass().getResource("sprites/treasure.png").toExternalForm()), 1,1));
-        map.put("wall", new ImageData(new Image(getClass().getResource("sprites/wall.png").toExternalForm()), 16,1));
-        map.put("smart_bomb", new ImageData(new Image(getClass().getResource("sprites/smart_bomb.png").toExternalForm()), 1,1));
-        map.put("spawner_ghost", new ImageData(new Image(getClass().getResource("sprites/spawner_ghost.png").toExternalForm()), 3,1));
-        map.put("spawner_grunt", new ImageData(new Image(getClass().getResource("sprites/spawner_grunt.png").toExternalForm()), 3,1));
-        map.put("floor", new ImageData(new Image(getClass().getResource("sprites/floor.png").toExternalForm()), 1,1));
+        registerData("sprites/floor.png", 1, 1, true);
+        registerData("sprites/exit.png", 1, 1, true);
+        registerData("sprites/key.png", 1, 1, true);
+        registerData("sprites/keyring.png", 1, 1, false);
+        registerData("sprites/potion_life.png", 1, 1, true);
+        registerData("sprites/potion_defense.png", 1, 1, true);
+        registerData("sprites/potion_magic.png", 1, 1, true);
+        registerData("sprites/potion_physical.png", 1, 1, true);
+        registerData("sprites/potion_poison.png", 1, 1, true);
+        registerData("sprites/potion_speed.png", 1, 1, true);
+        registerData("sprites/food.png", 1, 1, true);
+        registerData("sprites/treasure.png", 1, 1, true);
+        registerData("sprites/wall.png", 16, 1, true);
+        registerData("sprites/smart_bomb.png", 1, 1, true);
+        registerData("sprites/spawner_ghost.png", 3, 1, true);
+        registerData("sprites/spawner_grunt.png", 3, 1, true);
     }
 
-    public ImageData getImageData(String imageName){
-        return this.map.get(imageName);
+    public ImageData getImageData(int i){
+        return this.map.get(i);
+    }
+
+    private void registerData(String imageLink, int spriteNumX, int spriteNumY, boolean canBePlaced){
+
+        Image image = new Image(getClass().getResource(imageLink).toExternalForm());
+
+        double ySize = image.getHeight()/spriteNumY;
+        double xSize = image.getWidth()/spriteNumX;
+
+        for(int x = 0; x<spriteNumX; x++){
+            for (int y = 0; y<spriteNumY; y++){
+                map.put(id, new ImageData(image, xSize * x, ySize * y, xSize, ySize, canBePlaced, id));
+                id++;
+            }
+        }
     }
 
 }

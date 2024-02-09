@@ -23,7 +23,6 @@ public class Editeur2D extends BorderPane {
     private final ImageManager imageManager = new ImageManager();
 
     private ImageData selectionReminder = null;
-    private int selX = 0, selY = 0;
 
     public Editeur2D(Projet_POO2 projet_poo2) {
 
@@ -34,7 +33,7 @@ public class Editeur2D extends BorderPane {
         Carte carte = new Carte(imageManager, 20);
         carte.setOnClick((actionEvent, gridCase) -> {
             if(selectionReminder != null)
-                carte.setCell(gridCase.getX(), gridCase.getY(), selectionReminder.generateView(selX,selY));
+                carte.setCell(gridCase.getX(), gridCase.getY(), selectionReminder.generateView());
             else
                 carte.setCell(gridCase.getX(), gridCase.getY(), null);
         });
@@ -86,47 +85,34 @@ public class Editeur2D extends BorderPane {
 
         List<Button> buttonList = new ArrayList<>();
 
-        for(Map.Entry<String, ImageData> imageEntry : imageManager.getMap().entrySet()){
+        for(Map.Entry<Integer, ImageData> imageEntry : imageManager.getMap().entrySet()){
 
             if(!imageEntry.getValue().canBePlaced())
                 continue;
 
-            ImageData imageData = imageEntry.getValue();
+            ImageView imageView = imageEntry.getValue().generateView();
+            imageView.setFitWidth(50);
+            imageView.setFitHeight(50);
 
-            for(int x = 0; x<imageData.getNumbX(); x++){
+            Button button = new Button("", imageView);
 
-                for(int y = 0; y<imageData.getNumbY(); y++) {
+            button.setPrefWidth(150.0);
+            button.setAlignment(Pos.CENTER);
+            button.setStyle("-fx-background-color: transparent; -fx-border-style: none");
 
-                    ImageView imageView = imageEntry.getValue().generateView(x, y);
-                    imageView.setFitWidth(50);
-                    imageView.setFitHeight(50);
-
-                    Button button = new Button("", imageView);
-
-                    button.setPrefWidth(150.0);
-                    button.setAlignment(Pos.CENTER);
-                    button.setStyle("-fx-background-color: transparent; -fx-border-style: none");
-
-                    int finalX = x;
-                    int finalY = y;
-                    button.setOnAction(action -> {
-                        for (Button bc : buttonList){
-                            bc.setStyle("-fx-background-color: transparent; -fx-border-style: none");
-                        }
-                        button.setStyle("-fx-background-color: red; -fx-border-style: none");
-                        this.selectionReminder = imageEntry.getValue();
-                        this.selX = finalX;
-                        this.selY = finalY;
-                        if(imageEntry.getKey().equals("floor"))
-                            this.selectionReminder = null;
-                    });
-
-                    buttonList.add(button);
-                    leftPane.getChildren().add(button);
-
+            button.setOnAction(action -> {
+                for (Button bc : buttonList){
+                    bc.setStyle("-fx-background-color: transparent; -fx-border-style: none");
                 }
+                button.setStyle("-fx-background-color: red; -fx-border-style: none");
+                this.selectionReminder = imageEntry.getValue();
 
-            }
+                if(imageEntry.getKey() == 0)
+                    this.selectionReminder = null;
+            });
+
+            buttonList.add(button);
+            leftPane.getChildren().add(button);
 
         }
 

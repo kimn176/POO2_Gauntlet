@@ -6,42 +6,39 @@ import javafx.scene.image.ImageView;
 
 public class ImageData {
 
-    final int numbX, numbY;
-    final double ySize, xSize;
+    final double xSize, ySize, xSize2, ySize2;
     final Image image;
-    boolean canBePlaced = true;
+    final boolean canBePlaced;
+    final int id;
 
-    public ImageData(Image image, int spriteNumX, int spriteNumY){
+    public ImageData(Image image, double xSize, double ySize, double xSize2, double ySize2, boolean canBePlaced, int id){
         this.image = image;
-        this.ySize = image.getHeight()/spriteNumY;
-        this.xSize = image.getWidth()/spriteNumX;
-        this.numbX = spriteNumX;
-        this.numbY = spriteNumY;
-    }
-
-    public ImageData(Image image, int spriteNumX, int spriteNumY, boolean canBePlaced){
-        this(image, spriteNumX, spriteNumY);
+        this.xSize = xSize;
+        this.xSize2 = xSize2;
+        this.ySize = ySize;
+        this.ySize2 = ySize2;
         this.canBePlaced = canBePlaced;
+        this.id = id;
     }
 
-    public int getNumbX() {
-        return numbX;
+    public Image getImage(){
+        return this.image;
     }
 
-    public int getNumbY() {
-        return numbY;
+    public int getId(){
+        return this.id;
     }
 
     public boolean canBePlaced(){
         return this.canBePlaced;
     }
 
-    public ImageView generateView(int x, int y){
+    public ImageView generateView(){
         ImageView imageView = new ImageView();
         imageView.setImage(image);
         imageView.setPreserveRatio(true);
 
-        imageView.setViewport(new Rectangle2D(xSize*x,ySize*y, xSize, ySize));
+        imageView.setViewport(new Rectangle2D(xSize,ySize, xSize2, ySize2));
         return imageView;
     }
 
