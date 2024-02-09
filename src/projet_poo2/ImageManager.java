@@ -3,12 +3,13 @@ package projet_poo2;
 import javafx.scene.image.Image;
 import projet_poo2.image.ImageData;
 
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ImageManager {
 
-    private Map<Integer, ImageData> map = new HashMap<>();
+    private final Map<Integer, ImageData> map = new HashMap<>();
     private int id = 0;
 
     public ImageManager(){
@@ -24,6 +25,8 @@ public class ImageManager {
         registerData("sprites/exit.png", 1, 1, true);
         registerData("sprites/key.png", 1, 1, true);
         registerData("sprites/keyring.png", 1, 1, false);
+        registerData("sprites/treasure.png", 1, 1, true);
+        registerData("sprites/smart_bomb.png", 1, 1, true);
         registerData("sprites/potion_life.png", 1, 1, true);
         registerData("sprites/potion_defense.png", 1, 1, true);
         registerData("sprites/potion_magic.png", 1, 1, true);
@@ -31,9 +34,7 @@ public class ImageManager {
         registerData("sprites/potion_poison.png", 1, 1, true);
         registerData("sprites/potion_speed.png", 1, 1, true);
         registerData("sprites/food.png", 1, 1, true);
-        registerData("sprites/treasure.png", 1, 1, true);
         registerData("sprites/wall.png", 16, 1, true);
-        registerData("sprites/smart_bomb.png", 1, 1, true);
         registerData("sprites/spawner_ghost.png", 3, 1, true);
         registerData("sprites/spawner_grunt.png", 3, 1, true);
     }
@@ -44,7 +45,11 @@ public class ImageManager {
 
     private void registerData(String imageLink, int spriteNumX, int spriteNumY, boolean canBePlaced){
 
-        Image image = new Image(getClass().getResource(imageLink).toExternalForm());
+        InputStream inputStream = getClass().getResourceAsStream(imageLink);
+        if(inputStream == null)
+            return;
+
+        Image image = new Image(inputStream);
 
         double ySize = image.getHeight()/spriteNumY;
         double xSize = image.getWidth()/spriteNumX;

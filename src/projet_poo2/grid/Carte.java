@@ -7,15 +7,19 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import projet_poo2.ImageManager;
+import projet_poo2.image.ImageData;
 
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.io.*;
 import java.util.function.BiConsumer;
 
 public class Carte extends GridPane {
 
     final int size;
     double scale = 1;
-    private ImageManager imageManager;
-    private CarteGridCase[][] panes;
+    private final ImageManager imageManager;
+    private final CarteGridCase[][] panes;
     private BiConsumer<ActionEvent, CarteGridCase> actionEventConsumer = (actionEvent, gcase) -> System.out.println("No action");
 
     public Carte(ImageManager imageManager, int size){
@@ -41,9 +45,11 @@ public class Carte extends GridPane {
                 Button button = this.panes[x][y].getButton();
                 button.setPrefSize(50 * scale, 50 * scale);
                 button.setMinSize(50 * scale,50 * scale);
-                ImageView imageView = this.panes[x][y].getImageView();
+                if(this.panes[x][y].getButton().getGraphic() != null){
+                ImageView imageView = (ImageView) this.panes[x][y].getButton().getGraphic();
                 if(imageView != null)
                     imageView.setFitWidth(50*scale);
+                }
             }
         }
     }
@@ -64,12 +70,14 @@ public class Carte extends GridPane {
 
     public void generatePane(int x, int y){
 
-        Image image = this.imageManager.getImageData(0).getImage();
+        ImageData imageData = this.imageManager.getImageData(0);
+        Image image = imageData.getImage();
 
         Button button = new Button();
 
         CarteGridCase carteGridCase = new CarteGridCase(button, null, x, y);
 
+        carteGridCase.setImageData(imageData);
         button.setPrefSize(50 * scale, 50 * scale);
         button.setMinSize(50 * scale,50 * scale);
 
@@ -90,25 +98,28 @@ public class Carte extends GridPane {
         super.add(button, x, y);
     }
 
-    public void setCell(int x, int y, ImageView image){
+    public void setCell(int x, int y, ImageData imageData){
 
         if(x>size || y>size)
             return;
 
-        if(image != null) {
-            image.setPreserveRatio(true);
-            image.setFitWidth(50 * scale);
-            panes[x][y].setImageView(image);
-            panes[x][y].getButton().setGraphic(image);
-        }else panes[x][y].getButton().setGraphic(null);
+        if(imageData == null){
+            return;
+        }
+
+        panes[x][y].setImageData(imageData);
+        if(imageData.getId() == 0){
+            panes[x][y].getButton().setGraphic(null);
+            return;
+        }
+        ImageView image = imageData.generateView();
+        image.setPreserveRatio(true);
+        image.setFitWidth(50 * scale);
+        panes[x][y].getButton().setGraphic(image);
     }
 
-    public static String toRGBCode( Color color )
-    {
-        return String.format( "#%02X%02X%02X",
-                (int)( color.getRed() * 255 ),
-                (int)( color.getGreen() * 255 ),
-                (int)( color.getBlue() * 255 ) );
+    public CarteGridCase getCase(int x, int y){
+        return this.panes[x][y];
     }
 
 }

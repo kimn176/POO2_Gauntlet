@@ -2,25 +2,26 @@ package projet_poo2.grid;
 
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import projet_poo2.image.ImageData;
 
 public class CarteGridCase {
     Button button;
-    ImageView imageView;
+    ImageData imageData;
     int x, y;
 
-    public CarteGridCase(Button button, ImageView imageView, int x, int y){
+    public CarteGridCase(Button button, ImageData imageData, int x, int y){
         this.button = button;
-        this.imageView = imageView;
+        this.imageData = imageData;
         this.x = x;
         this.y = y;
     }
 
-    public ImageView getImageView() {
-        return imageView;
+    public ImageData getImageData() {
+        return imageData;
     }
 
-    public void setImageView(ImageView imageView) {
-        this.imageView = imageView;
+    public void setImageData(ImageData imageData) {
+        this.imageData = imageData;
     }
 
     public Button getButton(){

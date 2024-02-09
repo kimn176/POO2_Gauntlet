@@ -11,6 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import projet_poo2.grid.Carte;
+import projet_poo2.grid.CarteSaver;
 import projet_poo2.image.ImageData;
 
 import java.util.ArrayList;
@@ -23,21 +24,18 @@ public class Editeur2D extends BorderPane {
     private final ImageManager imageManager = new ImageManager();
 
     private ImageData selectionReminder = null;
+    private Carte carte;
 
     public Editeur2D(Projet_POO2 projet_poo2) {
 
         this.projet_poo2 = projet_poo2;
 
+        this.carte = new Carte(imageManager, 20);
+        carte.setOnClick((actionEvent, gridCase) -> carte.setCell(gridCase.getX(), gridCase.getY(), selectionReminder));
+
         this.createTopBar();
 
-        Carte carte = new Carte(imageManager, 20);
-        carte.setOnClick((actionEvent, gridCase) -> {
-            if(selectionReminder != null)
-                carte.setCell(gridCase.getX(), gridCase.getY(), selectionReminder.generateView());
-            else
-                carte.setCell(gridCase.getX(), gridCase.getY(), null);
-        });
-        this.createLeftPane(carte);
+        this.createLeftPane();
 
         // Créer la scène
 
@@ -53,8 +51,18 @@ public class Editeur2D extends BorderPane {
     private void createTopBar(){
         MenuBar menuBar = new MenuBar();
         Menu menuFile = new Menu("Fichier");
-        MenuItem menuItemNew = new MenuItem("Nouvelle carte");
+        MenuItem menuItemNew = new MenuItem("Sauvegarder");
+        menuItemNew.setOnAction(action->new CarteSaver().save(carte));
         MenuItem menuItemLoad = new MenuItem("Charger une carte");
+        menuItemLoad.setOnAction(action->{
+            Carte carte1 = new CarteSaver().read(imageManager);
+            if(carte1 != null) {
+                this.setCenter(new ScrollPane(carte1));
+
+                carte1.setOnClick((actionEvent, gridCase) -> carte1.setCell(gridCase.getX(), gridCase.getY(), selectionReminder));
+                this.carte = carte1;
+            }
+        });
         menuFile.getItems().addAll(menuItemNew, menuItemLoad);
 
         Menu menuOption = new Menu("Option");
@@ -67,7 +75,7 @@ public class Editeur2D extends BorderPane {
         this.setTop(menuBar);
     }
 
-    private Slider createLeftPane(Carte carte){
+    private Slider createLeftPane(){
 
         Slider zoomSlider = new Slider();
         zoomSlider.setMax(3);
@@ -106,9 +114,6 @@ public class Editeur2D extends BorderPane {
                 }
                 button.setStyle("-fx-background-color: red; -fx-border-style: none");
                 this.selectionReminder = imageEntry.getValue();
-
-                if(imageEntry.getKey() == 0)
-                    this.selectionReminder = null;
             });
 
             buttonList.add(button);
@@ -121,9 +126,10 @@ public class Editeur2D extends BorderPane {
         button.setAlignment(Pos.CENTER);
         button.setStyle("-fx-background-color: transparent; -fx-border-color: blue");
         button.setOnAction(action->{
+            ImageData imageData = this.imageManager.getImageData(0);
             for(int x = 0; x<carte.getSize(); x++){
                 for(int y = 0; y<carte.getSize(); y++){
-                    carte.setCell(x, y, null);
+                    carte.setCell(x, y, imageData);
                 }
             }
         });
