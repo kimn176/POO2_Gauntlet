@@ -31,6 +31,7 @@ public class MainMenuController implements Initializable {
     @FXML
     public void optionAction(ActionEvent event) {
         System.out.println("Action Option");
+        Projet_POO2.app.showOption();
     }
 
     @FXML

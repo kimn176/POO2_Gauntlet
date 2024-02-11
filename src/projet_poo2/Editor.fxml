@@ -24,7 +24,7 @@
                 </VBox>
             </ScrollPane>
             <Slider max="3" min="1" value="1" fx:id="zoomSlider"/>
-            <Button text="Reset" fx:id="resetButton" onAction="#resetButtonAction" style="-fx-background-color: transparent; -fx-border-color: blue"/>
+            <Button text="Reset" onAction="#resetButtonAction" style="-fx-background-color: transparent; -fx-border-color: blue"/>
         </VBox>
     </left>
 

@@ -9,5 +9,4 @@
         <Button fx:id="optionButton" prefWidth="150" prefHeight="40" text="Option" onAction="#optionAction" StackPane.alignment="TOP_CENTER" style="-fx-background-color: #BDB76B; -fx-text-fill: black;"/>
         <Button fx:id="exitButton" prefWidth="150" prefHeight="40" text="Quitter" onAction="#exitAction" StackPane.alignment="BOTTOM_CENTER" style="-fx-background-color: #BDB76B; -fx-text-fill: black;"/>
     </VBox>
-
 </StackPane>

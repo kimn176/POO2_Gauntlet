@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<GridPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="projet_poo2.OptionController" prefHeight="400.0" prefWidth="600.0">
+    <TabPane GridPane.columnIndex="0" GridPane.rowIndex="0" tabClosingPolicy="UNAVAILABLE">
+        <padding>
+            <Insets/>
+        </padding>
+        <Tab text="Theme">
+            <VBox>
+                <padding>
+                    <Insets left="10" right="10" top="10" bottom="10"/>
+                </padding>
+                <ToggleButton text="Theme Sombre" fx:id="tb1" onAction="#setDarkMode"/>
+                <ToggleButton text="Theme Clair" fx:id="tb2" onAction="#setLightMode"/>
+                <Label fx:id="label"/>
+            </VBox>
+        </Tab>
+        <Tab text="Sauvegardes">
+
+        </Tab>
+    </TabPane>
+    <Button GridPane.rowIndex="1" GridPane.columnIndex="0" text="Retour" onAction="#returnAction"/>
+</GridPane>

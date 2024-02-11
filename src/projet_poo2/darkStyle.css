@@ -1,0 +1,52 @@
+.button {
+    -fx-background-color: #3b3a37;
+    -fx-text-fill: white;
+}
+
+.toggle-button{
+    -fx-background-color: #3b3a37;
+    -fx-text-fill: white;
+}
+
+.label {
+    -fx-text-fill: white;
+}
+
+.grid-pane {
+    -fx-background-color: #62605c;
+    -fx-text-fill: white;
+}
+.pane {
+    -fx-background-color: #62605c;
+    -fx-text-fill: white;
+}
+
+.GridPane{
+    -fx-background-color: #62605c;
+    -fx-text-fill: white;
+}
+
+.tab{
+    -fx-background-color: #62605c;
+    -fx-text-fill: white;
+}
+
+.menu-bar{
+    -fx-background-color: #62605c;
+    -fx-text-fill: white;
+}
+
+.menu{
+    -fx-background-color: #62605c;
+    -fx-text-fill: white;
+}
+
+.menu-item{
+    -fx-background-color: #62605c;
+    -fx-text-fill: white;
+}
+
+.tab-pane {
+    -fx-background-color: #62605c;
+    -fx-text-fill: white;
+}
