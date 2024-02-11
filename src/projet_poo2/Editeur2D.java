@@ -68,7 +68,7 @@ public class Editeur2D extends BorderPane {
         menuFile.getItems().addAll(menuItemNew, menuItemLoad);
 
         Menu menuOption = new Menu("Option");
-        MenuItem menuItemQuitter = new MenuItem("Quiter");
+        MenuItem menuItemQuitter = new MenuItem("Quitter");
         menuItemQuitter.setOnAction(action -> projet_poo2.showHome());
         menuOption.getItems().add(menuItemQuitter);
 
