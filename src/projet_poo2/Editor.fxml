@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="projet_poo2.EditorController" prefHeight="800.0" prefWidth="1000.0" fx:id="borderpane">
+    <top>
+        <MenuBar>
+            <Menu fx:id="file" text="Fichier">
+                <MenuItem fx:id="save" text="Sauvegarder"/>
+                <MenuItem fx:id="load" text="Charger une Carte" onAction="#loadItemMap"/>
+            </Menu>
+            <Menu fx:id="option" text="Option">
+                <MenuItem text="Retour" onAction="#exitMap"/>
+            </Menu>
+        </MenuBar>
+    </top>
+
+    <left>
+        <VBox alignment="CENTER">
+            <ScrollPane fx:id="scrollPane" fitToWidth="true" vbarPolicy="NEVER">
+                <VBox fx:id="leftPane" alignment="CENTER" spacing="5">
+                    <VBox fx:id="buttonVBox" alignment="CENTER"/>
+                </VBox>
+            </ScrollPane>
+            <Slider max="3" min="1" value="1" fx:id="zoomSlider"/>
+            <Button text="Reset" fx:id="resetButton" onAction="#resetButtonAction" style="-fx-background-color: transparent; -fx-border-color: blue"/>
+        </VBox>
+    </left>
+
+    <center>
+        <ScrollPane fx:id="scrollPaneCenter"/>
+    </center>
+
+</BorderPane>

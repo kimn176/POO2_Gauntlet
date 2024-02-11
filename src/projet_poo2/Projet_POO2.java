@@ -26,23 +26,28 @@ public class Projet_POO2 extends Application {
     Scene editeur = new Scene(new Editeur2D(this), 1000, 800);
     Stage primaryStage;
 
-    public static Application app;
+    public static Projet_POO2 app;
 
-    public Projet_POO2() throws IOException {
+    public Projet_POO2() {
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 
 
-        URL url = getClass().getResource("main_menu.fxml");
-        scene = new Scene(FXMLLoader.load(url));
+        URL urlMainScene = getClass().getResource("main_menu.fxml");
+        scene = new Scene(FXMLLoader.load(urlMainScene));
+
+
+        URL urlEditor = getClass().getResource("Editor.fxml");
+        editeur = new Scene(FXMLLoader.load(urlEditor));
+
 
         this.primaryStage = primaryStage;
         showHome();
         primaryStage.show();
-        Projet_POO2.app = this;
 
+        Projet_POO2.app = this;
     }
 
     public void showHome(){
@@ -58,7 +63,7 @@ public class Projet_POO2 extends Application {
 
     }
 
-    public static Application getApp() {
+    public static Projet_POO2 getApp() {
         return app;
     }
 

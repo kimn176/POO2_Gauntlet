@@ -23,9 +23,9 @@ public class MainMenuController implements Initializable {
 
     @FXML
     public void editorAction(ActionEvent event) {
-        System.out.println("Action Jouer");
-        Projet_POO2 pooprojet = (Projet_POO2) Projet_POO2.getApp();
-        pooprojet.showEditeur();
+        System.out.println("Action Editer");
+        Projet_POO2 poo_projet = Projet_POO2.app;
+        poo_projet.showEditeur();
     }
 
     @FXML

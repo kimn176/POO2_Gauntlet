@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="projet_poo2.MainMenuController" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-image: url('./sprites/page_accueil.jpg')">
+<StackPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="projet_poo2.MainMenuController" prefHeight="800.0" prefWidth="1000.0">
     <VBox spacing="7" alignment="CENTER" fx:id="vbox">
         <Button fx:id="editorButton" prefWidth="150" prefHeight="40" text="Editer" onAction="#editorAction" StackPane.alignment="CENTER" style="-fx-background-color: #BDB76B; -fx-text-fill: black;"/>
         <Button fx:id="optionButton" prefWidth="150" prefHeight="40" text="Option" onAction="#optionAction" StackPane.alignment="TOP_CENTER" style="-fx-background-color: #BDB76B; -fx-text-fill: black;"/>
