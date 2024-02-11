@@ -23,7 +23,7 @@ public class Projet_POO2 extends Application {
 
 
     Scene scene;
-    Scene editeur = new Scene(new Editeur2D(this), 1000, 800);
+    Scene editeur;
     Stage primaryStage;
 
     public static Projet_POO2 app;
