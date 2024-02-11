@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package projet_poo2;
 
 /**
@@ -9,90 +5,147 @@ package projet_poo2;
  * @author kimngan
  */
 
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.VBox;
+import projet_poo2.grid.Carte;
+import projet_poo2.grid.CarteSaver;
+import projet_poo2.image.ImageData;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class Editeur2D extends BorderPane {
-    
+
+    private final Projet_POO2 projet_poo2;
+    private final ImageManager imageManager = new ImageManager();
+
+    private ImageData selectionReminder = null;
     private Carte carte;
 
     public Editeur2D(Projet_POO2 projet_poo2) {
-        // Créer la barre de menu
-        MenuBar menuBar = new MenuBar();
-        Menu menuFile = new Menu("Fichier");
-        MenuItem menuItemNew = new MenuItem("Nouvelle carte");
-        MenuItem menuItemLoad = new MenuItem("Charger une carte");
-        menuFile.getItems().addAll(menuItemNew, menuItemLoad);
-        
-        Menu menuOption = new Menu("Option");
-        MenuItem menuItemQuitter = new MenuItem("Quiter");
-        menuOption.getItems().add(menuItemQuitter);
-        
-        menuBar.getMenus().addAll(menuFile, menuOption);
 
-        // Créer le bandeau gauche
-        FlowPane leftPane = new FlowPane();
-        this.setPrefWidth(200);
-        this.setStyle("-fx-background-color: lightgray");
-        
-        // Des objets dans le bandeau gauche
-        Button exit = createObjectButton("", "sprites/exit.png");
-        Button key = createObjectButton("", "sprites/key.png");
-        Button keyring = createObjectButton("", "sprites/keyring.png");
-        Button potion_life = createObjectButton("", "sprites/potion_life.png");
-        Button potion_defense = createObjectButton("", "sprites/potion_defense.png");
-        Button potion_magic = createObjectButton("", "sprites/potion_magic.png");
-        Button potion_physical = createObjectButton("", "sprites/potion_physical.png");
-        Button potion_poison = createObjectButton("", "sprites/potion_poison.png");
-        Button potion_speed = createObjectButton("", "sprites/potion_speed.png");
-        Button food = createObjectButton("", "sprites/food.png");
-        Button treasure = createObjectButton("", "sprites/treasure.png");
-        Button wall = createObjectButton("", "sprites/wall.png");
-        Button smart_bomb = createObjectButton("", "sprites/smart_bomb.png");
-        Button spawner_ghost = createObjectButton("", "sprites/spawner_ghost.png");
-        Button spawner_grunt = createObjectButton("", "sprites/spawner_grunt.png");
-        Button floor = createObjectButton("", "sprites/floor.png");
-        
-        leftPane.getChildren().addAll(exit,key,keyring,potion_life, potion_defense,
-                potion_magic, potion_physical, potion_poison, potion_speed, food, 
-                treasure, wall, smart_bomb, spawner_ghost, spawner_grunt, floor);
-        
-        // Ajouter le zoom au bandeau gauche
-        Slider zoomSlider = new Slider();
-        zoomSlider.setMax(10);
-        zoomSlider.setValue(1);
-        zoomSlider.setOnMouseReleased(event -> 
-            carte.updateSize()
-        );
-        leftPane.getChildren().add(zoomSlider);
-        
-        // Créer la carte
-        carte = new Carte(zoomSlider);
+        this.projet_poo2 = projet_poo2;
+
+        this.carte = new Carte(imageManager, 20);
+        carte.setOnClick((actionEvent, gridCase) -> carte.setCell(gridCase.getX(), gridCase.getY(), selectionReminder));
+
+        this.createTopBar();
+
+        this.createLeftPane();
 
         // Créer la scène
-        this.setTop(menuBar);
-        this.setLeft(leftPane);
-        this.setCenter(carte.getCartePane());
 
-        menuItemQuitter.setOnAction(action -> projet_poo2.showHome());
+        ScrollPane scrollPane = new ScrollPane(carte);
+        this.setCenter(scrollPane);
 
     }
-    
-    
-    // Créer un bouton pour un objet
-    private Button createObjectButton(String objectName, String imagePath) {
-        Image image = new Image(getClass().getResource(imagePath).toExternalForm());
-        ImageView imageView = new ImageView(image);
-        imageView.setFitWidth(50); 
-        imageView.setFitHeight(50);
 
-        Button button = new Button(objectName, imageView);
-        button.setPrefSize(80, 80); // Ajuster la taille du bouton
+    public ImageManager getImageManager() {
+        return imageManager;
+    }
 
-        return button;
+    private void createTopBar(){
+        MenuBar menuBar = new MenuBar();
+        Menu menuFile = new Menu("Fichier");
+        MenuItem menuItemNew = new MenuItem("Sauvegarder");
+        menuItemNew.setOnAction(action->new CarteSaver().save(carte));
+        MenuItem menuItemLoad = new MenuItem("Charger une carte");
+        menuItemLoad.setOnAction(action->{
+            Carte carte1 = new CarteSaver().read(imageManager);
+            if(carte1 != null) {
+                this.setCenter(new ScrollPane(carte1));
+
+                carte1.setOnClick((actionEvent, gridCase) -> carte1.setCell(gridCase.getX(), gridCase.getY(), selectionReminder));
+                this.carte = carte1;
+            }
+        });
+        menuFile.getItems().addAll(menuItemNew, menuItemLoad);
+
+        Menu menuOption = new Menu("Option");
+        MenuItem menuItemQuitter = new MenuItem("Quiter");
+        menuItemQuitter.setOnAction(action -> projet_poo2.showHome());
+        menuOption.getItems().add(menuItemQuitter);
+
+        menuBar.getMenus().addAll(menuFile, menuOption);
+
+        this.setTop(menuBar);
+    }
+
+    private Slider createLeftPane(){
+
+        Slider zoomSlider = new Slider();
+        zoomSlider.setMax(3);
+        zoomSlider.setMin(1);
+        zoomSlider.setValue(1);
+
+        zoomSlider.setOnMouseDragged(event-> carte.scale(zoomSlider.getValue()));
+        zoomSlider.setOnMouseReleased(event-> carte.scale(zoomSlider.getValue()));
+
+        // Créer le bandeau gauche
+        VBox leftPane = new VBox();
+        leftPane.setAlignment(Pos.CENTER);
+
+        //this.setStyle("-fx-background-color: lightgray");
+
+        List<Button> buttonList = new ArrayList<>();
+
+        for(Map.Entry<Integer, ImageData> imageEntry : imageManager.getMap().entrySet()){
+
+            if(!imageEntry.getValue().canBePlaced())
+                continue;
+
+            ImageView imageView = imageEntry.getValue().generateView();
+            imageView.setFitWidth(50);
+            imageView.setFitHeight(50);
+
+            Button button = new Button("", imageView);
+
+            button.setPrefWidth(150.0);
+            button.setAlignment(Pos.CENTER);
+            button.setStyle("-fx-background-color: transparent; -fx-border-style: none");
+
+            button.setOnAction(action -> {
+                for (Button bc : buttonList){
+                    bc.setStyle("-fx-background-color: transparent; -fx-border-style: none");
+                }
+                button.setStyle("-fx-background-color: red; -fx-border-style: none");
+                this.selectionReminder = imageEntry.getValue();
+            });
+
+            buttonList.add(button);
+            leftPane.getChildren().add(button);
+
+        }
+
+        Button button = new Button("Reset");
+        button.setPrefWidth(150.0);
+        button.setAlignment(Pos.CENTER);
+        button.setStyle("-fx-background-color: transparent; -fx-border-color: blue");
+        button.setOnAction(action->{
+            ImageData imageData = this.imageManager.getImageData(0);
+            for(int x = 0; x<carte.getSize(); x++){
+                for(int y = 0; y<carte.getSize(); y++){
+                    carte.setCell(x, y, imageData);
+                }
+            }
+        });
+
+        leftPane.getChildren().add(button);
+
+        leftPane.getChildren().add(zoomSlider);
+
+
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setContent(leftPane);
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setFitToWidth(true);
+        this.setLeft(scrollPane);
+
+        return zoomSlider;
     }
 
 }
