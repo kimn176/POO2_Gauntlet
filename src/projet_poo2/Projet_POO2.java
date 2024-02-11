@@ -34,6 +34,7 @@ public class Projet_POO2 extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+        Projet_POO2.app = this;
 
         URL urlMainScene = getClass().getResource("main_menu.fxml");
         scene = new Scene(FXMLLoader.load(urlMainScene));
@@ -46,8 +47,6 @@ public class Projet_POO2 extends Application {
         this.primaryStage = primaryStage;
         showHome();
         primaryStage.show();
-
-        Projet_POO2.app = this;
     }
 
     public void showHome(){

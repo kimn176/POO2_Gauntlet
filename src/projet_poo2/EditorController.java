@@ -90,7 +90,9 @@ public class EditorController implements Initializable {
 
         }
 
+        //Obligé, sinon ça s'affiche pas
         scrollPaneCenter = new ScrollPane(carte);
+        borderpane.setCenter(scrollPaneCenter);
     }
 
     @FXML
@@ -101,6 +103,11 @@ public class EditorController implements Initializable {
                 carte.setCell(x, y, imageData);
             }
         }
+    }
+
+    @FXML
+    public void saveButtonAction(ActionEvent event) {
+        new CarteSaver().save(carte);
     }
 
     public ImageManager getImageManager() {
