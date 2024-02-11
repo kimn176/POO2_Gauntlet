@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.image.Image?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.image.ImageView?>
-<StackPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="projet_poo2.MainMenuController" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-image: url('./sprites/page_accueil.jpg')" fx:id="pane">
-    <VBox spacing="5" alignment="CENTER" fx:id="vbox">
-        <Button fx:id="playButton" prefWidth="150" prefHeight="40" text="Jouer" onAction="#playAction" StackPane.alignment="CENTER" style="-fx-background-color: #BDB76B; -fx-text-fill: black;"/>
+<StackPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="projet_poo2.MainMenuController" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-image: url('./sprites/page_accueil.jpg')">
+    <VBox spacing="7" alignment="CENTER" fx:id="vbox">
+        <Button fx:id="editorButton" prefWidth="150" prefHeight="40" text="Editer" onAction="#editorAction" StackPane.alignment="CENTER" style="-fx-background-color: #BDB76B; -fx-text-fill: black;"/>
         <Button fx:id="optionButton" prefWidth="150" prefHeight="40" text="Option" onAction="#optionAction" StackPane.alignment="TOP_CENTER" style="-fx-background-color: #BDB76B; -fx-text-fill: black;"/>
         <Button fx:id="exitButton" prefWidth="150" prefHeight="40" text="Quitter" onAction="#exitAction" StackPane.alignment="BOTTOM_CENTER" style="-fx-background-color: #BDB76B; -fx-text-fill: black;"/>
     </VBox>

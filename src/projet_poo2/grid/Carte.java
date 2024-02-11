@@ -8,10 +8,6 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import projet_poo2.ImageManager;
 import projet_poo2.image.ImageData;
-
-import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import java.io.*;
 import java.util.function.BiConsumer;
 
 public class Carte extends GridPane {
@@ -24,10 +20,7 @@ public class Carte extends GridPane {
 
     public Carte(ImageManager imageManager, int size){
         super();
-        /*
-        super.setVgap(10);
-        super.setHgap(10);
-        */
+
         this.imageManager = imageManager;
         this.size = size;
         this.panes = new CarteGridCase[this.size][this.size];

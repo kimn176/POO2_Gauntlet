@@ -3,6 +3,8 @@ package projet_poo2;
 /**
  *
  * @author kimngan
+ * @author ninogimenez
+ * @author lucasespinar
  */
 
 import javafx.geometry.Pos;
