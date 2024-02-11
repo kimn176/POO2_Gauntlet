@@ -5,31 +5,43 @@
 package projet_poo2;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import projet_poo2.grid.Carte;
-import projet_poo2.Editeur2D;
-import projet_poo2.Page_accueil;
+
+import java.io.IOException;
+import java.net.URL;
 
 
 /**
  *
- * @author kimngan
+ * @author kimngan, ninogimenez, lucasespinar
  */
 
 
 public class Projet_POO2 extends Application {
 
-    Scene scene = new Scene(new Page_accueil(this), 1000, 800);
+
+    Scene scene;
     Scene editeur = new Scene(new Editeur2D(this), 1000, 800);
     Stage primaryStage;
 
+    public static Application app;
+
+    public Projet_POO2() throws IOException {
+    }
+
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws Exception {
+
+
+        URL url = getClass().getResource("main_menu.fxml");
+        scene = new Scene(FXMLLoader.load(url));
 
         this.primaryStage = primaryStage;
         showHome();
         primaryStage.show();
+        Projet_POO2.app = this;
 
     }
 
@@ -37,7 +49,6 @@ public class Projet_POO2 extends Application {
 
         primaryStage.setTitle("Page d'Accueil du Jeu");
         primaryStage.setScene(scene);
-
     }
 
     public void showEditeur(){
@@ -47,7 +58,13 @@ public class Projet_POO2 extends Application {
 
     }
 
+    public static Application getApp() {
+        return app;
+    }
+
     public static void main(String[] args) {
+        String userDirectory = System.getProperty("user.dir");
+        System.out.println(userDirectory);
         launch(args);
     }
 
