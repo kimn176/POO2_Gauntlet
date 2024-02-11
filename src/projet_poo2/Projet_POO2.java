@@ -7,7 +7,7 @@ package projet_poo2;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import projet_poo2.Carte;
+import projet_poo2.grid.Carte;
 import projet_poo2.Editeur2D;
 import projet_poo2.Page_accueil;
 
