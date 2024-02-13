@@ -46,7 +46,7 @@ public class Projet_POO2 extends Application {
 
         this.primaryStage = primaryStage;
         showHome();
-        URL urlIco = getClass().getResource("icon.png");
+        URL urlIco = getClass().getResource("img/icon.png");
         System.out.println(urlIco);
         Image img = new Image(urlIco.toString());
         primaryStage.getIcons().add(img);
