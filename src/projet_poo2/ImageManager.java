@@ -2,7 +2,6 @@ package projet_poo2;
 
 import javafx.scene.image.Image;
 import projet_poo2.image.ImageData;
-
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
