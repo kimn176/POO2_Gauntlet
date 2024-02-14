@@ -1,6 +1,7 @@
 package projet_poo2.grid;
 
-import projet_poo2.ImageManager;
+import projet_poo2.ImageData;
+import projet_poo2.ImageEnum;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -43,7 +44,9 @@ public class CarteSaver {
 
             for (int x = 0; x<carte.getSize(); x++){
                 for (int y = 0; y<carte.getSize(); y++){
-                    dataOut.writeInt(carte.getCase(x, y).getImageData().getId());
+                    ImageData imageData = carte.getCase(x, y).getImageData();
+                    dataOut.writeInt(imageData.getImageEnum().getId());
+                    dataOut.writeInt(imageData.getImageEnum().getSubSpriteId(imageData.getSpriteX(), imageData.getSpriteY()));
                 }
             }
 
@@ -54,7 +57,7 @@ public class CarteSaver {
 
     }
 
-    public Carte read(ImageManager imageManager){
+    public Carte read(){
         JFileChooser chooser = new JFileChooser();
         chooser.setFileSelectionMode(JFileChooser.APPROVE_OPTION);
 
@@ -77,11 +80,15 @@ public class CarteSaver {
             DataInputStream dataOut = new DataInputStream(fileOut);
 
             int size = dataOut.readInt();
-            Carte carte = new Carte(imageManager, size);
+            Carte carte = new Carte(size);
 
             for (int x = 0; x<carte.getSize(); x++){
                 for (int y = 0; y<carte.getSize(); y++){
-                    carte.setCell(x, y, imageManager.getImageData(dataOut.readInt()));
+                    ImageEnum imageEnum = ImageEnum.getByID(dataOut.readInt());
+                    if(imageEnum == null)
+                        continue;
+                    int[] sprite = imageEnum.reverseSubSpriteId(dataOut.readInt());
+                    carte.setCell(x, y, imageEnum.generateImageData(sprite[0], sprite[1]));
                 }
             }
 

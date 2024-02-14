@@ -6,22 +6,21 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import projet_poo2.ImageManager;
-import projet_poo2.image.ImageData;
+import projet_poo2.ImageData;
+import projet_poo2.ImageEnum;
+
 import java.util.function.BiConsumer;
 
 public class Carte extends GridPane {
 
     final int size;
     double scale = 1;
-    private final ImageManager imageManager;
     private final CarteGridCase[][] panes;
     private BiConsumer<ActionEvent, CarteGridCase> actionEventConsumer = (actionEvent, gcase) -> System.out.println("No action");
 
-    public Carte(ImageManager imageManager, int size){
+    public Carte(int size){
         super();
 
-        this.imageManager = imageManager;
         this.size = size;
         this.panes = new CarteGridCase[this.size][this.size];
         this.init();
@@ -63,14 +62,14 @@ public class Carte extends GridPane {
 
     public void generatePane(int x, int y){
 
-        ImageData imageData = this.imageManager.getImageData(0);
-        Image image = imageData.getImage();
+        ImageEnum imageEnum = ImageEnum.FLOOR;
+        Image image = imageEnum.getImage();
 
         Button button = new Button();
 
         CarteGridCase carteGridCase = new CarteGridCase(button, null, x, y);
 
-        carteGridCase.setImageData(imageData);
+        carteGridCase.setImageData(imageEnum.generateImageData(0, 0));
         button.setPrefSize(50 * scale, 50 * scale);
         button.setMinSize(50 * scale,50 * scale);
 
@@ -103,11 +102,11 @@ public class Carte extends GridPane {
         CarteGridCase carteGridCase = panes[x][y];
 
         carteGridCase.setImageData(imageData);
-        if(imageData.getId() == 0){
+        if(imageData.getImageEnum().getId() == ImageEnum.FLOOR.getId()){
             carteGridCase.getButton().setGraphic(null);
             return;
         }
-        ImageView image = imageData.generateView();
+        ImageView image = imageData.getImageView();
         image.setPreserveRatio(true);
         image.setFitWidth(50 * scale);
         carteGridCase.getButton().setGraphic(image);
