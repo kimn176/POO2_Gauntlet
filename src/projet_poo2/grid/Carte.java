@@ -16,6 +16,7 @@ public class Carte extends GridPane {
     final int size;
     double scale = 1;
     private final CarteGridCase[][] panes;
+    private CarteGridCase player = null;
     private BiConsumer<ActionEvent, CarteGridCase> actionEventConsumer = (actionEvent, gcase) -> System.out.println("No action");
 
     public Carte(int size){
@@ -24,6 +25,10 @@ public class Carte extends GridPane {
         this.size = size;
         this.panes = new CarteGridCase[this.size][this.size];
         this.init();
+    }
+
+    public CarteGridCase getPlayerCase(){
+        return this.player;
     }
 
     public int getSize(){
@@ -100,12 +105,24 @@ public class Carte extends GridPane {
         }
 
         CarteGridCase carteGridCase = panes[x][y];
+        CarteGridCase currentPlayerCase = this.player;
 
-        carteGridCase.setImageData(imageData);
-        if(imageData.getImageEnum().getId() == ImageEnum.FLOOR.getId()){
+        if(imageData.getImageEnum().getId() == ImageEnum.FLOOR.getId()) {
             carteGridCase.getButton().setGraphic(null);
             return;
         }
+
+        if(imageData.getImageEnum().getId() == ImageEnum.PLAYER.getId()) {
+            this.player = carteGridCase;
+
+            if(currentPlayerCase != null)
+                this.setCell(currentPlayerCase.getX(), currentPlayerCase.getY(), ImageEnum.FLOOR.generateImageData(0, 0)); // Remove the old character
+        }else if(carteGridCase.getImageData().getImageEnum() == ImageEnum.PLAYER){
+            this.player = null;
+        }
+
+        carteGridCase.setImageData(imageData);
+
         ImageView image = imageData.generateImageView();
         image.setPreserveRatio(true);
         image.setFitWidth(50 * scale);

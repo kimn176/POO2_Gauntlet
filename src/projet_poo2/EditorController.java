@@ -46,6 +46,29 @@ public class EditorController implements Initializable {
         projet_poo2.showHome();
     }
 
+    public void loadButton(ImageData imageData){
+        ImageView imageView = imageData.generateImageView();
+        imageView.setFitWidth(50);
+        imageView.setFitHeight(50);
+
+        Button button = new Button("", imageView);
+
+        button.setPrefWidth(150.0);
+        button.setAlignment(Pos.CENTER);
+        button.setStyle("-fx-background-color: transparent; -fx-border-style: none");
+
+        button.setOnAction(action -> {
+            for (Button bc : buttonList){
+                bc.setStyle("-fx-background-color: transparent; -fx-border-style: none");
+            }
+            button.setStyle("-fx-background-color: red; -fx-border-style: none");
+            this.selectionReminder = imageData;
+        });
+
+        buttonList.add(button);
+        buttonVBox.getChildren().add(button);
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -62,35 +85,13 @@ public class EditorController implements Initializable {
             if(!imageEnum.canBePlaced())
                 continue;
 
-            for(int spriteX = 0; spriteX < imageEnum.getSpriteNumX(); spriteX++){
-                for(int spriteY = 0; spriteY < imageEnum.getSpriteNumY(); spriteY++){
-
-                    ImageData imageData = imageEnum.generateImageData(spriteX, spriteY);
-                    ImageView imageView = imageData.generateImageView();
-                    imageView.setFitWidth(50);
-                    imageView.setFitHeight(50);
-
-                    Button button = new Button("", imageView);
-
-                    button.setPrefWidth(150.0);
-                    button.setAlignment(Pos.CENTER);
-                    button.setStyle("-fx-background-color: transparent; -fx-border-style: none");
-
-                    button.setOnAction(action -> {
-                        for (Button bc : buttonList){
-                            bc.setStyle("-fx-background-color: transparent; -fx-border-style: none");
-                        }
-                        button.setStyle("-fx-background-color: red; -fx-border-style: none");
-                        this.selectionReminder = imageData;
-                    });
-
-                    buttonList.add(button);
-                    buttonVBox.getChildren().add(button);
-
-                }
-            }
+            for(int spriteX = 0; spriteX < imageEnum.getSpriteNumX(); spriteX++)
+                for(int spriteY = 0; spriteY < imageEnum.getSpriteNumY(); spriteY++)
+                    this.loadButton(imageEnum.generateImageData(spriteX, spriteY));
 
         }
+
+        this.loadButton(ImageEnum.PLAYER.generateImageData(4, 0));
 
         //Obligé, sinon ça s'affiche pas
         scrollPaneCenter = new ScrollPane(carte);

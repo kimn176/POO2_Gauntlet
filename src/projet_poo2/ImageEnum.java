@@ -1,8 +1,6 @@
 package projet_poo2;
 
-import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 import java.io.InputStream;
 
@@ -22,8 +20,9 @@ public enum ImageEnum {
     POTION_SPEED("sprites/potion_speed.png", 1, 1, true, 12),
     FOOD("sprites/food.png", 1, 1, true, 13),
     WALL("sprites/wall.png", 16, 1, true, 14),
-    SPAWNER_GHOST("sprites/spawner_ghost.png", 3, 2, true, 15), //TODO Repalace spriteY
-    SPAWNER_GRUNT("sprites/spawner_grunt.png", 3, 1, true, 16);
+    SPAWNER_GHOST("sprites/spawner_ghost.png", 3, 1, true, 15),
+    SPAWNER_GRUNT("sprites/spawner_grunt.png", 3, 1, true, 16),
+    PLAYER("sprites/grunt.png", 8, 2, false, 16);
 
     final String file;
     final int spriteNumX, spriteNumY, id;
