@@ -61,9 +61,12 @@ public class CarteSaver {
         JFileChooser chooser = new JFileChooser();
         chooser.setFileSelectionMode(JFileChooser.APPROVE_OPTION);
 
+        chooser.setDialogTitle("Charger un fichier");
+
         chooser.setMultiSelectionEnabled(false);
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Binary", "bin");
         chooser.setFileFilter(filter);
+
         int returnVal = chooser.showSaveDialog(null);
         if(returnVal != JFileChooser.APPROVE_OPTION)
             return null;

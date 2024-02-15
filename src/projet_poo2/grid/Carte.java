@@ -106,7 +106,7 @@ public class Carte extends GridPane {
             carteGridCase.getButton().setGraphic(null);
             return;
         }
-        ImageView image = imageData.getImageView();
+        ImageView image = imageData.generateImageView();
         image.setPreserveRatio(true);
         image.setFitWidth(50 * scale);
         carteGridCase.getButton().setGraphic(image);

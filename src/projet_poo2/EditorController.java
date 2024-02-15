@@ -66,7 +66,7 @@ public class EditorController implements Initializable {
                 for(int spriteY = 0; spriteY < imageEnum.getSpriteNumY(); spriteY++){
 
                     ImageData imageData = imageEnum.generateImageData(spriteX, spriteY);
-                    ImageView imageView = imageData.getImageView();
+                    ImageView imageView = imageData.generateImageView();
                     imageView.setFitWidth(50);
                     imageView.setFitHeight(50);
 

@@ -73,13 +73,7 @@ public enum ImageEnum {
         double ySize = image.getHeight()/spriteNumY;
         double xSize = image.getWidth()/spriteNumX;
 
-        ImageView imageView = new ImageView();
-        imageView.setImage(image);
-        imageView.setPreserveRatio(true);
-
-        imageView.setViewport(new Rectangle2D(xSize * spriteX, ySize * spriteY, xSize, ySize));
-
-        return new ImageData(this, spriteX, spriteY, imageView);
+        return new ImageData(this, spriteX, spriteY, xSize, ySize);
 
     }
 
