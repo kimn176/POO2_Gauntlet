@@ -114,7 +114,6 @@ public class Carte extends GridPane {
 
         if(imageData.getImageEnum().getId() == ImageEnum.PLAYER.getId()) {
             this.player = carteGridCase;
-
             if(currentPlayerCase != null)
                 this.setCell(currentPlayerCase.getX(), currentPlayerCase.getY(), ImageEnum.FLOOR.generateImageData(0, 0)); // Remove the old character
         }else if(carteGridCase.getImageData().getImageEnum() == ImageEnum.PLAYER){

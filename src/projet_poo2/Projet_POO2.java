@@ -50,7 +50,6 @@ public class Projet_POO2 extends Application {
     }
 
     public void showHome(){
-
         primaryStage.setTitle("Page d'Accueil du Jeu");
         primaryStage.setScene(scene);
     }
