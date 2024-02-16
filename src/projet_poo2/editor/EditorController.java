@@ -1,22 +1,32 @@
-package projet_poo2;
+package projet_poo2.editor;
 
+import javafx.beans.value.WritableValue;
+import javafx.css.StyleableProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import projet_poo2.ImageData;
+import projet_poo2.ImageEnum;
+import projet_poo2.Projet_POO2;
 import projet_poo2.grid.Carte;
 import projet_poo2.grid.CarteSaver;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class EditorController implements Initializable {
 
@@ -25,11 +35,26 @@ public class EditorController implements Initializable {
     public BorderPane borderpane;
     public Slider zoomSlider;
     public VBox leftPane;
-    public List<Button> buttonList;
+    private Map<ImageEnum, Button> buttonMap = new HashMap<>();
     public VBox buttonVBox;
     public ScrollPane scrollPaneCenter;
-    Carte carte = new Carte(20);
+    private Carte carte = new Carte(20);
     private ImageData selectionReminder = null;
+
+    public void updateImageData(ImageData imageData){
+        this.selectionReminder = imageData;
+        for (Button bc : this.buttonMap.values()) {
+            bc.setStyle("-fx-background-color: transparent; -fx-border-style: none");
+        }
+
+        Button button = this.buttonMap.get(imageData.getImageEnum());
+
+        button.setStyle("-fx-background-color: red; -fx-border-style: none");
+        ImageView imageView = imageData.generateImageView();
+        imageView.setFitWidth(50);
+        imageView.setFitHeight(50);
+        button.setGraphic(imageView);
+    }
 
     @FXML
     public void loadItemMap(ActionEvent event) {
@@ -46,27 +71,48 @@ public class EditorController implements Initializable {
         projet_poo2.showHome();
     }
 
-    public void loadButton(ImageData imageData){
-        ImageView imageView = imageData.generateImageView();
-        imageView.setFitWidth(50);
-        imageView.setFitHeight(50);
+    public void openSelection(ImageEnum imageEnum){
 
-        Button button = new Button("", imageView);
+        Stage stage = new Stage();
+
+        stage.setTitle("Selection");
+
+        Scene scene = new Scene(new SelectionController(this, imageEnum));
+
+        stage.setScene(scene);
+        stage.show();
+
+    }
+
+    public void loadButton(ImageData imageData){
+
+        Button button = new Button("");
 
         button.setPrefWidth(150.0);
         button.setAlignment(Pos.CENTER);
-        button.setStyle("-fx-background-color: transparent; -fx-border-style: none");
 
-        button.setOnAction(action -> {
-            for (Button bc : buttonList){
-                bc.setStyle("-fx-background-color: transparent; -fx-border-style: none");
+        button.setOnMouseClicked(mouse -> {
+
+            if (mouse.getButton() == MouseButton.SECONDARY){
+
+                ImageEnum imageEnum = imageData.getImageEnum();
+                if(imageEnum.getSpriteNumY() == 1 && imageEnum.getSpriteNumX() == 1)
+                    return;
+
+                this.openSelection(imageEnum);
+
             }
-            button.setStyle("-fx-background-color: red; -fx-border-style: none");
-            this.selectionReminder = imageData;
+
+            this.updateImageData(imageData);
+
         });
 
-        buttonList.add(button);
+        buttonMap.put(imageData.getImageEnum(), button);
         buttonVBox.getChildren().add(button);
+
+        this.updateImageData(imageData);
+        button.setStyle("-fx-background-color: transparent; -fx-border-style: none");
+
     }
 
     @Override
@@ -78,16 +124,12 @@ public class EditorController implements Initializable {
         zoomSlider.setOnMouseDragged(event-> carte.scale(zoomSlider.getValue()));
         zoomSlider.setOnMouseReleased(event-> carte.scale(zoomSlider.getValue()));
 
-        buttonList = new ArrayList<>();
-
         for (ImageEnum imageEnum : ImageEnum.values()){
 
             if(!imageEnum.canBePlaced())
                 continue;
 
-            for(int spriteX = 0; spriteX < imageEnum.getSpriteNumX(); spriteX++)
-                for(int spriteY = 0; spriteY < imageEnum.getSpriteNumY(); spriteY++)
-                    this.loadButton(imageEnum.generateImageData(spriteX, spriteY));
+            this.loadButton(imageEnum.generateImageData(0, 0));
 
         }
 

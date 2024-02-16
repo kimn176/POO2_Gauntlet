@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="projet_poo2.EditorController" prefHeight="800.0" prefWidth="1000.0" fx:id="borderpane">
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="projet_poo2.editor.EditorController" prefHeight="800.0" prefWidth="1000.0" fx:id="borderpane">
     <top>
         <MenuBar>
             <Menu text="Fichier">
