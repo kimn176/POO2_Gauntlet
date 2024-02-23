@@ -1,21 +1,15 @@
 package projet_poo2.editor;
 
-import javafx.beans.value.WritableValue;
-import javafx.css.StyleableProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -35,7 +29,7 @@ public class EditorController implements Initializable {
     public BorderPane borderpane;
     public Slider zoomSlider;
     public VBox leftPane;
-    private Map<ImageEnum, Button> buttonMap = new HashMap<>();
+    private final Map<ImageEnum, Button> buttonMap = new HashMap<>();
     public VBox buttonVBox;
     public ScrollPane scrollPaneCenter;
     private Carte carte = new Carte(20);
@@ -153,4 +147,8 @@ public class EditorController implements Initializable {
         new CarteSaver().save(carte);
     }
 
+    public void exitApp(ActionEvent actionEvent) throws Exception {
+        projet_poo2.stop();
+        System.exit(0);
+    }
 }

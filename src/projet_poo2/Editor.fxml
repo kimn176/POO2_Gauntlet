@@ -12,6 +12,7 @@
             </Menu>
             <Menu text="Option">
                 <MenuItem text="Retour" onAction="#exitMap"/>
+                <MenuItem text="Quitter" onAction="#exitApp"/>
             </Menu>
         </MenuBar>
     </top>
