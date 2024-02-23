@@ -3,10 +3,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import java.lang.String?>
 <StackPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="projet_poo2.MainMenuController" prefHeight="720.0" prefWidth="1280.0">
+    <stylesheets>
+        <String fx:value="projet_poo2/stylesheet/mainMenu.css"/>
+    </stylesheets>
     <VBox spacing="15" alignment="CENTER" fx:id="vbox">
-        <Button fx:id="editorButton" prefWidth="150" prefHeight="50" text="Editer" onAction="#editorAction" StackPane.alignment="CENTER" style="-fx-background-color: #BDB76B; -fx-text-fill: black; -fx-font-size: 25; -fx-font-family: 'Arial Black'; -fx-background-radius: 15;"/>
-        <Button fx:id="optionButton" prefWidth="150" prefHeight="50" text="Option" onAction="#optionAction" StackPane.alignment="TOP_CENTER" style="-fx-background-color: #BDB76B; -fx-text-fill: black; -fx-font-size: 25; -fx-font-family: 'Arial Black'; -fx-background-radius: 15"/>
-        <Button fx:id="exitButton" prefWidth="150" prefHeight="50" text="Quitter" onAction="#exitAction" StackPane.alignment="BOTTOM_CENTER" style="-fx-background-color: #BDB76B; -fx-text-fill: black; -fx-font-size: 25; -fx-font-family: 'Arial Black'; -fx-background-radius: 15"/>
+        <Button fx:id="editorButton" prefWidth="150" prefHeight="50" text="Editer" onAction="#editorAction" StackPane.alignment="CENTER"/>
+        <Button fx:id="optionButton" prefWidth="150" prefHeight="50" text="Option" onAction="#optionAction" StackPane.alignment="TOP_CENTER"/>
+        <Button fx:id="exitButton" prefWidth="150" prefHeight="50" text="Quitter" onAction="#exitAction" StackPane.alignment="BOTTOM_CENTER"/>
     </VBox>
 </StackPane>
