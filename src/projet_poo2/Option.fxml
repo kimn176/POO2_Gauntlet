@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<GridPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="projet_poo2.OptionController">
+    <TabPane GridPane.columnIndex="0" GridPane.rowIndex="0" tabClosingPolicy="UNAVAILABLE">
+        <padding>
+            <Insets/>
+        </padding>
+        <Tab text="Theme">
+            <VBox>
+                <padding>
+                    <Insets topRightBottomLeft="10"/>
+                </padding>
+                <ToggleButton text="Theme Sombre" fx:id="tb1" onAction="#setDarkMode"/>
+                <ToggleButton text="Theme Clair" fx:id="tb2" onAction="#setLightMode"/>
+                <Label fx:id="label"/>
+            </VBox>
+        </Tab>
+        <Tab text="Sauvegardes">
+
+        </Tab>
+        <Tab text="A propos">
+            <GridPane hgap="20" vgap="10">
+                <padding>
+                    <Insets topRightBottomLeft="10"/>
+                </padding>
+                <VBox alignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <ImageView>
+                        <Image url="@img/icon.png" requestedWidth="20" preserveRatio="true"/>
+                    </ImageView>
+                    <Label text="Gautlet Game Developers" style="-fx-font-size: 30; -fx-border-style: solid; -fx-border-radius: 5; -fx-border-color: #6b5252; -fx-border-width: 4"/>
+                </VBox>
+
+                <HBox alignment="CENTER_LEFT" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                    <ImageView>
+                        <Image url="@img/nino.jpg" requestedWidth="50" preserveRatio="true"/>
+                    </ImageView>
+                    <Label text="Nino Gimenez" style="-fx-font-size: 20;"/>
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                    <ImageView>
+                        <Image url="@img/lucas.jpg" requestedWidth="50" preserveRatio="true"/>
+                    </ImageView>
+                    <Label text="Lucas Espinar" style="-fx-font-size: 20;"/>
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                    <ImageView>
+                        <Image url="@img/kim.png" requestedWidth="50" preserveRatio="true"/>
+                    </ImageView>
+                    <Label text="Kim" style="-fx-font-size: 20;"/>
+                </HBox>
+            </GridPane>
+
+        </Tab>
+    </TabPane>
+    <Button GridPane.rowIndex="1" GridPane.columnIndex="0" text="Retour" onAction="#returnAction"/>
+</GridPane>
