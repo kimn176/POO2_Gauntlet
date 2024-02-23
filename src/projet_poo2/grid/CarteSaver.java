@@ -1,43 +1,41 @@
 package projet_poo2.grid;
 
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import projet_poo2.ImageData;
 import projet_poo2.ImageEnum;
 
-import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.*;
 
 public class CarteSaver {
 
     public void save(Carte carte){
-        JFileChooser chooser = new JFileChooser();
-
-        chooser.setMultiSelectionEnabled(false);
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Binary", "bin");
-        chooser.setFileFilter(filter);
-        chooser.showSaveDialog(null);
-        if(chooser.getSelectedFile() == null)
+        FileChooser chooser = new FileChooser();
+        ExtensionFilter filter = new ExtensionFilter("Binary", "bin");
+        chooser.setTitle("Enregistrer");
+        chooser.getExtensionFilters().add(filter);
+        File selected = chooser.showSaveDialog(null);
+        if(selected == null)
             return;
 
         try {
 
-            File file = chooser.getSelectedFile();
-            if(!file.getName().endsWith(".bin"))
+            if(!selected.getName().endsWith(".bin"))
                 return;
 
-            if(file.exists())
-                if(!file.delete())
+            if(selected.exists())
+                if(!selected.delete())
                     return;
 
-            if(!file.createNewFile())
+            if(!selected.createNewFile())
                 return;
 
-            if(!file.canWrite()) {
-                boolean result = chooser.getSelectedFile().setWritable(true);
+            if(!selected.canWrite()) {
+                boolean result = selected.setWritable(true);
                 if (!result)
                     return;
             }
-            FileOutputStream fileOut = new FileOutputStream(chooser.getSelectedFile());
+            FileOutputStream fileOut = new FileOutputStream(selected);
             DataOutputStream dataOut = new DataOutputStream(fileOut);
 
             dataOut.writeInt(carte.getSize());
@@ -58,28 +56,23 @@ public class CarteSaver {
     }
 
     public Carte read(){
-        JFileChooser chooser = new JFileChooser();
-        chooser.setFileSelectionMode(JFileChooser.APPROVE_OPTION);
-
-        chooser.setDialogTitle("Charger un fichier");
-
-        chooser.setMultiSelectionEnabled(false);
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Binary", "bin");
-        chooser.setFileFilter(filter);
-
-        int returnVal = chooser.showSaveDialog(null);
-        if(returnVal != JFileChooser.APPROVE_OPTION)
+        FileChooser chooser = new FileChooser();
+        ExtensionFilter filter = new ExtensionFilter("Binary", "bin");
+        chooser.setTitle("Charger");
+        chooser.getExtensionFilters().add(filter);
+        File selected = chooser.showOpenDialog(null);
+        if(selected == null)
             return null;
 
         try {
 
-            if(!chooser.getSelectedFile().canRead()) {
-                boolean result = chooser.getSelectedFile().setReadable(true);
+            if(!selected.canRead()) {
+                boolean result = selected.setReadable(true);
                 if (!result)
                     return null;
             }
 
-            FileInputStream fileOut = new FileInputStream(chooser.getSelectedFile());
+            FileInputStream fileOut = new FileInputStream(selected);
             DataInputStream dataOut = new DataInputStream(fileOut);
 
             int size = dataOut.readInt();
