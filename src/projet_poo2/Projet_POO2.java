@@ -9,6 +9,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
 import java.net.URL;
 
 
@@ -49,6 +51,7 @@ public class Projet_POO2 extends Application {
         URL urlIco = getClass().getResource("img/icon.png");
         System.out.println(urlIco);
         Image img = new Image(urlIco.toString());
+        primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.getIcons().add(img);
         primaryStage.show();
     }
@@ -73,8 +76,8 @@ public class Projet_POO2 extends Application {
     }
 
     public void setDarkMode() {
-        option.getStylesheets().add(getClass().getResource("darkStyle.css").toExternalForm());
-        editeur.getStylesheets().add(getClass().getResource("darkStyle.css").toExternalForm());
+        option.getStylesheets().add(getClass().getResource("stylesheet/darkStyle.css").toExternalForm());
+        editeur.getStylesheets().add(getClass().getResource("stylesheet/darkStyle.css").toExternalForm());
     }
 
     public static void main(String[] args) {

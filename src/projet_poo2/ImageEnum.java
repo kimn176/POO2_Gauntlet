@@ -22,7 +22,7 @@ public enum ImageEnum {
     WALL("sprites/wall.png", 16, 1, true, 14),
     SPAWNER_GHOST("sprites/spawner_ghost.png", 3, 1, true, 15),
     SPAWNER_GRUNT("sprites/spawner_grunt.png", 3, 1, true, 16),
-    PLAYER("sprites/grunt.png", 8, 2, false, 16);
+    PLAYER("sprites/grunt.png", 8, 2, false, 17);
 
     final String file;
     final int spriteNumX, spriteNumY, id;

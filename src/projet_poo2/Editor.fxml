@@ -18,7 +18,7 @@
 
     <left>
         <VBox alignment="CENTER">
-            <ScrollPane fx:id="scrollPane" fitToWidth="true" vbarPolicy="NEVER">
+            <ScrollPane fx:id="scrollPane" fitToWidth="true" vbarPolicy="ALWAYS">
                 <VBox fx:id="leftPane" alignment="CENTER" spacing="5">
                     <VBox fx:id="buttonVBox" alignment="CENTER"/>
                 </VBox>

@@ -74,9 +74,7 @@ public class EditorController implements Initializable {
     public void openSelection(ImageEnum imageEnum){
 
         Stage stage = new Stage();
-
         stage.setTitle("Selection");
-
         Scene scene = new Scene(new SelectionController(this, imageEnum));
 
         stage.setScene(scene);
