@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.net.URL;
+import java.util.Objects;
 
 
 /**
@@ -38,18 +39,21 @@ public class Projet_POO2 extends Application {
         Projet_POO2.app = this;
 
         URL urlMainScene = getClass().getResource("main_menu.fxml");
+        assert urlMainScene != null;
         scene = new Scene(FXMLLoader.load(urlMainScene));
 
         URL urlEditor = getClass().getResource("Editor.fxml");
+        assert urlEditor != null;
         editeur = new Scene(FXMLLoader.load(urlEditor));
 
         URL urlOption = getClass().getResource("Option.fxml");
+        assert urlOption != null;
         option = new Scene(FXMLLoader.load(urlOption));
 
         this.primaryStage = primaryStage;
         showHome();
         URL urlIco = getClass().getResource("img/icon.png");
-        System.out.println(urlIco);
+        assert urlIco != null;
         Image img = new Image(urlIco.toString());
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.getIcons().add(img);
@@ -76,13 +80,12 @@ public class Projet_POO2 extends Application {
     }
 
     public void setDarkMode() {
-        option.getStylesheets().add(getClass().getResource("stylesheet/darkStyle.css").toExternalForm());
-        editeur.getStylesheets().add(getClass().getResource("stylesheet/darkStyle.css").toExternalForm());
+        option.getStylesheets().add(Objects.requireNonNull(getClass().getResource("stylesheet/darkStyle.css")).toExternalForm());
+        editeur.getStylesheets().add(Objects.requireNonNull(getClass().getResource("stylesheet/darkStyle.css")).toExternalForm());
     }
 
     public static void main(String[] args) {
-        String userDirectory = System.getProperty("user.dir");
-        System.out.println(userDirectory);
+        System.out.println("Game Started");
         launch(args);
     }
 

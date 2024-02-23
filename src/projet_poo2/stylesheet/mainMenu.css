@@ -1,9 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Righteous');
+
 .button{
-    -fx-border-color: transparent;
-    -fx-border-width: 0;
+    -fx-font-family: Righteous ,'Arial Black';
     -fx-background-color: #BDB76B;
     -fx-font-size: 25;
-    -fx-font-family: 'Arial Black';
     -fx-background-radius: 15;
     -fx-text-fill: #30312c;
 }
@@ -12,6 +12,6 @@
     -fx-background-color: #918c51;
     -fx-text-fill: black;
     -fx-font-size: 25;
-    -fx-font-family: 'Arial Black';
+    -fx-font-family: Righteous, 'Arial Black';
     -fx-background-radius: 15;
 }
