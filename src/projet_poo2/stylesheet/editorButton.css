@@ -1,0 +1,36 @@
+.button {
+    -fx-background-color: transparent;
+    -fx-border-style: none;
+}
+
+.button:hover {
+    -fx-border-style: none;
+    -fx-scale-y: 1.1;
+}
+
+.button:pressed {
+    -fx-background-color: red;
+    -fx-border-style: none;
+}
+
+.menu-item:focused {
+    -fx-background-color: red;
+    -fx-border-style: none;
+}
+
+.menu-item:hover {
+    -fx-background-color: red;
+    -fx-border-style: none;
+    -fx-scale-y: 1.1;
+}
+
+.split-menu-button {
+    -fx-background-color: transparent;
+    -fx-border-style: none;
+}
+
+.split-menu-button:hover {
+    -fx-background-color: red;
+    -fx-border-style: none;
+    -fx-scale-y: 1.1;
+}

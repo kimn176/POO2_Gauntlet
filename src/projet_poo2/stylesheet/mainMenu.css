@@ -9,7 +9,23 @@
 }
 
 .button:pressed {
-    -fx-background-color: #918c51;
+    -fx-background-color: #988d31;
+    -fx-text-fill: black;
+    -fx-font-size: 25;
+    -fx-font-family: Righteous, 'Arial Black';
+    -fx-background-radius: 15;
+}
+
+.button:pressed:hover {
+    -fx-background-color: #988d31;
+    -fx-text-fill: black;
+    -fx-font-size: 25;
+    -fx-font-family: Righteous, 'Arial Black';
+    -fx-background-radius: 15;
+}
+
+.button:hover {
+    -fx-background-color: #bdb558;
     -fx-text-fill: black;
     -fx-font-size: 25;
     -fx-font-family: Righteous, 'Arial Black';

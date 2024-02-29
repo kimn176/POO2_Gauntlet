@@ -23,10 +23,15 @@ import java.util.Objects;
 public class Projet_POO2 extends Application {
 
 
-    Scene scene;
-    Scene editeur;
-    Scene option;
-    Stage primaryStage;
+    private Scene scene;
+    private Scene editeur;
+    private Scene option;
+    private Stage primaryStage;
+
+    /*
+    * code pays ISO 3166
+    */
+    private static String lang = "FR";
 
     public static Projet_POO2 app;
 
@@ -82,6 +87,14 @@ public class Projet_POO2 extends Application {
     public void setDarkMode() {
         option.getStylesheets().add(Objects.requireNonNull(getClass().getResource("stylesheet/darkStyle.css")).toExternalForm());
         editeur.getStylesheets().add(Objects.requireNonNull(getClass().getResource("stylesheet/darkStyle.css")).toExternalForm());
+    }
+
+    public String getLang() {
+        return lang;
+    }
+
+    public void setLang() {
+
     }
 
     public static void main(String[] args) {

@@ -2,7 +2,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
+<?import java.lang.String?>
 <BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="projet_poo2.editor.EditorController" prefHeight="800.0" prefWidth="1000.0" fx:id="borderpane">
     <top>
         <MenuBar>
@@ -20,17 +20,23 @@
     <left>
         <VBox alignment="CENTER">
             <ScrollPane fx:id="scrollPane" fitToWidth="true" vbarPolicy="ALWAYS">
-                <VBox fx:id="leftPane" alignment="CENTER" spacing="5">
+                <VBox fx:id="leftPane" alignment="CENTER" spacing="5" style="-fx-fill-width: true;">
+                    <stylesheets>
+                        <String fx:value="projet_poo2/stylesheet/editorButton.css" />
+                    </stylesheets>
                     <VBox fx:id="buttonVBox" alignment="CENTER"/>
                 </VBox>
             </ScrollPane>
             <Slider max="3" min="1" value="1" fx:id="zoomSlider"/>
-            <Button text="Reset" onAction="#resetButtonAction" style="-fx-background-color: transparent; -fx-border-color: blue"/>
+            <Button text="Reset" onAction="#resetButtonAction" style="-fx-background-color: transparent; -fx-border-color: blue">
+                <stylesheets>
+                    <String fx:value="projet_poo2/stylesheet/editorButton.css" />
+                </stylesheets>
+            </Button>
         </VBox>
     </left>
 
     <center>
         <ScrollPane fx:id="scrollPaneCenter"/>
     </center>
-
 </BorderPane>

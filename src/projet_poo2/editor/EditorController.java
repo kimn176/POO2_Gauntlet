@@ -5,9 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Slider;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.BorderPane;
@@ -30,6 +28,7 @@ public class EditorController implements Initializable {
     public Slider zoomSlider;
     public VBox leftPane;
     private final Map<ImageEnum, Button> buttonMap = new HashMap<>();
+    private final ArrayList<SplitMenuButton> choiceBoxMap = new ArrayList<>();
     public VBox buttonVBox;
     public ScrollPane scrollPaneCenter;
     private Carte carte = new Carte(20);
@@ -39,6 +38,9 @@ public class EditorController implements Initializable {
         this.selectionReminder = imageData;
         for (Button bc : this.buttonMap.values()) {
             bc.setStyle("-fx-background-color: transparent; -fx-border-style: none");
+        }
+        for (SplitMenuButton sp : this.choiceBoxMap) {
+            sp.setStyle("-fx-background-color: transparent; -fx-border-style: none");
         }
 
         Button button = this.buttonMap.get(imageData.getImageEnum());
@@ -65,17 +67,6 @@ public class EditorController implements Initializable {
         projet_poo2.showHome();
     }
 
-    public void openSelection(ImageEnum imageEnum){
-
-        Stage stage = new Stage();
-        stage.setTitle("Selection");
-        Scene scene = new Scene(new SelectionController(this, imageEnum));
-
-        stage.setScene(scene);
-        stage.show();
-
-    }
-
     public void loadButton(ImageData imageData){
 
         Button button = new Button("");
@@ -83,20 +74,8 @@ public class EditorController implements Initializable {
         button.setPrefWidth(150.0);
         button.setAlignment(Pos.CENTER);
 
-        button.setOnMouseClicked(mouse -> {
-
-            if (mouse.getButton() == MouseButton.SECONDARY){
-
-                ImageEnum imageEnum = imageData.getImageEnum();
-                if(imageEnum.getSpriteNumY() == 1 && imageEnum.getSpriteNumX() == 1)
-                    return;
-
-                this.openSelection(imageEnum);
-
-            }
-
+        button.setOnAction(e -> {
             this.updateImageData(imageData);
-
         });
 
         buttonMap.put(imageData.getImageEnum(), button);
@@ -105,6 +84,66 @@ public class EditorController implements Initializable {
         this.updateImageData(imageData);
         button.setStyle("-fx-background-color: transparent; -fx-border-style: none");
 
+    }
+
+    public void loadBox(ImageEnum imageEnum) {
+        SplitMenuButton choiceBox = new SplitMenuButton();
+        choiceBox.setPrefWidth(150.0);
+        choiceBox.setAlignment(Pos.CENTER);
+        choiceBox.setStyle("-fx-background-color: transparent; -fx-border-style: none");
+
+
+        //choiceBox.setText(imageEnum.toString());
+        for(int i = 0; i < imageEnum.getSpriteNumX(); i++) {
+            MenuItem button = new MenuItem("");
+            ImageData imageData = imageEnum.generateImageData(i, 0);
+            ImageView view = imageEnum.generateImageData(i, 0).generateImageView();
+            view.setFitHeight(50);
+            view.setFitWidth(50);
+            button.setGraphic(view);
+            //button.setPrefWidth(150.0);
+            //button.setAlignment(Pos.CENTER);
+
+            button.setOnAction(e -> {
+                this.onSelection(imageData, choiceBox);
+            });
+
+            choiceBox.getItems().add(button);
+
+            //this.updateImageData(imageData);
+            button.setStyle("-fx-background-color: transparent; -fx-border-style: none");
+        }
+        ImageView viewButton = imageEnum.generateImageData(0, 0).generateImageView();
+        viewButton.setFitHeight(50);
+        viewButton.setFitWidth(50);
+        choiceBox.setGraphic(viewButton);
+        buttonVBox.getChildren().add(choiceBox);
+        choiceBox.setOnAction(e -> {
+            this.onSelection(imageEnum.generateImageData(0, 0), choiceBox);
+        });
+        choiceBoxMap.add(choiceBox);
+    }
+
+    public void onSelection(ImageData imageData, SplitMenuButton sp) {
+
+        this.selectionReminder = imageData;
+
+        for (Button bc : this.buttonMap.values()) {
+            bc.setStyle("-fx-background-color: transparent; -fx-border-style: none");
+        }
+        for (SplitMenuButton sp2 : this.choiceBoxMap) {
+            sp2.setStyle("-fx-background-color: transparent; -fx-border-style: none");
+        }
+
+        sp.setStyle("-fx-background-color: red; -fx-border-style: none;");
+
+        ImageView viewButton = imageData.generateImageView();
+        viewButton.setFitHeight(50);
+        viewButton.setFitWidth(50);
+        sp.setGraphic(viewButton);
+        sp.setOnAction(e -> {
+            this.onSelection(imageData, sp);
+        });
     }
 
     @Override
@@ -116,12 +155,22 @@ public class EditorController implements Initializable {
         zoomSlider.setOnMouseDragged(event-> carte.scale(zoomSlider.getValue()));
         zoomSlider.setOnMouseReleased(event-> carte.scale(zoomSlider.getValue()));
 
+        /*
+        Dans cette section, on navigue dans les images déjà importées de ImageEnum
+        Si l'imagie en question ne peut pas être placée dans la VBox, on passe
+        Sinon on créé un nouveau bouton avec comme image d'arrière plan notre sprite
+         */
         for (ImageEnum imageEnum : ImageEnum.values()){
 
             if(!imageEnum.canBePlaced())
                 continue;
 
-            this.loadButton(imageEnum.generateImageData(0, 0));
+            if(imageEnum.getSpriteNumX() == 1)
+            this.loadButton(imageEnum.generateImageData(0, 0)); //Charge l'image et génère un bouton
+
+            else {
+                this.loadBox(imageEnum);
+            }
 
         }
 
