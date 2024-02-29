@@ -1,4 +1,4 @@
-package projet_poo2.util;
+package util;
 
 import javafx.scene.image.Image;
 import java.io.InputStream;

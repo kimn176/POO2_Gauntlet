@@ -1,4 +1,4 @@
-package projet_poo2.scenes.option;
+package scenes.option;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,14 +10,13 @@ import java.util.ResourceBundle;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
-import projet_poo2.Projet_POO2;
-
+import util.Window;
 public class OptionController implements Initializable {
 
     public ToggleButton tb1;
     public ToggleButton tb2;
     public Label label;
-    Projet_POO2 poo = Projet_POO2.app;
+    Window poo = Window.app;
     @FXML
     public void returnAction(ActionEvent event) {
         poo.showHome();

@@ -1,4 +1,4 @@
-package projet_poo2.scenes.main;
+package scenes.main;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -6,7 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import projet_poo2.Projet_POO2;
+import util.Window;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -26,27 +26,27 @@ public class MainMenuController implements Initializable {
     @FXML
     public void editorAction(ActionEvent event) {
         System.out.println("Action Editer");
-        Projet_POO2 poo_projet = Projet_POO2.app;
+        Window poo_projet = Window.app;
         poo_projet.showEditeur();
     }
 
     @FXML
     public void optionAction(ActionEvent event) {
         System.out.println("Action Option");
-        Projet_POO2.app.showOption();
+        Window.app.showOption();
     }
 
     @FXML
     public void exitAction(ActionEvent event) throws Exception {
         System.out.println("Action Quitter");
-        Projet_POO2.app.stop();
+        Window.app.stop();
         System.exit(0);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Création d'une image pour l'arrière-plan
-        Image backgroundImage = new Image(getClass().getResource("../../sprites/page_accueil.jpg").toExternalForm());
+        Image backgroundImage = new Image(getClass().getResource("/sprites/page_accueil.jpg").toExternalForm());
         BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, false);
         BackgroundImage background = new BackgroundImage(backgroundImage, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, backgroundSize);
         vbox.setBackground(new Background(background));

@@ -1,7 +1,6 @@
-package projet_poo2.grid;
+package grid;
 
-import projet_poo2.util.ImageData;
-import projet_poo2.util.ImageEnum;
+import util.*;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;

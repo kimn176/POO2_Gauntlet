@@ -1,8 +1,9 @@
+package util;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package projet_poo2;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,50 +15,40 @@ import javafx.stage.StageStyle;
 import java.net.URL;
 import java.util.Objects;
 
-
 /**
  *
  * @author kimngan, ninogimenez, lucasespinar
  */
 
-public class Projet_POO2 extends Application {
-
+public class Window extends Application {
 
     private Scene scene;
     private Scene editeur;
     private Scene option;
     private Stage primaryStage;
-
-    /*
-    * code pays ISO 3166
-    */
-    private static String lang = "FR";
-
-    public static Projet_POO2 app;
-
-    public Projet_POO2() {
-    }
+    private static String lang = "FR"; //code pays ISO 3166
+    public static Window app; //Permet de manipuler le projet et les scenes par methodes
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        Projet_POO2.app = this;
+        Window.app = this;
 
-        URL urlMainScene = getClass().getResource("./scenes/main/Main.fxml");
+        URL urlMainScene = getClass().getResource("../scenes/main/MainMenu.fxml");
         assert urlMainScene != null;
         scene = new Scene(FXMLLoader.load(urlMainScene));
 
-        URL urlEditor = getClass().getResource("./scenes/editor/Editor.fxml");
+        URL urlEditor = getClass().getResource("../scenes/editor/Editor.fxml");
         assert urlEditor != null;
         editeur = new Scene(FXMLLoader.load(urlEditor));
 
-        URL urlOption = getClass().getResource("./scenes/option/Option.fxml");
+        URL urlOption = getClass().getResource("../scenes/option/Option.fxml");
         assert urlOption != null;
         option = new Scene(FXMLLoader.load(urlOption));
 
         this.primaryStage = primaryStage;
         showHome();
-        URL urlIco = getClass().getResource("img/icon.png");
+        URL urlIco = getClass().getResource("../img/icon.png");
         assert urlIco != null;
         Image img = new Image(urlIco.toString());
         primaryStage.initStyle(StageStyle.UNDECORATED);
@@ -80,13 +71,13 @@ public class Projet_POO2 extends Application {
         primaryStage.setScene(option);
     }
 
-    public static Projet_POO2 getApp() {
+    public static Window getApp() {
         return app;
     }
 
     public void setDarkMode() {
-        option.getStylesheets().add(Objects.requireNonNull(getClass().getResource("stylesheet/darkStyle.css")).toExternalForm());
-        editeur.getStylesheets().add(Objects.requireNonNull(getClass().getResource("stylesheet/darkStyle.css")).toExternalForm());
+        option.getStylesheets().add(Objects.requireNonNull(getClass().getResource("../stylesheet/darkStyle.css")).toExternalForm());
+        editeur.getStylesheets().add(Objects.requireNonNull(getClass().getResource("../stylesheet/darkStyle.css")).toExternalForm());
     }
 
     public String getLang() {
@@ -98,8 +89,7 @@ public class Projet_POO2 extends Application {
     }
 
     public static void main(String[] args) {
-        System.out.println("Game Started");
-        launch(args);
+        launch(args); //Démarré depuis une autre instance
     }
 
 }

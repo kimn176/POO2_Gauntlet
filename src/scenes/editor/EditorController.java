@@ -1,4 +1,4 @@
-package projet_poo2.scenes.editor;
+package scenes.editor;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,17 +8,16 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import projet_poo2.util.*;
-import projet_poo2.Projet_POO2;
-import projet_poo2.grid.Carte;
-import projet_poo2.grid.CarteSaver;
+import util.*;
+import grid.Carte;
+import grid.CarteSaver;
 
 import java.net.URL;
 import java.util.*;
 
 public class EditorController implements Initializable {
 
-    private final Projet_POO2 projet_poo2 = Projet_POO2.app;
+    private final Window Window = util.Window.getApp();
     public ScrollPane scrollPane;
     public BorderPane borderpane;
     public Slider zoomSlider;
@@ -60,7 +59,7 @@ public class EditorController implements Initializable {
 
     @FXML
     public void exitMap(ActionEvent event) {
-        projet_poo2.showHome();
+        Window.showHome();
     }
 
     public void loadButton(ImageData imageData){
@@ -193,7 +192,7 @@ public class EditorController implements Initializable {
     }
 
     public void exitApp(ActionEvent actionEvent) throws Exception {
-        projet_poo2.stop();
+        Window.stop();
         System.exit(0);
     }
 }

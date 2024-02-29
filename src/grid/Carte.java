@@ -1,4 +1,4 @@
-package projet_poo2.grid;
+package grid;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
@@ -6,8 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import projet_poo2.util.ImageData;
-import projet_poo2.util.ImageEnum;
+import util.*;
 
 import java.util.function.BiConsumer;
 
