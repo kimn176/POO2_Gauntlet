@@ -1,4 +1,4 @@
-# Commande pour la compilation du projet à faire dans le fichier src:
+# Commande pour la compilation du projet à faire dans le dossier commun :
 
 /!\ Faire attention à bien les faire avec javafx
 ```sh
