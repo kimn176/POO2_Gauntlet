@@ -1,8 +1,8 @@
-package projet_poo2;
+package projet_poo2.util;
 
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.ImageView;
-import projet_poo2.ImageEnum;
+import projet_poo2.util.ImageEnum;
 
 public class ImageData {
 

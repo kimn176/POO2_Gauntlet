@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
-<GridPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="projet_poo2.OptionController">
+<GridPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="projet_poo2.scenes.option.OptionController">
     <TabPane GridPane.columnIndex="0" GridPane.rowIndex="0" tabClosingPolicy="UNAVAILABLE">
         <padding>
             <Insets/>
@@ -30,28 +30,28 @@
                 </padding>
                 <VBox alignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0">
                     <ImageView>
-                        <Image url="@img/icon.png" requestedWidth="20" preserveRatio="true"/>
+                        <Image url="projet_poo2/img/icon.png" requestedWidth="20" preserveRatio="true"/>
                     </ImageView>
                     <Label text="Gautlet Game Developers" style="-fx-font-size: 30; -fx-border-style: solid; -fx-border-radius: 5; -fx-border-color: #6b5252; -fx-border-width: 4"/>
                 </VBox>
 
                 <HBox alignment="CENTER_LEFT" GridPane.columnIndex="0" GridPane.rowIndex="1">
                     <ImageView>
-                        <Image url="@img/nino.jpg" requestedWidth="50" preserveRatio="true"/>
+                        <Image url="projet_poo2/img/nino.jpg" requestedWidth="50" preserveRatio="true"/>
                     </ImageView>
                     <Label text="Nino Gimenez" style="-fx-font-size: 20;"/>
                 </HBox>
 
                 <HBox alignment="CENTER_LEFT" GridPane.columnIndex="0" GridPane.rowIndex="2">
                     <ImageView>
-                        <Image url="@img/lucas.jpg" requestedWidth="50" preserveRatio="true"/>
+                        <Image url="projet_poo2/img/lucas.jpg" requestedWidth="50" preserveRatio="true"/>
                     </ImageView>
                     <Label text="Lucas Espinar" style="-fx-font-size: 20;"/>
                 </HBox>
 
                 <HBox alignment="CENTER_LEFT" GridPane.columnIndex="0" GridPane.rowIndex="3">
                     <ImageView>
-                        <Image url="@img/kim.png" requestedWidth="50" preserveRatio="true"/>
+                        <Image url="projet_poo2/img/kim.png" requestedWidth="50" preserveRatio="true"/>
                     </ImageView>
                     <Label text="Kim" style="-fx-font-size: 20;"/>
                 </HBox>

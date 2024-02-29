@@ -1,18 +1,14 @@
-package projet_poo2.editor;
+package projet_poo2.scenes.editor;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseButton;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import projet_poo2.ImageData;
-import projet_poo2.ImageEnum;
+import projet_poo2.util.*;
 import projet_poo2.Projet_POO2;
 import projet_poo2.grid.Carte;
 import projet_poo2.grid.CarteSaver;
@@ -149,7 +145,7 @@ public class EditorController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        carte.setOnClick((actionEvent, gridCase) -> carte.setCell(gridCase.getX(), gridCase.getY(), selectionReminder));
+        carte.setOnClick((actionEvent, gridCase) -> carte.setCell(gridCase.getX(), gridCase.getY(), this.selectionReminder));
         scrollPane = new ScrollPane(carte);
 
         zoomSlider.setOnMouseDragged(event-> carte.scale(zoomSlider.getValue()));

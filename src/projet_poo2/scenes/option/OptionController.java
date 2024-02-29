@@ -1,4 +1,4 @@
-package projet_poo2;
+package projet_poo2.scenes.option;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import projet_poo2.Projet_POO2;
 
 public class OptionController implements Initializable {
 

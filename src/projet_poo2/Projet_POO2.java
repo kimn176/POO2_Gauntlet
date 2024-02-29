@@ -43,15 +43,15 @@ public class Projet_POO2 extends Application {
 
         Projet_POO2.app = this;
 
-        URL urlMainScene = getClass().getResource("main_menu.fxml");
+        URL urlMainScene = getClass().getResource("./scenes/main/Main.fxml");
         assert urlMainScene != null;
         scene = new Scene(FXMLLoader.load(urlMainScene));
 
-        URL urlEditor = getClass().getResource("Editor.fxml");
+        URL urlEditor = getClass().getResource("./scenes/editor/Editor.fxml");
         assert urlEditor != null;
         editeur = new Scene(FXMLLoader.load(urlEditor));
 
-        URL urlOption = getClass().getResource("Option.fxml");
+        URL urlOption = getClass().getResource("./scenes/option/Option.fxml");
         assert urlOption != null;
         option = new Scene(FXMLLoader.load(urlOption));
 

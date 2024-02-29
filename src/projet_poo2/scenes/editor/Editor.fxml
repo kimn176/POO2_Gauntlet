@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import java.lang.String?>
-<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="projet_poo2.editor.EditorController" prefHeight="800.0" prefWidth="1000.0" fx:id="borderpane">
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="projet_poo2.scenes.editor.EditorController" prefHeight="800.0" prefWidth="1000.0" fx:id="borderpane">
     <top>
         <MenuBar>
             <Menu text="Fichier">
@@ -28,7 +28,7 @@
                 </VBox>
             </ScrollPane>
             <Slider max="3" min="1" value="1" fx:id="zoomSlider"/>
-            <Button text="Reset" onAction="#resetButtonAction" style="-fx-background-color: transparent; -fx-border-color: blue">
+            <Button text="Réinitialiser" onAction="#resetButtonAction" style="-fx-background-color: transparent; -fx-border-color: blue">
                 <stylesheets>
                     <String fx:value="projet_poo2/stylesheet/editorButton.css" />
                 </stylesheets>

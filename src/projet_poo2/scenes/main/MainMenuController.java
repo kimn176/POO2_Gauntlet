@@ -1,4 +1,4 @@
-package projet_poo2;
+package projet_poo2.scenes.main;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -6,6 +6,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import projet_poo2.Projet_POO2;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -44,7 +46,7 @@ public class MainMenuController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Création d'une image pour l'arrière-plan
-        Image backgroundImage = new Image(getClass().getResource("sprites/page_accueil.jpg").toExternalForm());
+        Image backgroundImage = new Image(getClass().getResource("../../sprites/page_accueil.jpg").toExternalForm());
         BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, false);
         BackgroundImage background = new BackgroundImage(backgroundImage, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, backgroundSize);
         vbox.setBackground(new Background(background));

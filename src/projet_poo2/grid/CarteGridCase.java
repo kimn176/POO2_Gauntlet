@@ -1,7 +1,7 @@
 package projet_poo2.grid;
 
 import javafx.scene.control.Button;
-import projet_poo2.ImageData;
+import projet_poo2.util.ImageData;
 
 public class CarteGridCase {
     Button button;

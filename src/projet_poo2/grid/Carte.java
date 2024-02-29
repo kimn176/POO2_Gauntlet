@@ -6,8 +6,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import projet_poo2.ImageData;
-import projet_poo2.ImageEnum;
+import projet_poo2.util.ImageData;
+import projet_poo2.util.ImageEnum;
 
 import java.util.function.BiConsumer;
 
