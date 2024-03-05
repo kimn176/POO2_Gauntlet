@@ -21,7 +21,31 @@ public enum ImageEnum {
     WALL("../sprites/wall.png", 16, 1, true, 14),
     SPAWNER_GHOST("../sprites/spawner_ghost.png", 3, 1, true, 15),
     SPAWNER_GRUNT("../sprites/spawner_grunt.png", 3, 1, true, 16),
-    PLAYER("../sprites/grunt.png", 8, 2, false, 17);
+    SPAWNER("../sprites/spawner.png", 3, 2, true, 26),
+    DOOR("../sprites/door.png", 15, 1, true, 32),
+
+    //Playable
+    WARRIOR("../sprites/warrior.png", 8, 2, false, 18),
+    VALKYRIE("../sprites/valkyrie.png", 8, 2, false, 19),
+    ELF("../sprites/elf.png", 8, 2, false, 20),
+    WIZARD("../sprites/wizard.png", 8, 2, false, 21),
+
+    //Monsters
+    GRUNT("../sprites/grunt.png", 8, 2, true, 17),
+    GHOST("../sprites/ghost.png", 8, 2, true, 22),
+    LOBBER("../sprites/lobber.png", 8, 2, true, 23),
+    DEATH("../sprites/death.png", 8, 2, true, 24),
+    DAEMON("../sprites/daemon.png", 8, 2, true, 25),
+
+    //PROJECTILE
+    PROJECTILE_DAEMON("../sprites/projectile_daemon.png", 8, 1, false, 26),
+    PROJECTILE_ELF("../sprites/projectile_elf.png", 8, 1, false, 27),
+    PROJECTILE_LOBBER("../sprites/projectile_lobber.png", 8, 1, false, 28),
+    PROJECTILE_VALKYRIE("../sprites/projectile_valkyrie.png", 8, 1, false, 29),
+    PROJECTILE_WARRIOR("../sprites/projectile_warrior.png", 8, 1, false, 30),
+    PROJECTILE_WIZARD("../sprites/projectile_wizard.png", 8, 1, false, 31);
+
+
 
     final String file;
     final int spriteNumX, spriteNumY, id;
@@ -68,10 +92,16 @@ public enum ImageEnum {
     }
 
     public ImageData generateImageData(int spriteX, int spriteY){
+        double ySize = 0;
+        double xSize = 0;
+        try {
+            ySize = image.getHeight() / spriteNumY;
+            xSize = image.getWidth() / spriteNumX;
+        } catch(NullPointerException e) {
+            System.out.println(this.image.getUrl());
+            throw new NullPointerException();
 
-        double ySize = image.getHeight()/spriteNumY;
-        double xSize = image.getWidth()/spriteNumX;
-
+        }
         return new ImageData(this, spriteX, spriteY, xSize, ySize);
 
     }

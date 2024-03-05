@@ -34,3 +34,9 @@
     -fx-border-style: none;
     -fx-scale-y: 1.1;
 }
+
+.label {
+    -fx-font-size: 30;
+    -fx-border-radius: 10;
+    -fx-border-style: dashed;
+}

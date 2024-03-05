@@ -89,25 +89,41 @@ public class EditorController implements Initializable {
 
 
         //choiceBox.setText(imageEnum.toString());
-        for(int i = 0; i < imageEnum.getSpriteNumX(); i++) {
-            MenuItem button = new MenuItem("");
-            ImageData imageData = imageEnum.generateImageData(i, 0);
-            ImageView view = imageEnum.generateImageData(i, 0).generateImageView();
-            view.setFitHeight(50);
-            view.setFitWidth(50);
-            button.setGraphic(view);
-            //button.setPrefWidth(150.0);
-            //button.setAlignment(Pos.CENTER);
+        if(imageEnum.getSpriteNumY() == 1)
+            for(int i = 0; i < imageEnum.getSpriteNumX(); i++) {
+                MenuItem button = new MenuItem("");
+                ImageData imageData = imageEnum.generateImageData(i, 0);
+                ImageView view = imageEnum.generateImageData(i, 0).generateImageView();
+                view.setFitHeight(50);
+                view.setFitWidth(50);
+                button.setGraphic(view);
 
-            button.setOnAction(e -> {
-                this.onSelection(imageData, choiceBox);
-            });
+                button.setOnAction(e -> {
+                    this.onSelection(imageData, choiceBox);
+                });
 
-            choiceBox.getItems().add(button);
+                choiceBox.getItems().add(button);
+                button.setStyle("-fx-background-color: transparent; -fx-border-style: none");
+            }
+        else if(imageEnum.getSpriteNumY() == 2)
+            for(int i = 0; i < imageEnum.getSpriteNumX(); i++) {
+                for(int j = 0; j < imageEnum.getSpriteNumY(); j++) {
+                    MenuItem button = new MenuItem("");
+                    ImageData imageData = imageEnum.generateImageData(i, j);
+                    ImageView view = imageEnum.generateImageData(i, j).generateImageView();
+                    view.setFitHeight(50);
+                    view.setFitWidth(50);
+                    button.setGraphic(view);
 
-            //this.updateImageData(imageData);
-            button.setStyle("-fx-background-color: transparent; -fx-border-style: none");
-        }
+                    button.setOnAction(e -> {
+                        this.onSelection(imageData, choiceBox);
+                    });
+
+                    choiceBox.getItems().add(button);
+                    button.setStyle("-fx-background-color: transparent; -fx-border-style: none");
+                }
+            }
+
         ImageView viewButton = imageEnum.generateImageData(0, 0).generateImageView();
         viewButton.setFitHeight(50);
         viewButton.setFitWidth(50);
@@ -160,16 +176,27 @@ public class EditorController implements Initializable {
             if(!imageEnum.canBePlaced())
                 continue;
 
-            if(imageEnum.getSpriteNumX() == 1)
-            this.loadButton(imageEnum.generateImageData(0, 0)); //Charge l'image et génère un bouton
+            if(imageEnum.getSpriteNumX() == 1) {
+                this.loadButton(imageEnum.generateImageData(0, 0)); //Charge l'image et génère un bouton
+            }
 
             else {
-                this.loadBox(imageEnum);
+
+                if(imageEnum.canBePlaced() && imageEnum.getSpriteNumY() == 1) {
+                    this.loadBox(imageEnum);
+                }
+                else if (imageEnum.getSpriteNumX() >= 4 && imageEnum.getSpriteNumY() == 2)
+                {
+                    this.loadButton(imageEnum.generateImageData(4, 1));
+                }
             }
 
         }
-
-        this.loadButton(ImageEnum.PLAYER.generateImageData(4, 0));
+        this.buttonVBox.getChildren().add(new Label("Players"));
+        this.loadButton(ImageEnum.WARRIOR.generateImageData(4, 1));
+        this.loadButton(ImageEnum.ELF.generateImageData(4, 1));
+        this.loadButton(ImageEnum.VALKYRIE.generateImageData(4, 1));
+        this.loadButton(ImageEnum.WIZARD.generateImageData(4, 1));
 
         //Obligé, sinon ça s'affiche pas
         scrollPaneCenter = new ScrollPane(carte);

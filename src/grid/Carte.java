@@ -15,7 +15,10 @@ public class Carte extends GridPane {
     final int size;
     double scale = 1;
     private final CarteGridCase[][] panes;
-    private CarteGridCase player = null;
+    private CarteGridCase player1 = null;
+    private CarteGridCase player2 = null;
+    private CarteGridCase player3 = null;
+    private CarteGridCase player4 = null;
     private BiConsumer<ActionEvent, CarteGridCase> actionEventConsumer = (actionEvent, gcase) -> System.out.println("No action");
 
     public Carte(int size){
@@ -27,7 +30,7 @@ public class Carte extends GridPane {
     }
 
     public CarteGridCase getPlayerCase(){
-        return this.player;
+        return this.player1;
     }
 
     public int getSize(){
@@ -104,19 +107,50 @@ public class Carte extends GridPane {
         }
 
         CarteGridCase carteGridCase = panes[x][y];
-        CarteGridCase currentPlayerCase = this.player;
+        CarteGridCase currentPlayerCase1 = this.player1;
+        CarteGridCase currentPlayerCase2 = this.player2;
+        CarteGridCase currentPlayerCase3 = this.player3;
+        CarteGridCase currentPlayerCase4 = this.player4;
 
         if(imageData.getImageEnum().getId() == ImageEnum.FLOOR.getId()) {
             carteGridCase.getButton().setGraphic(null);
             return;
         }
 
-        if(imageData.getImageEnum().getId() == ImageEnum.PLAYER.getId()) {
-            this.player = carteGridCase;
-            if(currentPlayerCase != null)
-                this.setCell(currentPlayerCase.getX(), currentPlayerCase.getY(), ImageEnum.FLOOR.generateImageData(0, 0)); // Remove the old character
-        }else if(carteGridCase.getImageData().getImageEnum() == ImageEnum.PLAYER){
-            this.player = null;
+        //WIZARD
+        if(imageData.getImageEnum().getId() == ImageEnum.WIZARD.getId()) {
+            this.player1 = carteGridCase;
+            if(currentPlayerCase1 != null)
+                this.setCell(currentPlayerCase1.getX(), currentPlayerCase1.getY(), ImageEnum.FLOOR.generateImageData(0, 0)); // Remove the old character
+        }else if(carteGridCase.getImageData().getImageEnum() == ImageEnum.WIZARD){
+            this.player1 = null;
+        }
+
+        //ELF
+        if(imageData.getImageEnum().getId() == ImageEnum.ELF.getId()) {
+            this.player2 = carteGridCase;
+            if(currentPlayerCase2 != null)
+                this.setCell(currentPlayerCase2.getX(), currentPlayerCase2.getY(), ImageEnum.FLOOR.generateImageData(0, 0)); // Remove the old character
+        }else if(carteGridCase.getImageData().getImageEnum() == ImageEnum.ELF){
+            this.player2 = null;
+        }
+
+        //WARRIOR
+        if(imageData.getImageEnum().getId() == ImageEnum.WARRIOR.getId()) {
+            this.player3 = carteGridCase;
+            if(currentPlayerCase3 != null)
+                this.setCell(currentPlayerCase3.getX(), currentPlayerCase3.getY(), ImageEnum.FLOOR.generateImageData(0, 0)); // Remove the old character
+        }else if(carteGridCase.getImageData().getImageEnum() == ImageEnum.WARRIOR){
+            this.player3 = null;
+        }
+
+        //VALKYRIE
+        if(imageData.getImageEnum().getId() == ImageEnum.VALKYRIE.getId()) {
+            this.player4 = carteGridCase;
+            if(currentPlayerCase4 != null)
+                this.setCell(currentPlayerCase4.getX(), currentPlayerCase4.getY(), ImageEnum.FLOOR.generateImageData(0, 0)); // Remove the old character
+        }else if(carteGridCase.getImageData().getImageEnum() == ImageEnum.VALKYRIE){
+            this.player4 = null;
         }
 
         carteGridCase.setImageData(imageData);
