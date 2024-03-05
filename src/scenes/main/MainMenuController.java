@@ -17,6 +17,10 @@ public class MainMenuController implements Initializable {
     public VBox vbox;
 
     @FXML
+    Button singleButton;
+    @FXML
+    Button MultiplButton;
+    @FXML
     Button optionButton;
     @FXML
     Button editorButton;
@@ -28,6 +32,18 @@ public class MainMenuController implements Initializable {
         System.out.println("Action Editer");
         Window poo_projet = Window.app;
         poo_projet.showEditeur();
+    }
+
+    @FXML
+    public void singlePlayerAction(ActionEvent event) {
+        System.out.println("Action Single Player");
+        Window.app.showSinglePlayer();
+    }
+
+    @FXML
+    public void multipPlayerAction(ActionEvent event) {
+        System.out.println("Action Multipl Player");
+        Window.app.showEditeur();
     }
 
     @FXML
