@@ -1,9 +1,9 @@
-package projet_poo2.grid;
+package grid;
 
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
-import projet_poo2.ImageData;
-import projet_poo2.ImageEnum;
+import util.ImageData;
+import util.ImageEnum;
 
 import java.io.*;
 
