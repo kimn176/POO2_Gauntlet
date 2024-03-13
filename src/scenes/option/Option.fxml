@@ -32,7 +32,7 @@
                     <ImageView>
                         <Image url="img/icon.png" requestedWidth="20" preserveRatio="true"/>
                     </ImageView>
-                    <Label text="Gautlet Game Developers" style="-fx-font-size: 30; -fx-border-style: solid; -fx-border-radius: 5; -fx-border-color: #6b5252; -fx-border-width: 4"/>
+                    <Label text="Gauntlet Game Developers" style="-fx-font-size: 30; -fx-border-style: solid; -fx-border-radius: 5; -fx-border-color: #6b5252; -fx-border-width: 4"/>
                 </VBox>
 
                 <HBox alignment="CENTER_LEFT" GridPane.columnIndex="0" GridPane.rowIndex="1">

@@ -5,12 +5,15 @@ package util;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 
+import character.Warrior;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import sound.SoundEnum;
+import sound.SoundManager;
 
 import java.net.URL;
 import java.util.Objects;
@@ -59,6 +62,15 @@ public class Window extends Application {
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.getIcons().add(img);
         primaryStage.show();
+
+        new SoundManager().playSound(SoundEnum.OUIOUI);
+        Warrior warrior = new Warrior();
+        Warrior warrior2 = new Warrior();
+        System.out.println(warrior.calculateDamage(warrior2));
+        warrior2.setDefenseBoost(1);
+        System.out.println(warrior.calculateDamage(warrior2));
+        System.out.println(warrior.priorityOver(warrior2));
+
     }
 
     public void showHome(){

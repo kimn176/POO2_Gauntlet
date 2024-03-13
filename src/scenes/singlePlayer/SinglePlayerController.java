@@ -81,8 +81,8 @@ public class SinglePlayerController implements Initializable {
     // Méthode pour générer un ImageView à partir d'une ImageEnum
     private ImageView generateImageView(ImageEnum imageEnum) {
         ImageView imageView = imageEnum.generateImageData(4, 0).generateImageView();
-        imageView.setFitWidth(50); // Ajustez la largeur selon vos besoins
-        imageView.setFitHeight(50); // Ajustez la hauteur selon vos besoins
+        imageView.setFitWidth(100); // Ajustez la largeur selon vos besoins
+        imageView.setFitHeight(100); // Ajustez la hauteur selon vos besoins
         return imageView;
     }
 
