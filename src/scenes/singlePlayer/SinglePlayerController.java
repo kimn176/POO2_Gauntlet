@@ -3,12 +3,10 @@ package scenes.singlePlayer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import util.ImageData;
 import util.ImageEnum;
 import util.Window;
 
@@ -17,8 +15,6 @@ import java.util.ResourceBundle;
 import util.PlayerProfile;
 
 public class SinglePlayerController implements Initializable {
-    @FXML
-    public VBox vbox = new VBox();;
     public StackPane stack = new StackPane();
 
     @FXML
