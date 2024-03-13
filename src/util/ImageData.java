@@ -17,10 +17,18 @@ public class ImageData {
         this.ySize = ySize;
     }
 
+    /**
+     * Return current Image Enum
+     * @return ImageEnum
+     */
     public ImageEnum getImageEnum(){
         return this.image;
     }
 
+    /**
+     * Return a ImageView from data image
+     * @return ImageView
+     */
     public ImageView generateImageView(){
         ImageView imageView = new ImageView();
         imageView.setImage(this.getImageEnum().getImage());

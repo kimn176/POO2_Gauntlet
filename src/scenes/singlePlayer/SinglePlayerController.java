@@ -133,7 +133,7 @@ public class SinglePlayerController implements Initializable {
             Vt.stop();
         });
 
-        //Animation Valkyrie Button
+        //Animation Elf Button
         elfButton.setOnMouseEntered(e -> {
             Et.restart();
             Thread t = new Thread(Et);
@@ -143,7 +143,7 @@ public class SinglePlayerController implements Initializable {
             Et.stop();
         });
 
-        //Animation Valkyrie Button
+        //Animation Wizard Button
         wizardButton.setOnMouseEntered(e -> {
             Wit.restart();
             Thread t = new Thread(Wit);
@@ -156,12 +156,24 @@ public class SinglePlayerController implements Initializable {
 
     }
 
+    /**
+     * @author nino
+     * @author lucas
+     * @author kim
+     * @author minh
+     *
+     * This function take a button who a character is in to spin him into button, in a new Thread Runnable
+     */
     class CharacterThread implements Runnable {
         private boolean looping = true;
         private final ImageEnum character;
         private final Button button;
         private final ImageView currentImageView;
 
+        /**
+         * @param but
+         * @param character
+         */
         public CharacterThread(Button but, ImageEnum character) {
             this.character = character;
             this.button = but;
