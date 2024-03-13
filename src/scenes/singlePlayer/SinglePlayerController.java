@@ -81,8 +81,15 @@ public class SinglePlayerController implements Initializable {
     // Méthode pour générer un ImageView à partir d'une ImageEnum
     private ImageView generateImageView(ImageEnum imageEnum) {
         ImageView imageView = imageEnum.generateImageData(4, 0).generateImageView();
-        imageView.setFitWidth(50); // Ajustez la largeur selon vos besoins
-        imageView.setFitHeight(50); // Ajustez la hauteur selon vos besoins
+        imageView.setFitWidth(100); // Ajustez la largeur selon vos besoins
+        imageView.setFitHeight(100); // Ajustez la hauteur selon vos besoins
+        return imageView;
+    }
+
+    private ImageView generateImageView(ImageEnum imageEnum, int x, int y) {
+        ImageView imageView = imageEnum.generateImageData(x, y).generateImageView();
+        imageView.setFitWidth(100); // Ajustez la largeur selon vos besoins
+        imageView.setFitHeight(100); // Ajustez la hauteur selon vos besoins
         return imageView;
     }
 
@@ -94,10 +101,104 @@ public class SinglePlayerController implements Initializable {
         BackgroundImage background = new BackgroundImage(backgroundImage, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, backgroundSize);
         stack.setBackground(new Background(background));
 
+        //Set buttons images
         warriorButton.setGraphic(generateImageView(ImageEnum.WARRIOR));
         valkyrieButton.setGraphic(generateImageView(ImageEnum.VALKYRIE));
         elfButton.setGraphic(generateImageView(ImageEnum.ELF));
         wizardButton.setGraphic(generateImageView(ImageEnum.WIZARD));
 
+        //Creation of Runnable Buttons
+        CharacterThread Wt = new CharacterThread(warriorButton, ImageEnum.WARRIOR);
+        CharacterThread Vt = new CharacterThread(valkyrieButton, ImageEnum.VALKYRIE);
+        CharacterThread Et = new CharacterThread(elfButton, ImageEnum.ELF);
+        CharacterThread Wit = new CharacterThread(wizardButton, ImageEnum.WIZARD);
+
+        //Animation Warrior Button
+        warriorButton.setOnMouseEntered(e -> {
+            Wt.restart();
+            Thread t = new Thread(Wt);
+            t.start();
+        });
+        warriorButton.setOnMouseExited(e -> {
+            Wt.stop();
+        });
+
+        //Animation Valkyrie Button
+        valkyrieButton.setOnMouseEntered(e -> {
+            Vt.restart();
+            Thread t = new Thread(Vt);
+            t.start();
+        });
+        valkyrieButton.setOnMouseExited(e -> {
+            Vt.stop();
+        });
+
+        //Animation Valkyrie Button
+        elfButton.setOnMouseEntered(e -> {
+            Et.restart();
+            Thread t = new Thread(Et);
+            t.start();
+        });
+        elfButton.setOnMouseExited(e -> {
+            Et.stop();
+        });
+
+        //Animation Valkyrie Button
+        wizardButton.setOnMouseEntered(e -> {
+            Wit.restart();
+            Thread t = new Thread(Wit);
+            t.start();
+        });
+        wizardButton.setOnMouseExited(e -> {
+            Wit.stop();
+        });
+
+
+    }
+
+    class CharacterThread implements Runnable {
+        private boolean looping = true;
+        private final ImageEnum character;
+        private final Button button;
+        private final ImageView currentImageView;
+
+        public CharacterThread(Button but, ImageEnum character) {
+            this.character = character;
+            this.button = but;
+            currentImageView = (ImageView)button.getGraphic();
+        }
+
+        @Override
+        public void run() {
+            try {
+                int row = 0;
+                int col = 0;
+                while(looping) {
+                    this.character.updateImageView(currentImageView, col, row);
+                    Thread.sleep(50);
+                    row++;
+
+                    if(row%2 == 0) {
+                        col++;
+                        row = 0;
+                    }
+
+                    if(col == 8) {
+                        col = 0;
+                    }
+                }
+            } catch (InterruptedException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+
+        public void stop() {
+            this.character.updateImageView(currentImageView, 4, 0);
+            looping = false;
+        }
+
+        public void restart() {
+            looping = true;
+        }
     }
 }
