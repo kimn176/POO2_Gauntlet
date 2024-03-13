@@ -10,9 +10,13 @@ import javafx.scene.layout.*;
 import util.ImageEnum;
 import util.Window;
 
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import util.PlayerProfile;
+import javafx.scene.layout.Background;
 
 public class SinglePlayerController implements Initializable {
     public StackPane stack = new StackPane();
@@ -31,29 +35,72 @@ public class SinglePlayerController implements Initializable {
     private PlayerProfile valkyrieProfile = new PlayerProfile("Valkyrie", 3, 2, 3, 2);
     private PlayerProfile elfProfile = new PlayerProfile("Elf", 1, 2, 3, 4);
     private PlayerProfile wizardProfile = new PlayerProfile("Wizard", 1, 4, 2, 3);
-
+    private boolean warriorChoose = false;
+    private boolean valkyrieChoose = false;
+    private boolean elfChoose = false;
+    private boolean wizardChoose = false;
     @FXML
     public void warriorAction(ActionEvent event) {
-        System.out.println("Worrior choosed");
-        updatePlayerProfile(warriorProfile);
+        warriorChoose = !warriorChoose;
+        if (warriorChoose) {
+            warriorButton.setStyle("-fx-background-color:red");
+            updatePlayerProfile(warriorProfile);
+            System.out.println("Worrior choosed");
+
+            valkyrieButton.setStyle("-fx-background-color: rgba(240, 230, 140, 0.3);");
+            elfButton.setStyle("-fx-background-color: rgba(240, 230, 140, 0.3);");
+            wizardButton.setStyle("-fx-background-color: rgba(240, 230, 140, 0.3);");
+        } else{
+            warriorButton.setStyle("-fx-background-color: rgba(240, 230, 140, 0.3);");
+        }
     }
 
     @FXML
     public void valkyrieAction(ActionEvent event) {
-        System.out.println("Valkyrie choosed");
-        updatePlayerProfile(valkyrieProfile);
+        valkyrieChoose = !valkyrieChoose;
+        if (valkyrieChoose) {
+            valkyrieButton.setStyle("-fx-background-color:red");
+            updatePlayerProfile(valkyrieProfile);
+            System.out.println("Valkyrie choosed");
+
+            warriorButton.setStyle("-fx-background-color: rgba(240, 230, 140, 0.3);");
+            elfButton.setStyle("-fx-background-color: rgba(240, 230, 140, 0.3);");
+            wizardButton.setStyle("-fx-background-color: rgba(240, 230, 140, 0.3);");
+        } else{
+            valkyrieButton.setStyle("-fx-background-color: rgba(240, 230, 140, 0.3);");
+        }
     }
 
     @FXML
     public void elfAction(ActionEvent event) throws Exception {
-        System.out.println("Elf choosed");
-        updatePlayerProfile(elfProfile);
+        elfChoose = !elfChoose;
+        if (elfChoose) {
+            elfButton.setStyle("-fx-background-color:red");
+            updatePlayerProfile(elfProfile);
+            System.out.println("Elf choosed");
+
+            warriorButton.setStyle("-fx-background-color: rgba(240, 230, 140, 0.3);");
+            valkyrieButton.setStyle("-fx-background-color: rgba(240, 230, 140, 0.3);");
+            wizardButton.setStyle("-fx-background-color: rgba(240, 230, 140, 0.3);");
+        } else{
+            elfButton.setStyle("-fx-background-color: rgba(240, 230, 140, 0.3);");
+        }
     }
 
     @FXML
     public void wizardAction(ActionEvent event) throws Exception {
-        System.out.println("Wirard chossed");
-        updatePlayerProfile(wizardProfile);
+        wizardChoose = !wizardChoose;
+        if (wizardChoose) {
+            wizardButton.setStyle("-fx-background-color:red");
+            System.out.println("Wirard chossed");
+            updatePlayerProfile(wizardProfile);
+
+            warriorButton.setStyle("-fx-background-color: rgba(240, 230, 140, 0.3);");
+            elfButton.setStyle("-fx-background-color: rgba(240, 230, 140, 0.3);");
+            valkyrieButton.setStyle("-fx-background-color: rgba(240, 230, 140, 0.3);");
+        } else{
+            wizardButton.setStyle("-fx-background-color: rgba(240, 230, 140, 0.3);");
+        }
     }
 
     @FXML
@@ -81,8 +128,8 @@ public class SinglePlayerController implements Initializable {
     // Méthode pour générer un ImageView à partir d'une ImageEnum
     private ImageView generateImageView(ImageEnum imageEnum) {
         ImageView imageView = imageEnum.generateImageData(4, 0).generateImageView();
-        imageView.setFitWidth(50); // Ajustez la largeur selon vos besoins
-        imageView.setFitHeight(50); // Ajustez la hauteur selon vos besoins
+        imageView.setFitWidth(100); // Ajustez la largeur selon vos besoins
+        imageView.setFitHeight(100); // Ajustez la hauteur selon vos besoins
         return imageView;
     }
 
