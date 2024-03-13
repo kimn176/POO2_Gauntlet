@@ -43,7 +43,7 @@ public class MainMenuController implements Initializable {
     @FXML
     public void multipPlayerAction(ActionEvent event) {
         System.out.println("Action Multipl Player");
-        Window.app.showEditeur();
+        Window.app.showMultiPlayer();
     }
 
     @FXML

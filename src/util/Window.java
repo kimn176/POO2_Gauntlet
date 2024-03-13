@@ -27,6 +27,7 @@ public class Window extends Application {
     private Scene option;
     private Scene singlePlayer;
     private Stage primaryStage;
+    private Scene multiPlayer;
     private static String lang = "FR"; //code pays ISO 3166
     public static Window app; //Permet de manipuler le projet et les scenes par methodes
 
@@ -42,6 +43,10 @@ public class Window extends Application {
         URL urlsinglePlayer = getClass().getResource("../scenes/singlePlayer/SinglePlayer.fxml");
         assert urlsinglePlayer != null;
         singlePlayer = new Scene(FXMLLoader.load(urlsinglePlayer));
+
+        URL urlmultiPlayer = getClass().getResource("../scenes/multiPlayer/MultiPlayer.fxml");
+        assert urlmultiPlayer != null;
+        multiPlayer = new Scene(FXMLLoader.load(urlmultiPlayer));
 
         URL urlEditor = getClass().getResource("../scenes/editor/Editor.fxml");
         assert urlEditor != null;
@@ -69,6 +74,11 @@ public class Window extends Application {
     public void showSinglePlayer(){
         primaryStage.setTitle("SinglePlayer");
         primaryStage.setScene(singlePlayer);
+    }
+
+    public void showMultiPlayer(){
+        primaryStage.setTitle("MultiPlayer");
+        primaryStage.setScene(multiPlayer);
     }
 
     public void showEditeur(){
