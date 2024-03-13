@@ -1,6 +1,9 @@
 package util;
 
+import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 import java.io.InputStream;
 
 public enum ImageEnum {
@@ -49,6 +52,7 @@ public enum ImageEnum {
 
     final String file;
     final int spriteNumX, spriteNumY, id;
+    double xSize, ySize;
     final boolean canBePlaced, reversed;
     final Image image;
 
@@ -69,6 +73,9 @@ public enum ImageEnum {
         }
 
         this.image = new Image(inputStream);
+
+        ySize = image.getHeight() / spriteNumY;
+        xSize = image.getWidth() / spriteNumX;
     }
 
     public int getSubSpriteId(int spriteX, int spriteY){
@@ -91,19 +98,12 @@ public enum ImageEnum {
         return new int[]{spriteX, spriteY};
     }
 
+    public void updateImageView(ImageView imageView, int x, int y){
+        imageView.setViewport(new Rectangle2D(xSize * x, ySize * y, xSize, ySize));
+    }
+
     public ImageData generateImageData(int spriteX, int spriteY){
-        double ySize = 0;
-        double xSize = 0;
-        try {
-            ySize = image.getHeight() / spriteNumY;
-            xSize = image.getWidth() / spriteNumX;
-        } catch(NullPointerException e) {
-            System.out.println(this.image.getUrl());
-            throw new NullPointerException();
-
-        }
         return new ImageData(this, spriteX, spriteY, xSize, ySize);
-
     }
 
     public Image getImage(){
@@ -132,5 +132,4 @@ public enum ImageEnum {
                 return imageEnum;
         return null;
     }
-
 }

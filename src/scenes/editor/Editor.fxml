@@ -27,7 +27,7 @@
                     <VBox fx:id="buttonVBox" alignment="CENTER"/>
                 </VBox>
             </ScrollPane>
-            <Slider max="3" min="1" value="1" fx:id="zoomSlider"/>
+            <Slider max="5" min="0.5" value="0.7" fx:id="zoomSlider"/>
             <Button text="Réinitialiser" onAction="#resetButtonAction" style="-fx-background-color: transparent; -fx-border-color: blue">
                 <stylesheets>
                     <String fx:value="stylesheet/editorButton.css" />
