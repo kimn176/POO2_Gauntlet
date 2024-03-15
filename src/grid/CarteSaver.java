@@ -6,6 +6,8 @@ import util.ImageData;
 import util.ImageEnum;
 
 import java.io.*;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 public class CarteSaver {
 
@@ -98,4 +100,45 @@ public class CarteSaver {
         return null;
     }
 
+    /**
+     * La fonction va chercher depuis le dossier src.
+     */
+    public Carte read(String url) {
+        File selected = new File("src" + url);
+        if (selected == null)
+            return null;
+
+        try {
+
+            if (!selected.canRead()) {
+                boolean result = selected.setReadable(true);
+                if (!result)
+                    return null;
+            }
+
+            FileInputStream fileOut = new FileInputStream(selected);
+            DataInputStream dataOut = new DataInputStream(fileOut);
+
+            int size = dataOut.readInt();
+            Carte carte = new Carte(size);
+
+            for (int x = 0; x < carte.getSize(); x++) {
+                for (int y = 0; y < carte.getSize(); y++) {
+                    ImageEnum imageEnum = ImageEnum.getByID(dataOut.readInt());
+                    if (imageEnum == null)
+                        continue;
+                    int[] sprite = imageEnum.reverseSubSpriteId(dataOut.readInt());
+                    carte.setCell(x, y, imageEnum.generateImageData(sprite[0], sprite[1]));
+                }
+            }
+
+            dataOut.close();
+
+            return carte;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 }

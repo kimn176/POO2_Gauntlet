@@ -1,13 +1,20 @@
 package scenes.game;
 
+import grid.Carte;
+import grid.CarteSaver;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import util.ImageData;
 import util.ImageEnum;
 
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class GameController implements Initializable {
@@ -34,6 +41,11 @@ public class GameController implements Initializable {
     public VBox playerTwo;
     public VBox playerThree;
     public VBox playerFour;
+    public ScrollPane scrollPaneCenter;
+
+    //Game Center
+    private Carte carte = new Carte(20);
+    public BorderPane borderpane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -63,6 +75,15 @@ public class GameController implements Initializable {
         keys1.setGraphic(keyView1);
         keys2.setGraphic(keyView2);
         keys3.setGraphic(keyView3);
-        keys4.setGraphic(keyView3);
+        keys4.setGraphic(keyView4);
+
+        //Center
+        carte = new CarteSaver().read("src/saves/test.bin");
+        carte.scale(0.92);
+
+        scrollPaneCenter = new ScrollPane(carte);
+        borderpane.setCenter(scrollPaneCenter);
     }
+
+
 }

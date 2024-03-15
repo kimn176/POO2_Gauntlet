@@ -7,7 +7,8 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.geometry.Insets?>
-<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="scenes.game.GameController" prefHeight="720.0" prefWidth="1280.0">
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="scenes.game.GameController" prefHeight="926.0" prefWidth="1258.0" fx:id="borderpane">
 	<left>
 		<VBox style="-fx-background-color: black">
 			<!-- Logo Gauntlet -->
@@ -196,11 +197,9 @@
 					<Label text="Spd." GridPane.columnIndex="4" GridPane.rowIndex="0"/>
 				</GridPane>
 			</VBox>  <!-- Fin Player 4 -->
-		</VBox> <!-- Fin VBOX Gauche -->
+		</VBox> <!-- Fin Vbox Gauche -->
 	</left>
 	<center>
-		<Pane style="-fx-background-color: gray">
-			<Label text="SOON" alignment="CENTER"/>
-		</Pane>
+		<ScrollPane fx:id="scrollPaneCenter"/>
 	</center>
 </BorderPane>
