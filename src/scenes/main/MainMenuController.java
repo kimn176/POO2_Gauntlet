@@ -15,6 +15,7 @@ public class MainMenuController implements Initializable {
 
     @FXML
     public VBox vbox;
+    public Button testButton;
 
     @FXML
     Button singleButton;
@@ -57,6 +58,12 @@ public class MainMenuController implements Initializable {
         System.out.println("Action Quitter");
         Window.app.stop();
         System.exit(0);
+    }
+
+    @FXML
+    public void gameAction(ActionEvent actionEvent) {
+        System.out.println("Game Action");
+        Window.app.showGame(null);
     }
 
     @Override

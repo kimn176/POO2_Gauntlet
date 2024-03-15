@@ -45,7 +45,7 @@ public class SinglePlayerController implements Initializable {
         if (warriorChoose) {
             warriorButton.setStyle("-fx-background-color:red");
             updatePlayerProfile(warriorProfile);
-            System.out.println("Worrior choosed");
+            System.out.println("Warrior choosed");
 
             valkyrieButton.setStyle("-fx-background-color: rgba(240, 230, 140, 0.3);");
             elfButton.setStyle("-fx-background-color: rgba(240, 230, 140, 0.3);");
@@ -211,15 +211,15 @@ public class SinglePlayerController implements Initializable {
      *
      * This function take a button who a character is in to spin him into button, in a new Thread Runnable
      */
-    class CharacterThread implements Runnable {
+    static class CharacterThread implements Runnable {
         private boolean looping = true;
         private final ImageEnum character;
         private final Button button;
         private final ImageView currentImageView;
 
         /**
-         * @param but
-         * @param character
+         * @param but It's the button used to be selected
+         * @param character This is the ImageEnum of the character
          */
         public CharacterThread(Button but, ImageEnum character) {
             this.character = character;

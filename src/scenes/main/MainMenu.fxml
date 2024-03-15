@@ -10,7 +10,8 @@
     </stylesheets>
     <VBox spacing="15" alignment="CENTER" fx:id="vbox">
         <Button fx:id="singleButton" prefWidth="250" prefHeight="50" text="Single Player" onAction="#singlePlayerAction" StackPane.alignment="CENTER"/>
-        <Button fx:id="MultiplButton" prefWidth="250" prefHeight="50" text="Multiple Player" onAction="#multipPlayerAction" StackPane.alignment="CENTER"/>
+        <Button fx:id="MultiplButton" prefWidth="250" prefHeight="50" text="Multiplayer" onAction="#multipPlayerAction" StackPane.alignment="CENTER"/>
+        <Button fx:id="testButton" prefWidth="250" prefHeight="50" text="Test Game" onAction="#gameAction" StackPane.alignment="CENTER"/>
         <Button fx:id="editorButton" prefWidth="250" prefHeight="50" text="Editer" onAction="#editorAction" StackPane.alignment="CENTER"/>
         <Button fx:id="optionButton" prefWidth="250" prefHeight="50" text="Option" onAction="#optionAction" StackPane.alignment="TOP_CENTER"/>
         <Button fx:id="exitButton" prefWidth="250" prefHeight="50" text="Quitter" onAction="#exitAction" StackPane.alignment="BOTTOM_CENTER"/>
