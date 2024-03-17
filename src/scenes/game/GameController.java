@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Box;
@@ -44,7 +45,12 @@ public class GameController implements Initializable {
 
     public BorderPane borderpane;
     public Slider zoomSlider;
-    private ScrollPane scrollPaneCenter;
+    public Label bestScore;
+    public Label level;
+    public Label smartBombNumberPL3;
+    public Label keysNumberPL3;
+    public Label smartBombNumberPL4;
+    public Label keysNumberPL4;
     private HBox box;
 
     @Override
@@ -85,8 +91,33 @@ public class GameController implements Initializable {
         box = new HBox();
         box.getChildren().add(carte);
         carte.setBorderVisible(false);
-        scrollPaneCenter = new ScrollPane(box);
+        ScrollPane scrollPaneCenter = new ScrollPane(box);
         carte.setScale(1.2, box);
+
+
+        /* C'EST POUR ESSAYER */
+        ImageView player = ImageEnum.VALKYRIE.generateImageData(4, 0).generateImageView();    // TRY - Lucas
+        player.setFitWidth(carte.getSize()*2);                                                              // TRY
+        borderpane.setOnKeyPressed(event -> {                                                               // TRY
+            if(event.getCode() == KeyCode.S && player.getY() >= 0) {                                        // TRY
+                player.setY(player.getY()+10);                                                              // TRY
+            }                                                                                               // TRY
+                                                                                                            // TRY
+            if(event.getCode() == KeyCode.Z && player.getY()-10 >= 0) {                                     // TRY
+                player.setY(player.getY()-10);                                                              // TRY
+            }                                                                                               // TRY
+                                                                                                            // TRY
+            if(event.getCode() == KeyCode.Q && player.getX()-10 >= 0) {                                     // TRY
+                player.setX(player.getX()-10);                                                              // TRY
+            }                                                                                               // TRY
+                                                                                                            // TRY
+            if(event.getCode() == KeyCode.D && player.getX()+10 >= 0) {                                     // TRY
+                player.setX(player.getX()+10);                                                              // TRY
+            }                                                                                               // TRY
+        });                                                                                                 // TRY
+        /*Fin d'essaie pourri*/
+
+        carte.getChildren().add(player);
         borderpane.setCenter(scrollPaneCenter);
     }
 

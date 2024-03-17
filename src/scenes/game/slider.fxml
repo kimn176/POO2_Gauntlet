@@ -1,0 +1,6 @@
+<?import javafx.scene.control.Slider?>
+<Slider max="5"
+		min="0.5"
+		value="0.7"
+		xmlns="http://javafx.com/javafx"
+/>

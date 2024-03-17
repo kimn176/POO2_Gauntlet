@@ -30,7 +30,7 @@
             <Slider max="5" min="0.5" value="0.7" fx:id="zoomSlider"/>
             <Button text="Réinitialiser" onAction="#resetButtonAction" style="-fx-background-color: transparent; -fx-border-color: blue">
                 <stylesheets>
-                    <String fx:value="stylesheet/editorButton.css" />
+                    <String fx:value="/stylesheet/editorButton.css" />
                 </stylesheets>
             </Button>
         </VBox>

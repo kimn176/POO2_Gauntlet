@@ -8,7 +8,7 @@
     -fx-text-fill: white;
 }
 
-#warrior {
+#labelWarrior {
     -fx-text-fill: red;
     -fx-font-size: 40;
 }
@@ -23,7 +23,7 @@
     -fx-text-fill: white;
 }
 
-#elf {
+#labelElf {
     -fx-text-fill: steelblue;
     -fx-font-size: 40;
 }
@@ -38,7 +38,7 @@
     -fx-text-fill: white;
 }
 
-#valkyrie {
+#labelValkyrie {
     -fx-text-fill: yellow;
     -fx-font-size: 40;
 }
@@ -53,7 +53,7 @@
     -fx-text-fill: white;
 }
 
-#wizard {
+#labelWizard {
     -fx-text-fill: green;
     -fx-font-size: 40;
 }
