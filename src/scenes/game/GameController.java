@@ -78,6 +78,8 @@ public class GameController implements Initializable {
         carte = new CarteSaver().read("saves/test.bin");
 
         scrollPaneCenter = new ScrollPane(carte);
+        carte.setScaleX(1.52);
+        carte.setScaleY(1.52);
         borderpane.setCenter(scrollPaneCenter);
     }
 

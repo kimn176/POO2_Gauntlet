@@ -31,3 +31,35 @@
     -fx-font-family: Righteous, 'Arial Black';
     -fx-background-radius: 15;
 }
+
+.toggle-button{
+    -fx-font-family: Righteous ,'Arial Black';
+    -fx-background-color: #BDB76B;
+    -fx-font-size: 25;
+    -fx-background-radius: 15;
+    -fx-text-fill: #30312c;
+}
+
+.toggle-button:pressed {
+    -fx-background-color: #988d31;
+    -fx-text-fill: black;
+    -fx-font-size: 25;
+    -fx-font-family: Righteous, 'Arial Black';
+    -fx-background-radius: 15;
+}
+
+.toggle-button:pressed:hover {
+    -fx-background-color: #988d31;
+    -fx-text-fill: black;
+    -fx-font-size: 25;
+    -fx-font-family: Righteous, 'Arial Black';
+    -fx-background-radius: 15;
+}
+
+.toggle-button:hover {
+    -fx-background-color: #bdb558;
+    -fx-text-fill: black;
+    -fx-font-size: 25;
+    -fx-font-family: Righteous, 'Arial Black';
+    -fx-background-radius: 15;
+}

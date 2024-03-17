@@ -23,6 +23,7 @@ import scenes.singlePlayer.SingleListener;
 import sound.SoundEnum;
 import sound.SoundManager;
 
+import javax.sound.sampled.LineUnavailableException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Locale;
@@ -38,6 +39,11 @@ public class Window extends Application {
     private final String local = "en";
     public static Window app; //Permet de manipuler le projet et les scenes par methodes
 
+    public SoundManager sm = new SoundManager();
+
+    public Window() throws LineUnavailableException {
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -52,7 +58,7 @@ public class Window extends Application {
         primaryStage.getIcons().add(img);
         primaryStage.show();
 
-        new SoundManager().playSound(SoundEnum.OUIOUI);
+        sm.playSound(SoundEnum.OUIOUI);
         Warrior warrior = new Warrior();
         Warrior warrior2 = new Warrior();
         System.out.println(warrior.calculateDamage(warrior2));

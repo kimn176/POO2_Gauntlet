@@ -42,6 +42,10 @@ public class SoundManager {
         }
     }
 
+    public void resume() {
+        currentMedia.start();
+    }
+
     public void stopSound(){
         currentMedia.stop();
     }

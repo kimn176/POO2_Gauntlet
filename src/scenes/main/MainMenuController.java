@@ -4,8 +4,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import sound.SoundEnum;
 import util.Window;
 
 import java.net.URL;
@@ -16,6 +19,7 @@ public class MainMenuController implements Initializable {
     @FXML
     public VBox vbox;
     public Button testButton;
+    public ToggleButton musicToggleButton;
 
     @FXML
     Button singleButton;
@@ -64,6 +68,17 @@ public class MainMenuController implements Initializable {
     public void gameAction(ActionEvent actionEvent) {
         System.out.println("Game Action");
         Window.app.showGame();
+    }
+
+    @FXML
+    public void setMusicToggleButton(MouseEvent actionEvent) {
+        if (musicToggleButton.isSelected()) {
+            musicToggleButton.setText("Music Off");
+            Window.app.sm.stopSound();
+        } else {
+            musicToggleButton.setText("Music On");
+            Window.app.sm.resume();
+        }
     }
 
     @Override

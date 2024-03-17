@@ -1,6 +1,7 @@
 *.class
 .vscode
 .idea
+.iml
 /build/
 /out/
 /nbproject/
