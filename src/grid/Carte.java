@@ -27,8 +27,8 @@ public class Carte extends Pane {
 
         this.size = size;
         this.panes = new CarteGridCase[this.size][this.size];
-        this.setLayoutX(defWidth * this.size);
-        this.setLayoutY(defWidth * this.size);
+        //this.setLayoutX(defWidth * this.size);
+        //this.setLayoutY(defWidth * this.size);
         this.init();
     }
 
@@ -151,6 +151,11 @@ public class Carte extends Pane {
         image.setPreserveRatio(true);
         image.setFitWidth(defWidth);
         carteGridCase.getButton().setGraphic(image);
+    }
+
+    public void setScale(double newSize) {
+        this.setScaleX(newSize);
+        this.setScaleY(newSize);
     }
 
     public CarteGridCase getCase(int x, int y){

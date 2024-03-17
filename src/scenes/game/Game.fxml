@@ -7,10 +7,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.geometry.Insets?>
+<?import grid.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="scenes.game.GameController" prefHeight="926.0" prefWidth="1258.0" fx:id="borderpane">
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="scenes.game.GameController" prefHeight="930.0" prefWidth="1280.0" fx:id="borderpane">
 	<left>
-		<VBox style="-fx-background-color: black">
+		<VBox style="-fx-background-color: black" prefWidth="331" fx:id="leftVbox">
 			<!-- Logo Gauntlet -->
 			<ImageView fitWidth="230" preserveRatio="true">
 				<VBox.margin>
@@ -200,6 +201,12 @@
 		</VBox> <!-- Fin Vbox Gauche -->
 	</left>
 	<center>
-		<ScrollPane fx:id="scrollPaneCenter"/>
+		<!--
+		<VBox fx:id="vbox">
+			<VBox.margin>
+				<Insets topRightBottomLeft="1"/>
+			</VBox.margin>
+		</VBox>
+		-->
 	</center>
 </BorderPane>

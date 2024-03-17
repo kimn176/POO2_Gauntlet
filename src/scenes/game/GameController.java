@@ -4,11 +4,10 @@ import grid.Carte;
 import grid.CarteSaver;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollBar;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import util.ImageEnum;
 
 import java.net.URL;
@@ -38,10 +37,8 @@ public class GameController implements Initializable {
     public VBox playerTwo;
     public VBox playerThree;
     public VBox playerFour;
-    public ScrollPane scrollPaneCenter;
+    public VBox leftVbox;
 
-    //Game Center
-    private Carte carte = new Carte(20);
     public BorderPane borderpane;
 
     @Override
@@ -74,14 +71,30 @@ public class GameController implements Initializable {
         keys3.setGraphic(keyView3);
         keys4.setGraphic(keyView4);
 
-        //Center
-        carte = new CarteSaver().read("saves/test.bin");
+        //test
+        player2NotPlayable();
 
-        scrollPaneCenter = new ScrollPane(carte);
-        carte.setScaleX(1.52);
-        carte.setScaleY(1.52);
+        //Center
+        //Game Center
+        Carte carte = new CarteSaver().read("saves/test.bin");
+        carte.setScale(1);
+        StackPane scrollPaneCenter = new StackPane(carte);
+
+        //carte.setPadding(new Insets(0, 0, 0, 600));
+
         borderpane.setCenter(scrollPaneCenter);
     }
 
+    private void player1NotPlayable() {
 
+    }
+    private void player2NotPlayable() {
+
+    }
+    private void player3NotPlayable() {
+
+    }
+    private void player4NotPlayable() {
+
+    }
 }
