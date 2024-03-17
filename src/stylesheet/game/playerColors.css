@@ -1,0 +1,59 @@
+/* -- Player One -- */
+
+#playerOne {
+    -fx-border-color: red;
+    -fx-border-style: solid;
+    -fx-border-radius: 3;
+    -fx-border-width: 5;
+    -fx-text-fill: white;
+}
+
+#warrior {
+    -fx-text-fill: red;
+    -fx-font-size: 40;
+}
+
+/* -- Player Two -- */
+
+#playerTwo {
+    -fx-border-color: steelblue;
+    -fx-border-style: solid;
+    -fx-border-radius: 3;
+    -fx-border-width: 5;
+    -fx-text-fill: white;
+}
+
+#elf {
+    -fx-text-fill: steelblue;
+    -fx-font-size: 40;
+}
+
+/* -- Player Three -- */
+
+#playerThree {
+    -fx-border-color: yellow;
+    -fx-border-style: solid;
+    -fx-border-radius: 3;
+    -fx-border-width: 5;
+    -fx-text-fill: white;
+}
+
+#valkyrie {
+    -fx-text-fill: yellow;
+    -fx-font-size: 40;
+}
+
+/* -- Player Four -- */
+
+#playerFour {
+    -fx-border-color: green;
+    -fx-border-style: solid;
+    -fx-border-radius: 3;
+    -fx-border-width: 5;
+    -fx-text-fill: white;
+}
+
+#wizard {
+    -fx-text-fill: green;
+    -fx-font-size: 40;
+}
