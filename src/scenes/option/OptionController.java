@@ -25,7 +25,7 @@ public class OptionController implements Initializable {
     @FXML
     public void setDarkMode(ActionEvent event) {
         label.setText("Dark Mode");
-        poo.setDarkMode();
+        //poo.setDarkMode();
     }
 
     @FXML

@@ -22,6 +22,7 @@ public class SoundManager {
             audioStream = AudioSystem.getAudioInputStream(file);
 
             currentMedia.open(audioStream);
+            currentMedia.loop(Clip.LOOP_CONTINUOUSLY);
             currentMedia.start();
             //String response = sc.next(); // I don't understand why you are using Scanner!
         }
