@@ -111,6 +111,8 @@ public class Window extends Application {
     public void showGame(){
         primaryStage.setTitle("Game");
         primaryStage.setScene(this.generateScene("../scenes/game/Game.fxml", new GameListener()));
+        primaryStage.setX(20);
+        primaryStage.setY(20);
     }
 
     public static Window getApp() {

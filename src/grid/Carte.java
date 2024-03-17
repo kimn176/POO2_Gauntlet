@@ -1,6 +1,7 @@
 package grid;
 
 import javafx.event.ActionEvent;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -8,7 +9,9 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import util.ImageData;
 import util.ImageEnum;
+import util.Window;
 
+import java.util.ArrayList;
 import java.util.function.BiConsumer;
 
 public class Carte extends Pane {
@@ -21,6 +24,7 @@ public class Carte extends Pane {
     private CarteGridCase player3 = null;
     private CarteGridCase player4 = null;
     private BiConsumer<ActionEvent, CarteGridCase> actionEventConsumer = (actionEvent, gcase) -> System.out.println("No action");
+    private ArrayList<Button> buttonList = new ArrayList<>();
 
     public Carte(int size){
         super();
@@ -55,7 +59,6 @@ public class Carte extends Pane {
                 generatePane(x, y);
             }
         }
-
     }
 
     public void generatePane(int x, int y){
@@ -87,6 +90,7 @@ public class Carte extends Pane {
         panes[x][y] = carteGridCase;
 
         super.getChildren().add(button);
+        this.buttonList.add(button);
     }
 
     public void setCell(int x, int y, ImageData imageData){
@@ -154,8 +158,35 @@ public class Carte extends Pane {
     }
 
     public void setScale(double newSize) {
+        //On va devoir chercher la bonne position
+        this.setTranslateX(this.size*this.size*newSize);
+        this.setTranslateY(this.size*this.size*newSize);
         this.setScaleX(newSize);
         this.setScaleY(newSize);
+    }
+
+    public void setScale(double newSize, Node parent) {
+        //On va devoir chercher la bonne position
+        this.setTranslateX(this.size*this.size*newSize);
+        this.setTranslateY(this.size*this.size*newSize);
+        this.setScaleX(newSize);
+        this.setScaleY(newSize);
+        parent.setTranslateX(-this.size*this.size);
+        parent.setTranslateY(-this.size*this.size);
+    }
+
+    public void setBorderVisible(boolean bool) {
+        for (Button but : buttonList) {
+            if(bool) {
+                BorderStroke borderStroke = new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(0), BorderWidths.DEFAULT);
+                Border border = new Border(borderStroke);
+
+                but.setBorder(border);
+            }
+            else {
+                but.setBorder(null);
+            }
+        }
     }
 
     public CarteGridCase getCase(int x, int y){

@@ -201,12 +201,9 @@
 		</VBox> <!-- Fin Vbox Gauche -->
 	</left>
 	<center>
-		<!--
-		<VBox fx:id="vbox">
-			<VBox.margin>
-				<Insets topRightBottomLeft="1"/>
-			</VBox.margin>
-		</VBox>
-		-->
+		<!--Carte fx:id="carte"/-->
 	</center>
+	<bottom>
+		<Slider max="5" min="0.5" value="0.7" fx:id="zoomSlider" onMouseDragged="#slideDrag" onMouseReleased="#slideDrag"/>
+	</bottom>
 </BorderPane>

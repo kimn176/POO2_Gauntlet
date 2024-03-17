@@ -4,10 +4,12 @@ import grid.Carte;
 import grid.CarteSaver;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollBar;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.shape.Box;
 import util.ImageEnum;
 
 import java.net.URL;
@@ -38,8 +40,12 @@ public class GameController implements Initializable {
     public VBox playerThree;
     public VBox playerFour;
     public VBox leftVbox;
+    public Carte carte;
 
     public BorderPane borderpane;
+    public Slider zoomSlider;
+    private ScrollPane scrollPaneCenter;
+    private HBox box;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -72,16 +78,15 @@ public class GameController implements Initializable {
         keys4.setGraphic(keyView4);
 
         //test
-        player2NotPlayable();
+        //player2NotPlayable();
 
         //Center
-        //Game Center
-        Carte carte = new CarteSaver().read("saves/test.bin");
-        carte.setScale(1);
-        StackPane scrollPaneCenter = new StackPane(carte);
-
-        //carte.setPadding(new Insets(0, 0, 0, 600));
-
+        carte = new CarteSaver().read("saves/test.bin");
+        box = new HBox();
+        box.getChildren().add(carte);
+        carte.setBorderVisible(false);
+        scrollPaneCenter = new ScrollPane(box);
+        carte.setScale(1.2, box);
         borderpane.setCenter(scrollPaneCenter);
     }
 
@@ -96,5 +101,9 @@ public class GameController implements Initializable {
     }
     private void player4NotPlayable() {
 
+    }
+
+    public void slideDrag(MouseEvent mouseEvent) {
+        carte.setScale(zoomSlider.getValue(), box);
     }
 }
