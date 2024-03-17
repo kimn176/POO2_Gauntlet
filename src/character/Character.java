@@ -4,7 +4,7 @@ import util.ImageEnum;
 
 public abstract class Character {
     protected String name;
-    protected float pv, damage, speed;
+    protected float pv, damage, speed, rangeAttack;
     protected int defense; // Percent
     protected float damageBoost, defenseBoost, speedBoost;
 
@@ -16,6 +16,7 @@ public abstract class Character {
         this.damage = damage;
         this.defense = defense;
         this.speed = speed;
+        this.rangeAttack = 0;
     }
 
     public float getDamage() {
@@ -40,6 +41,10 @@ public abstract class Character {
 
     public float getSpeed() {
         return speed;
+    }
+
+    public float getRangeAttack() {
+        return rangeAttack;
     }
 
     public float getDamageBoost() {

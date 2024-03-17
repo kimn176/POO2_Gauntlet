@@ -16,7 +16,6 @@ import javafx.scene.input.KeyEvent;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
-import util.PlayerProfile;
 import javafx.scene.layout.Background;
 
 public class MultiPlayerController implements Initializable {

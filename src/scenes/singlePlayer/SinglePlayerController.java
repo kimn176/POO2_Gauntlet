@@ -1,5 +1,7 @@
 package scenes.singlePlayer;
 
+import character.Character;
+import character.Warrior;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,7 +17,6 @@ import javafx.scene.input.KeyEvent;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
-import util.PlayerProfile;
 import javafx.scene.layout.Background;
 
 public class SinglePlayerController implements Initializable {
@@ -31,10 +32,10 @@ public class SinglePlayerController implements Initializable {
     Button wizardButton;
 
     //Profils de joueur
-    private PlayerProfile warriorProfile = new PlayerProfile("Warrior", 4, 3, 2, 1);
-    private PlayerProfile valkyrieProfile = new PlayerProfile("Valkyrie", 3, 2, 3, 2);
-    private PlayerProfile elfProfile = new PlayerProfile("Elf", 1, 2, 3, 4);
-    private PlayerProfile wizardProfile = new PlayerProfile("Wizard", 1, 4, 2, 3);
+    private Warrior warriorProfile = new Warrior();
+    private Warrior valkyrieProfile = new Warrior();
+    private Warrior elfProfile = new Warrior();
+    private Warrior wizardProfile = new Warrior();
     private boolean warriorChoose = false;
     private boolean valkyrieChoose = false;
     private boolean elfChoose = false;
@@ -118,11 +119,11 @@ public class SinglePlayerController implements Initializable {
     }
 
     // Mettre à jour les caractéristiques du joueur en fonction du profil sélectionné
-    private void updatePlayerProfile(PlayerProfile profile) {
-        int defense = profile.getDefense();
-        int damage = profile.getDamage();
-        int speed = profile.getSpeed();
-        int rangeAttack = profile.getRangeAttack();
+    private void updatePlayerProfile(Character profile) {
+        float defense = profile.getDefense();
+        float damage = profile.getDamage();
+        float speed = profile.getSpeed();
+        float rangeAttack = profile.getRangeAttack();
     }
 
     // Méthode pour générer un ImageView à partir d'une ImageEnum
