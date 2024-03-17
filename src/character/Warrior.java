@@ -4,7 +4,7 @@ import util.ImageEnum;
 
 public class Warrior extends Character{
     public Warrior() {
-        super("Warrior", 100, 25, 5f, 35);
+        super("Warrior", 100, 25, 5f, 1, 35);
     }
 
     @Override

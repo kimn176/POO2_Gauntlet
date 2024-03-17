@@ -14,19 +14,18 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import listeneer.editeur.EditeurListener;
-import listeneer.game.GameListener;
-import listeneer.mainscene.MainListener;
-import listeneer.multiplayer.MultiListener;
-import listeneer.option.OptionListener;
-import listeneer.singleplayer.SingleListener;
+import scenes.editor.EditeurListener;
+import scenes.game.GameListener;
+import scenes.main.MainListener;
+import scenes.multiPlayer.MultiListener;
+import scenes.option.OptionListener;
+import scenes.singlePlayer.SingleListener;
 import sound.SoundEnum;
 import sound.SoundManager;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 /**
@@ -36,7 +35,7 @@ import java.util.ResourceBundle;
 
 public class Window extends Application {
     private Stage primaryStage;
-    private String local = "en";
+    private final String local = "en";
     public static Window app; //Permet de manipuler le projet et les scenes par methodes
 
     @Override

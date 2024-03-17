@@ -1,4 +1,4 @@
-package listeneer.multiplayer;
+package scenes.multiPlayer;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;

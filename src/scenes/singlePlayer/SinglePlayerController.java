@@ -1,5 +1,9 @@
 package scenes.singlePlayer;
 
+import character.Elf;
+import character.Valkyrie;
+import character.Warrior;
+import character.Wizard;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,13 +14,8 @@ import javafx.scene.layout.*;
 import util.ImageEnum;
 import util.Window;
 
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
-import util.PlayerProfile;
-import javafx.scene.layout.Background;
 
 public class SinglePlayerController implements Initializable {
     public StackPane stack = new StackPane();
@@ -31,10 +30,10 @@ public class SinglePlayerController implements Initializable {
     Button wizardButton;
 
     //Profils de joueur
-    private PlayerProfile warriorProfile = new PlayerProfile("Warrior", 4, 3, 2, 1);
-    private PlayerProfile valkyrieProfile = new PlayerProfile("Valkyrie", 3, 2, 3, 2);
-    private PlayerProfile elfProfile = new PlayerProfile("Elf", 1, 2, 3, 4);
-    private PlayerProfile wizardProfile = new PlayerProfile("Wizard", 1, 4, 2, 3);
+    private final Warrior warriorProfile = new Warrior();
+    private final Valkyrie valkyrieProfile = new Valkyrie();
+    private final Elf elfProfile = new Elf();
+    private final Wizard wizardProfile = new Wizard();
     private boolean warriorChoose = false;
     private boolean valkyrieChoose = false;
     private boolean elfChoose = false;
@@ -44,7 +43,6 @@ public class SinglePlayerController implements Initializable {
         warriorChoose = !warriorChoose;
         if (warriorChoose) {
             warriorButton.setStyle("-fx-background-color:red");
-            updatePlayerProfile(warriorProfile);
             System.out.println("Warrior choosed");
 
             valkyrieButton.setStyle("-fx-background-color: rgba(240, 230, 140, 0.3);");
@@ -60,7 +58,6 @@ public class SinglePlayerController implements Initializable {
         valkyrieChoose = !valkyrieChoose;
         if (valkyrieChoose) {
             valkyrieButton.setStyle("-fx-background-color:red");
-            updatePlayerProfile(valkyrieProfile);
             System.out.println("Valkyrie choosed");
 
             warriorButton.setStyle("-fx-background-color: rgba(240, 230, 140, 0.3);");
@@ -76,7 +73,6 @@ public class SinglePlayerController implements Initializable {
         elfChoose = !elfChoose;
         if (elfChoose) {
             elfButton.setStyle("-fx-background-color:red");
-            updatePlayerProfile(elfProfile);
             System.out.println("Elf choosed");
 
             warriorButton.setStyle("-fx-background-color: rgba(240, 230, 140, 0.3);");
@@ -93,7 +89,6 @@ public class SinglePlayerController implements Initializable {
         if (wizardChoose) {
             wizardButton.setStyle("-fx-background-color:red");
             System.out.println("Wirard chossed");
-            updatePlayerProfile(wizardProfile);
 
             warriorButton.setStyle("-fx-background-color: rgba(240, 230, 140, 0.3);");
             elfButton.setStyle("-fx-background-color: rgba(240, 230, 140, 0.3);");
@@ -115,14 +110,6 @@ public class SinglePlayerController implements Initializable {
         System.out.println("Action Quitter");
         Window.app.stop();
         System.exit(0);
-    }
-
-    // Mettre à jour les caractéristiques du joueur en fonction du profil sélectionné
-    private void updatePlayerProfile(PlayerProfile profile) {
-        int defense = profile.getDefense();
-        int damage = profile.getDamage();
-        int speed = profile.getSpeed();
-        int rangeAttack = profile.getRangeAttack();
     }
 
     // Méthode pour générer un ImageView à partir d'une ImageEnum

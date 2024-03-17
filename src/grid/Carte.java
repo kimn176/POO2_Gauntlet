@@ -6,14 +6,15 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import util.*;
+import util.ImageData;
+import util.ImageEnum;
 
 import java.util.function.BiConsumer;
 
-public class Carte extends GridPane {
+public class Carte extends Pane {
 
     final int size;
-    double scale = 1;
+    int defWidth = 40;
     private final CarteGridCase[][] panes;
     private CarteGridCase player1 = null;
     private CarteGridCase player2 = null;
@@ -26,6 +27,8 @@ public class Carte extends GridPane {
 
         this.size = size;
         this.panes = new CarteGridCase[this.size][this.size];
+        this.setLayoutX(defWidth * this.size);
+        this.setLayoutY(defWidth * this.size);
         this.init();
     }
 
@@ -33,24 +36,12 @@ public class Carte extends GridPane {
         return this.player1;
     }
 
-    public int getSize(){
-        return this.size;
+    public int getDefWidth() {
+        return this.defWidth;
     }
 
-    public void scale(double scale){
-        this.scale = scale;
-        for(int x = 0; x<size; x++){
-            for (int y = 0; y<size; y++){
-                Button button = this.panes[x][y].getButton();
-                button.setPrefSize(50 * scale, 50 * scale);
-                button.setMinSize(50 * scale,50 * scale);
-                if(this.panes[x][y].getButton().getGraphic() != null){
-                ImageView imageView = (ImageView) this.panes[x][y].getButton().getGraphic();
-                if(imageView != null)
-                    imageView.setFitWidth(50*scale);
-                }
-            }
-        }
+    public int getSize(){
+        return this.size;
     }
 
     public void setOnClick(BiConsumer<ActionEvent, CarteGridCase> actionEventConsumer){
@@ -77,8 +68,8 @@ public class Carte extends GridPane {
         CarteGridCase carteGridCase = new CarteGridCase(button, null, x, y);
 
         carteGridCase.setImageData(imageEnum.generateImageData(0, 0));
-        button.setPrefSize(50 * scale, 50 * scale);
-        button.setMinSize(50 * scale,50 * scale);
+        button.setPrefSize(defWidth, defWidth);
+        button.setMinSize(defWidth, defWidth);
 
         BorderStroke borderStroke = new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, new CornerRadii(0), BorderWidths.DEFAULT);
         Border border = new Border(borderStroke);
@@ -91,10 +82,11 @@ public class Carte extends GridPane {
         });
 
         button.setBackground(new Background(new BackgroundImage(image, null, null, null, BackgroundSize.DEFAULT)));
+        button.relocate(defWidth * x, defWidth * y);
 
         panes[x][y] = carteGridCase;
 
-        super.add(button, x, y);
+        super.getChildren().add(button);
     }
 
     public void setCell(int x, int y, ImageData imageData){
@@ -157,7 +149,7 @@ public class Carte extends GridPane {
 
         ImageView image = imageData.generateImageView();
         image.setPreserveRatio(true);
-        image.setFitWidth(50 * scale);
+        image.setFitWidth(defWidth);
         carteGridCase.getButton().setGraphic(image);
     }
 
