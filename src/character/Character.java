@@ -8,7 +8,7 @@ public abstract class Character {
     protected int defense; // Percent
     protected float damageBoost, defenseBoost, speedBoost;
 
-    public Character(String name, float pv, float damage, float speed, int defense) {
+    public Character(String name, float pv, float damage, float speed, int rangeAttack, int defense) {
         this.name = name;
         if(pv > 0)
             this.pv = pv;

@@ -19,7 +19,7 @@ public class CarteGridCase {
         return imageData;
     }
 
-    public void setImageData(ImageData imageData) {
+    protected void setImageData(ImageData imageData) {
         this.imageData = imageData;
     }
 

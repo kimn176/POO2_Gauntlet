@@ -1,4 +1,4 @@
-package listeneer.option;
+package scenes.option;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;

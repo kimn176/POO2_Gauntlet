@@ -1,4 +1,4 @@
-package listeneer.game;
+package scenes.game;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;

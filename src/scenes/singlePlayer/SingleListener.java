@@ -1,4 +1,4 @@
-package listeneer.singleplayer;
+package scenes.singlePlayer;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;

@@ -9,12 +9,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import util.ImageData;
 import util.ImageEnum;
 
-import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class GameController implements Initializable {
@@ -79,7 +76,6 @@ public class GameController implements Initializable {
 
         //Center
         carte = new CarteSaver().read("saves/test.bin");
-        carte.scale(0.92);
 
         scrollPaneCenter = new ScrollPane(carte);
         borderpane.setCenter(scrollPaneCenter);

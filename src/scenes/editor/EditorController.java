@@ -1,5 +1,7 @@
 package scenes.editor;
 
+import grid.Carte;
+import grid.CarteSaver;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -8,24 +10,25 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import util.*;
-import grid.Carte;
-import grid.CarteSaver;
+import util.ImageData;
+import util.ImageEnum;
+import util.Window;
 
 import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.ResourceBundle;
 
 public class EditorController implements Initializable {
 
     private final Window Window = util.Window.getApp();
-    public ScrollPane scrollPane;
+    public ScrollPane scrollPane, scrollPaneCenter;
     public BorderPane borderpane;
     public Slider zoomSlider;
-    public VBox leftPane;
+    public VBox leftPane, buttonVBox;
     private final Map<ImageEnum, Button> buttonMap = new HashMap<>();
     private final ArrayList<SplitMenuButton> choiceBoxMap = new ArrayList<>();
-    public VBox buttonVBox;
-    public ScrollPane scrollPaneCenter;
     private Carte carte = new Carte(20);
     private ImageData selectionReminder = null;
 
@@ -51,9 +54,9 @@ public class EditorController implements Initializable {
     public void loadItemMap(ActionEvent event) {
         Carte carte1 = new CarteSaver().read();
         if(carte1 != null) {
-            borderpane.setCenter(new ScrollPane(carte1));
             carte1.setOnClick((actionEvent, gridCase) -> carte1.setCell(gridCase.getX(), gridCase.getY(), selectionReminder));
             this.carte = carte1;
+            this.scrollPaneCenter.setContent(carte1);
         }
     }
 
@@ -129,9 +132,7 @@ public class EditorController implements Initializable {
         viewButton.setFitWidth(50);
         choiceBox.setGraphic(viewButton);
         buttonVBox.getChildren().add(choiceBox);
-        choiceBox.setOnAction(e -> {
-            this.onSelection(imageEnum.generateImageData(0, 0), choiceBox);
-        });
+        choiceBox.setOnAction(e -> this.onSelection(imageEnum.generateImageData(0, 0), choiceBox));
         choiceBoxMap.add(choiceBox);
     }
 
@@ -163,8 +164,17 @@ public class EditorController implements Initializable {
         carte.setOnClick((actionEvent, gridCase) -> carte.setCell(gridCase.getX(), gridCase.getY(), this.selectionReminder));
         scrollPane = new ScrollPane(carte);
 
-        zoomSlider.setOnMouseDragged(event-> carte.scale(zoomSlider.getValue()));
-        zoomSlider.setOnMouseReleased(event-> carte.scale(zoomSlider.getValue()));
+        zoomSlider.setMin(1.0);
+        zoomSlider.setMax(4.0);
+
+        zoomSlider.setOnMouseDragged(event -> {
+            this.carte.setScaleX(zoomSlider.getValue());
+            this.carte.setScaleY(zoomSlider.getValue());
+        });
+        zoomSlider.setOnMouseReleased(event -> {
+            this.carte.setScaleX(zoomSlider.getValue());
+            this.carte.setScaleY(zoomSlider.getValue());
+        });
 
         /*
         Dans cette section, on navigue dans les images déjà importées de ImageEnum
@@ -199,8 +209,9 @@ public class EditorController implements Initializable {
         this.loadButton(ImageEnum.WIZARD.generateImageData(4, 1));
 
         //Obligé, sinon ça s'affiche pas
-        scrollPaneCenter = new ScrollPane(carte);
-        borderpane.setCenter(scrollPaneCenter);
+        this.scrollPaneCenter = new ScrollPane(this.carte);
+        this.scrollPaneCenter.layout();
+        this.borderpane.setCenter(this.scrollPaneCenter);
     }
 
     @FXML
