@@ -63,7 +63,7 @@ public class MainMenuController implements Initializable {
     @FXML
     public void gameAction(ActionEvent actionEvent) {
         System.out.println("Game Action");
-        Window.app.showGame(null);
+        Window.app.showGame();
     }
 
     @Override

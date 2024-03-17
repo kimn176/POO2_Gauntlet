@@ -15,6 +15,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import listeneer.editeur.EditeurListener;
+import listeneer.game.GameListener;
 import listeneer.mainscene.MainListener;
 import listeneer.multiplayer.MultiListener;
 import listeneer.option.OptionListener;
@@ -100,6 +101,11 @@ public class Window extends Application {
     public void showOption(){
         primaryStage.setTitle("options");
         primaryStage.setScene(this.generateScene("../scenes/option/Option.fxml", new OptionListener()));
+    }
+
+    public void showGame(){
+        primaryStage.setTitle("Game");
+        primaryStage.setScene(this.generateScene("../scenes/game/Game.fxml", new GameListener()));
     }
 
     public static Window getApp() {
