@@ -78,7 +78,7 @@ public class GameController implements Initializable {
         keys4.setGraphic(keyView4);
 
         //Center
-        carte = new CarteSaver().read("src/saves/test.bin");
+        carte = new CarteSaver().read("saves/test.bin");
         carte.scale(0.92);
 
         scrollPaneCenter = new ScrollPane(carte);

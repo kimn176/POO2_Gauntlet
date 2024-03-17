@@ -104,7 +104,7 @@ public class CarteSaver {
      * La fonction va chercher depuis le dossier src.
      */
     public Carte read(String url) {
-        File selected = new File("src" + url);
+        File selected = new File("src/" + url);
         if (selected == null)
             return null;
 
