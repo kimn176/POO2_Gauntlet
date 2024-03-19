@@ -54,7 +54,7 @@ public class Window extends Application {
         URL urlIco = getClass().getResource("../img/icon.png");
         assert urlIco != null;
         Image img = new Image(urlIco.toString());
-        primaryStage.initStyle(StageStyle.UNDECORATED);
+        //primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.getIcons().add(img);
         primaryStage.show();
 
