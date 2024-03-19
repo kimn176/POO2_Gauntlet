@@ -1,7 +1,10 @@
 package scenes.game;
 
+import character.Character;
+import character.Warrior;
 import grid.Carte;
 import grid.CarteSaver;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -10,36 +13,16 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.shape.Box;
 import util.ImageEnum;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class GameController implements Initializable {
 
-    // Smart Bomb Image
-    public Label smartBomb1;
-    public Label smartBomb2;
-    public Label smartBomb3;
-    public Label smartBomb4;
-    public Label smartBombNumberPL1;
-    public Label keysNumberPL1;
-
-    // Keys Image
-    public Label keys1;
-    public Label keys2;
-    public Label keys3;
-    public Label keys4;
-    public GridPane warriorSL;
-    public Label keysNumberPL2;
-    public Label smartBombNumberPL2;
-
     // Zone Players
-    public VBox playerOne;
-    public VBox playerTwo;
-    public VBox playerThree;
-    public VBox playerFour;
     public VBox leftVbox;
     public Carte carte;
 
@@ -47,43 +30,11 @@ public class GameController implements Initializable {
     public Slider zoomSlider;
     public Label bestScore;
     public Label level;
-    public Label smartBombNumberPL3;
-    public Label keysNumberPL3;
-    public Label smartBombNumberPL4;
-    public Label keysNumberPL4;
     private HBox box;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        //Smart Bomb image
-        ImageView smartBombView1 = ImageEnum.SMART_BOMB.generateImageData(0, 0).generateImageView();
-        ImageView smartBombView2 = ImageEnum.SMART_BOMB.generateImageData(0, 0).generateImageView();
-        ImageView smartBombView3 = ImageEnum.SMART_BOMB.generateImageData(0, 0).generateImageView();
-        ImageView smartBombView4 = ImageEnum.SMART_BOMB.generateImageData(0, 0).generateImageView();
-        smartBombView1.setFitWidth(30);
-        smartBombView2.setFitWidth(30);
-        smartBombView3.setFitWidth(30);
-        smartBombView4.setFitWidth(30);
-        smartBomb1.setGraphic(smartBombView1);
-        smartBomb2.setGraphic(smartBombView2);
-        smartBomb3.setGraphic(smartBombView3);
-        smartBomb4.setGraphic(smartBombView4);
+    public void initialize(URL location, ResourceBundle resources){
 
-        //Keys image
-        ImageView keyView1 = ImageEnum.KEY.generateImageData(0,0).generateImageView();
-        ImageView keyView2 = ImageEnum.KEY.generateImageData(0,0).generateImageView();
-        ImageView keyView3 = ImageEnum.KEY.generateImageData(0,0).generateImageView();
-        ImageView keyView4 = ImageEnum.KEY.generateImageData(0,0).generateImageView();
-        keyView1.setFitWidth(30);
-        keyView2.setFitWidth(30);
-        keyView3.setFitWidth(30);
-        keyView4.setFitWidth(30);
-        keys1.setGraphic(keyView1);
-        keys2.setGraphic(keyView2);
-        keys3.setGraphic(keyView3);
-        keys4.setGraphic(keyView4);
-
-        //test
         //player2NotPlayable();
 
         //Center
@@ -115,22 +66,79 @@ public class GameController implements Initializable {
                 player.setX(player.getX()+10);                                                              // TRY
             }                                                                                               // TRY
         });                                                                                                 // TRY
-        /*Fin d'essaie pourri*/
+        /* Fin d'essaie pourri */
 
         carte.getChildren().add(player);
         borderpane.setCenter(scrollPaneCenter);
-    }
 
-    private void player1NotPlayable() {
+        // Player One
+        VBox playerOne;
+        if(Character.warrior) {
+            try {
+                playerOne = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("playable/player1.fxml")));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            try {
+                playerOne = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("notPlayable/player1.fxml")));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
 
-    }
-    private void player2NotPlayable() {
+        // Player Two
+        VBox playerTwo;
+        if(Character.elf) {
+            try {
+                playerTwo = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("playable/player2.fxml")));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            try {
+                playerTwo = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("notPlayable/player2.fxml")));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
 
-    }
-    private void player3NotPlayable() {
+        // Player Three
+        VBox playerThree;
+        if(Character.valkyrie) {
+            try {
+                playerThree = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("playable/player3.fxml")));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            try {
+                playerThree = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("notPlayable/player3.fxml")));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
 
-    }
-    private void player4NotPlayable() {
+        // Player Four
+        VBox playerFour;
+        if(Character.wizard) {
+            try {
+                playerFour = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("playable/player4.fxml")));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            try {
+                playerFour = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("notPlayable/player4.fxml")));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        leftVbox.getChildren().add(playerOne);
+        leftVbox.getChildren().add(playerTwo);
+        leftVbox.getChildren().add(playerThree);
+        leftVbox.getChildren().add(playerFour);
 
     }
 

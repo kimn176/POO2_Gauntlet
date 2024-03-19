@@ -1,0 +1,61 @@
+<!-- Player Four GREEN -->
+
+<?import javafx.scene.control.*?>
+
+<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<VBox fx:id="playerFour" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="scenes.game.playable.PlayersDisplay">
+	<stylesheets>
+		<String fx:value="/stylesheet/game/playerColors.css"/>
+	</stylesheets>
+	<VBox.margin>
+		<Insets top="10"/>
+	</VBox.margin>
+	<HBox alignment="CENTER">
+		<Label id="smartBomb4">
+			<HBox.margin>
+				<Insets top="20"/>
+			</HBox.margin>
+			<graphic>
+				<ImageView fitWidth="30" fitHeight="30">
+					<Image url="/sprites/smart_bomb.png"/>
+				</ImageView>
+			</graphic>
+		</Label>
+		<Label text="0" fx:id="smartBombNumberPL4" style="-fx-text-fill: white; -fx-font-size: 20"/>
+		<Label text="Wizard" id="labelWizard">
+			<HBox.margin>
+				<Insets top="10" right="50" left="50"/>
+			</HBox.margin>
+		</Label>
+		<Label text="0" fx:id="keysNumberPL4" style="-fx-text-fill: white; -fx-font-size: 20"/>
+		<Label id="keys4">
+			<HBox.margin>
+				<Insets top="20"/>
+			</HBox.margin>
+			<graphic>
+				<ImageView fitWidth="30" fitHeight="30">
+					<Image url="/sprites/key.png"/>
+				</ImageView>
+			</graphic>
+		</Label>
+	</HBox>
+	<GridPane alignment="CENTER" id="wizardSL" hgap="50">
+		<Label text="Score" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-text-fill: green; -fx-font-size: 30"/>
+		<Label text="0" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-text-fill: green; -fx-font-size: 30"/>
+		<Label text="Life" GridPane.columnIndex="1" GridPane.rowIndex="0" style="-fx-text-fill: green; -fx-font-size: 30"/>
+		<Label text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" style="-fx-text-fill: green; -fx-font-size: 30"/>
+	</GridPane>
+	<GridPane alignment="CENTER" hgap="20">
+		<Label text="Def." GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+		<Label text="Atk." GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+		<Label text="Proj.Rang." GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+		<Label text="Proj.Spd." GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+		<Label text="Spd." GridPane.columnIndex="4" GridPane.rowIndex="0"/>
+	</GridPane>
+</VBox>  <!-- Fin Player 4 -->

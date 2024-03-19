@@ -44,6 +44,10 @@ public class SinglePlayerController implements Initializable {
     @FXML
     public void warriorAction(ActionEvent event) {
         warriorChoose = !warriorChoose;
+        valkyrieChoose = false;
+        wizardChoose = false;
+        elfChoose = false;
+
         if (warriorChoose) {
             warriorButton.setStyle("-fx-background-color:red");
             System.out.println("Warrior choosed");
@@ -58,7 +62,11 @@ public class SinglePlayerController implements Initializable {
 
     @FXML
     public void valkyrieAction(ActionEvent event) {
+        warriorChoose = false;
+        wizardChoose = false;
+        elfChoose = false;
         valkyrieChoose = !valkyrieChoose;
+
         if (valkyrieChoose) {
             valkyrieButton.setStyle("-fx-background-color:red");
             System.out.println("Valkyrie choosed");
@@ -73,6 +81,9 @@ public class SinglePlayerController implements Initializable {
 
     @FXML
     public void elfAction(ActionEvent event) throws Exception {
+        warriorChoose = false;
+        valkyrieChoose = false;
+        wizardChoose = false;
         elfChoose = !elfChoose;
         if (elfChoose) {
             elfButton.setStyle("-fx-background-color:red");
@@ -88,7 +99,11 @@ public class SinglePlayerController implements Initializable {
 
     @FXML
     public void wizardAction(ActionEvent event) throws Exception {
+        warriorChoose = false;
+        valkyrieChoose = false;
+        elfChoose = false;
         wizardChoose = !wizardChoose;
+
         if (wizardChoose) {
             wizardButton.setStyle("-fx-background-color:red");
             System.out.println("Wirard chossed");
@@ -110,9 +125,13 @@ public class SinglePlayerController implements Initializable {
 
     @FXML
     public void startAction(ActionEvent event) throws Exception {
-        System.out.println("Action Quitter");
+        System.out.println("Action Quitter : ");
         Window.app.stop();
-        System.exit(0);
+        Character.elf = elfChoose;
+        Character.wizard = wizardChoose;
+        Character.warrior = warriorChoose;
+        Character.valkyrie = valkyrieChoose;
+        Window.app.showGame();
     }
 
 

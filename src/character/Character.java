@@ -2,11 +2,17 @@ package character;
 
 import util.ImageEnum;
 
+import java.util.ArrayList;
+
 public abstract class Character {
     protected String name;
     protected float pv, damage, speed, rangeAttack;
     protected int defense; // Percent
     protected float damageBoost, defenseBoost, speedBoost;
+
+    static private final ArrayList<Character> characters = new ArrayList<>();
+
+    static public boolean warrior, wizard, elf, valkyrie = false;
 
     public Character(String name, float pv, float damage, float speed, int rangeAttack, int defense) {
         this.name = name;
@@ -88,4 +94,11 @@ public abstract class Character {
 
     public abstract ImageEnum getImageEnum();
 
+    static void addCharacter(Character newCharacter) {
+        characters.add(newCharacter);
+    }
+
+    public static ArrayList<Character> getAllCharacter() {
+        return characters;
+    }
 }
