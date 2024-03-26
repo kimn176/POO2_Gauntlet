@@ -2,10 +2,6 @@ package scenes.singlePlayer;
 
 
 import character.Character;
-import character.Elf;
-import character.Valkyrie;
-import character.Warrior;
-import character.Wizard;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,7 +14,6 @@ import util.Window;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.scene.layout.Background;
 
 public class SinglePlayerController implements Initializable {
     public StackPane stack = new StackPane();
@@ -32,11 +27,6 @@ public class SinglePlayerController implements Initializable {
     @FXML
     Button wizardButton;
 
-    //Profils de joueur
-    private final Warrior warriorProfile = new Warrior();
-    private final Valkyrie valkyrieProfile = new Valkyrie();
-    private final Elf elfProfile = new Elf();
-    private final Wizard wizardProfile = new Wizard();
     private boolean warriorChoose = false;
     private boolean valkyrieChoose = false;
     private boolean elfChoose = false;
@@ -185,9 +175,7 @@ public class SinglePlayerController implements Initializable {
             Thread t = new Thread(Et);
             t.start();
         });
-        elfButton.setOnMouseExited(e -> {
-            Et.stop();
-        });
+        elfButton.setOnMouseExited(e -> Et.stop());
 
         //Animation Wizard Button
         wizardButton.setOnMouseEntered(e -> {
@@ -195,9 +183,7 @@ public class SinglePlayerController implements Initializable {
             Thread t = new Thread(Wit);
             t.start();
         });
-        wizardButton.setOnMouseExited(e -> {
-            Wit.stop();
-        });
+        wizardButton.setOnMouseExited(e -> Wit.stop());
 
 
     }

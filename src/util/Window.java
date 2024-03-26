@@ -5,7 +5,6 @@ package util;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 
-import character.Warrior;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -45,7 +44,7 @@ public class Window extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
 
         Window.app = this;
 
@@ -59,12 +58,6 @@ public class Window extends Application {
         primaryStage.show();
 
         sm.playSound(SoundEnum.OUIOUI);
-        Warrior warrior = new Warrior();
-        Warrior warrior2 = new Warrior();
-        System.out.println(warrior.calculateDamage(warrior2));
-        warrior2.setDefenseBoost(1);
-        System.out.println(warrior.calculateDamage(warrior2));
-        System.out.println(warrior.priorityOver(warrior2));
 
     }
 

@@ -54,8 +54,8 @@ public class EditorController implements Initializable {
     public void loadItemMap(ActionEvent event) {
         Carte carte1 = new CarteSaver().read();
         if(carte1 != null) {
-            carte1.setOnClick((actionEvent, gridCase) -> carte1.setCell(gridCase.getX(), gridCase.getY(), selectionReminder));
             this.carte = carte1;
+            this.carte.setOnClick((actionEvent, gridCase) -> carte1.setCell(gridCase.getX(), gridCase.getY(), selectionReminder));
             this.scrollPaneCenter.setContent(carte1);
         }
     }
@@ -72,9 +72,7 @@ public class EditorController implements Initializable {
         button.setPrefWidth(150.0);
         button.setAlignment(Pos.CENTER);
 
-        button.setOnAction(e -> {
-            this.updateImageData(imageData);
-        });
+        button.setOnAction(e -> this.updateImageData(imageData));
 
         buttonMap.put(imageData.getImageEnum(), button);
         buttonVBox.getChildren().add(button);
@@ -101,9 +99,7 @@ public class EditorController implements Initializable {
                 view.setFitWidth(50);
                 button.setGraphic(view);
 
-                button.setOnAction(e -> {
-                    this.onSelection(imageData, choiceBox);
-                });
+                button.setOnAction(e -> this.onSelection(imageData, choiceBox));
 
                 choiceBox.getItems().add(button);
                 button.setStyle("-fx-background-color: transparent; -fx-border-style: none");
@@ -118,9 +114,7 @@ public class EditorController implements Initializable {
                     view.setFitWidth(50);
                     button.setGraphic(view);
 
-                    button.setOnAction(e -> {
-                        this.onSelection(imageData, choiceBox);
-                    });
+                    button.setOnAction(e -> this.onSelection(imageData, choiceBox));
 
                     choiceBox.getItems().add(button);
                     button.setStyle("-fx-background-color: transparent; -fx-border-style: none");
@@ -153,9 +147,7 @@ public class EditorController implements Initializable {
         viewButton.setFitHeight(50);
         viewButton.setFitWidth(50);
         sp.setGraphic(viewButton);
-        sp.setOnAction(e -> {
-            this.onSelection(imageData, sp);
-        });
+        sp.setOnAction(e -> this.onSelection(imageData, sp));
     }
 
     @Override

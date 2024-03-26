@@ -1,14 +1,21 @@
 package character;
 
+import grid.Carte;
+import grid.CarteGridCase;
+import javafx.scene.image.ImageView;
 import util.ImageEnum;
+import util.Vector;
 
 public abstract class Character {
     protected String name;
     protected float pv, damage, speed, rangeAttack;
     protected int defense; // Percent
     protected float damageBoost, defenseBoost, speedBoost;
+    protected ImageView imageView;
+    protected final Carte carte;
 
-    public Character(String name, float pv, float damage, float speed, int rangeAttack, int defense) {
+    public Character(Carte carte, String name, float pv, float damage, float speed, int rangeAttack, int defense) {
+        this.carte = carte;
         this.name = name;
         if(pv > 0)
             this.pv = pv;
@@ -17,6 +24,10 @@ public abstract class Character {
         this.defense = defense;
         this.speed = speed;
         this.rangeAttack = 0;
+        this.imageView = getImageEnum().generateImageData(0,0).generateImageView();
+        this.imageView.setPreserveRatio(true);
+        this.imageView.setFitWidth(carte.getDefWidth());
+        this.carte.getChildren().add(this.imageView);
     }
 
     public float getDamage() {
@@ -87,5 +98,59 @@ public abstract class Character {
     }
 
     public abstract ImageEnum getImageEnum();
+
+    public ImageView getImageView(){
+        return this.imageView;
+    }
+
+    public boolean move(double x, double y){
+        double nextX = this.imageView.getX()+x;
+        double nextY = this.imageView.getY()+y;
+
+        CarteGridCase carteGridCase = carte.getPixelCase(nextX, nextY);
+        if(carteGridCase == null || carteGridCase.getImageData().getImageEnum().isColision()) {
+            System.out.println("Collision");
+            return false;
+        }
+
+        Vector normal = new Vector(this.imageView.getX(), nextX, this.imageView.getY(), nextY).normalize().multiply(20);
+        Vector left = normal.turnLeft();
+
+        CarteGridCase leftCase = carte.getPixelCase(nextX+left.getMoveX(), nextY+left.getMoveY());
+        if(leftCase == null || leftCase.getImageData().getImageEnum().isColision()) {
+            System.out.println("Collision");
+            return false;
+        }
+
+        Vector right = normal.turnRight();
+        CarteGridCase rightCase = carte.getPixelCase(nextX+right.getMoveX(), nextY+right.getMoveY());
+        if(rightCase == null || rightCase.getImageData().getImageEnum().isColision()){
+            System.out.println("Collision");
+            return false;
+            }
+
+        this.imageView.setX(nextX);
+        this.imageView.setY(nextY);
+
+        return true;
+    }
+
+    public CarteGridCase getCharacterCase(){
+        return carte.getPixelCase(this.getX()+(carte.getDefWidth() /2), this.getY()+(carte.getDefWidth() /2));
+    }
+
+    public double getX(){
+        return this.imageView.getX();
+    }
+
+    public double getY(){
+        return this.imageView.getY();
+    }
+
+    public void pickupItem(){
+        CarteGridCase carteGridCase = this.getCharacterCase();
+        ImageEnum imageEnum = carteGridCase.getImageData().getImageEnum();
+        this.carte.setCell(carteGridCase.getX(), carteGridCase.getY(), ImageEnum.FLOOR.generateImageData(0, 0));
+    }
 
 }
