@@ -1,0 +1,20 @@
+<!-- Player Three YELLOW -->
+
+<?import javafx.geometry.Insets?>
+
+<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<?import javafx.scene.control.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<VBox fx:id="playerThree" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" minWidth="150" minHeight="182" alignment="CENTER">
+	<stylesheets>
+		<String fx:value="/stylesheet/game/playerColors.css"/>
+	</stylesheets>
+	<VBox.margin>
+		<Insets top="10"/>
+	</VBox.margin>
+	<Label text="Not Playable" id="labelValkyrie"/>
+</VBox>  <!-- Fin Player 3 -->

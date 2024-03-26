@@ -6,6 +6,8 @@ import javafx.scene.image.ImageView;
 import util.ImageEnum;
 import util.Vector;
 
+import java.util.ArrayList;
+
 public abstract class Character {
     protected String name;
     protected float pv, damage, speed, rangeAttack;
@@ -14,8 +16,11 @@ public abstract class Character {
     protected ImageView imageView;
     protected final Carte carte;
 
-    public Character(Carte carte, String name, float pv, float damage, float speed, int rangeAttack, int defense) {
-        this.carte = carte;
+    static private final ArrayList<Character> characters = new ArrayList<>();
+
+    static public boolean warrior, wizard, elf, valkyrie = false;
+
+    public Character(String name, float pv, float damage, float speed, int rangeAttack, int defense) {
         this.name = name;
         if(pv > 0)
             this.pv = pv;

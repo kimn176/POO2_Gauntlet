@@ -10,7 +10,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="scenes.game.GameController" prefHeight="930.0" prefWidth="1280.0" fx:id="borderpane">
 	<left>
-		<VBox style="-fx-background-color: black" prefWidth="331" fx:id="leftVbox">
+		<VBox style="-fx-background-color: black" prefWidth="331" fx:id="leftVbox" alignment="CENTER">
 			<!-- Logo Gauntlet -->
 			<ImageView fitWidth="230" preserveRatio="true">
 				<VBox.margin>
@@ -30,179 +30,17 @@
 				<Label text="0" fx:id="bestScore" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
 			</GridPane>
 
-			<!-- Player One RED -->
-			<VBox fx:id="playerOne">
-				<stylesheets>
-					<String fx:value="/stylesheet/game/playerColors.css"/>
-				</stylesheets>
-				<VBox.margin>
-					<Insets top="10"/>
-				</VBox.margin>
-				<HBox alignment="CENTER">
-					<Label fx:id="smartBomb1">
-						<HBox.margin>
-							<Insets top="20"/>
-						</HBox.margin>
-					</Label>
-					<Label text="0" fx:id="smartBombNumberPL1" style="-fx-text-fill: white; -fx-font-size: 20"/>
-					<Label text="Warrior" id="labelWarrior">
-						<HBox.margin>
-							<Insets top="10" right="50" left="50"/>
-						</HBox.margin>
-					</Label>
-					<Label text="0" fx:id="keysNumberPL1" style="-fx-text-fill: white; -fx-font-size: 20"/>
-					<Label fx:id="keys1">
-						<HBox.margin>
-							<Insets top="20"/>
-						</HBox.margin>
-					</Label>
-				</HBox>
-				<GridPane alignment="CENTER" fx:id="warriorSL" hgap="50">
-					<Label text="Score" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-text-fill: red; -fx-font-size: 30"/>
-					<Label text="0" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-text-fill: red; -fx-font-size: 30"/>
-					<Label text="Life" GridPane.columnIndex="1" GridPane.rowIndex="0" style="-fx-text-fill: red; -fx-font-size: 30"/>
-					<Label text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" style="-fx-text-fill: red; -fx-font-size: 30"/>
-				</GridPane>
-				<GridPane alignment="CENTER" hgap="20">
-					<Label text="Def." GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-					<Label text="Atk." GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-					<Label text="Proj.Rang." GridPane.columnIndex="2" GridPane.rowIndex="0"/>
-					<Label text="Proj.Spd." GridPane.columnIndex="3" GridPane.rowIndex="0"/>
-					<Label text="Spd." GridPane.columnIndex="4" GridPane.rowIndex="0"/>
-				</GridPane>
-			</VBox> <!-- Fin Player 1 -->
+			<!--
+			<fx:include source="playable/player1.fxml" fx:id="playerOne"   />
+			<fx:include source="playable/player2.fxml" fx:id="playerTwo"   />
+			<fx:include source="playable/player3.fxml" fx:id="playerThree" />
+			<fx:include source="playable/player4.fxml" fx:id="playerFour"  />
+			-->
 
-			<!--<fx:include source="playable/playerOne.fxml" fx:id="playerOne" />-->
-
-			<!-- Player Two STEELBLUE -->
-			<VBox fx:id="playerTwo">
-				<stylesheets>
-					<String fx:value="/stylesheet/game/playerColors.css"/>
-				</stylesheets>
-				<VBox.margin>
-					<Insets top="10"/>
-				</VBox.margin>
-				<HBox alignment="CENTER">
-					<Label fx:id="smartBomb2">
-						<HBox.margin>
-							<Insets top="20"/>
-						</HBox.margin>
-					</Label>
-					<Label text="0" fx:id="smartBombNumberPL2" style="-fx-text-fill: white; -fx-font-size: 20"/>
-					<Label text="Elf" id="labelElf">
-						<HBox.margin>
-							<Insets top="10" right="50" left="50"/>
-						</HBox.margin>
-					</Label>
-					<Label text="0" fx:id="keysNumberPL2" style="-fx-text-fill: white; -fx-font-size: 20"/>
-					<Label fx:id="keys2">
-						<HBox.margin>
-							<Insets top="20"/>
-						</HBox.margin>
-					</Label>
-				</HBox>
-				<GridPane alignment="CENTER" id="elfSL" hgap="50">
-					<Label text="Score" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-text-fill: steelblue; -fx-font-size: 30"/>
-					<Label text="0" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-text-fill: steelblue; -fx-font-size: 30"/>
-					<Label text="Life" GridPane.columnIndex="1" GridPane.rowIndex="0" style="-fx-text-fill: steelblue; -fx-font-size: 30"/>
-					<Label text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" style="-fx-text-fill: steelblue; -fx-font-size: 30"/>
-				</GridPane>
-				<GridPane alignment="CENTER" hgap="20">
-					<Label text="Def." GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-					<Label text="Atk." GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-					<Label text="Proj.Rang." GridPane.columnIndex="2" GridPane.rowIndex="0"/>
-					<Label text="Proj.Spd." GridPane.columnIndex="3" GridPane.rowIndex="0"/>
-					<Label text="Spd." GridPane.columnIndex="4" GridPane.rowIndex="0"/>
-				</GridPane>
-			</VBox>  <!-- Fin Player 2 -->
-
-			<!-- Player Three YELLOW -->
-			<VBox fx:id="playerThree">
-				<stylesheets>
-					<String fx:value="/stylesheet/game/playerColors.css"/>
-				</stylesheets>
-				<VBox.margin>
-					<Insets top="10"/>
-				</VBox.margin>
-				<HBox alignment="CENTER">
-					<Label fx:id="smartBomb3">
-						<HBox.margin>
-							<Insets top="20"/>
-						</HBox.margin>
-					</Label>
-					<Label text="0" fx:id="smartBombNumberPL3" style="-fx-text-fill: white; -fx-font-size: 20"/>
-					<Label text="Valkyrie" id="labelValkyrie">
-						<HBox.margin>
-							<Insets top="10" right="50" left="50"/>
-						</HBox.margin>
-					</Label>
-					<Label text="0" fx:id="keysNumberPL3" style="-fx-text-fill: white; -fx-font-size: 20"/>
-					<Label fx:id="keys3">
-						<HBox.margin>
-							<Insets top="20"/>
-						</HBox.margin>
-					</Label>
-				</HBox>
-				<GridPane alignment="CENTER" id="valkyrieSL" hgap="50">
-					<Label text="Score" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-text-fill: yellow; -fx-font-size: 30"/>
-					<Label text="0" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-text-fill: yellow; -fx-font-size: 30"/>
-					<Label text="Life" GridPane.columnIndex="1" GridPane.rowIndex="0" style="-fx-text-fill: yellow; -fx-font-size: 30"/>
-					<Label text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" style="-fx-text-fill: yellow; -fx-font-size: 30"/>
-				</GridPane>
-				<GridPane alignment="CENTER" hgap="20">
-					<Label text="Def." GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-					<Label text="Atk." GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-					<Label text="Proj.Rang." GridPane.columnIndex="2" GridPane.rowIndex="0"/>
-					<Label text="Proj.Spd." GridPane.columnIndex="3" GridPane.rowIndex="0"/>
-					<Label text="Spd." GridPane.columnIndex="4" GridPane.rowIndex="0"/>
-				</GridPane>
-			</VBox>  <!-- Fin Player 3 -->
-
-			<!-- Player Four GREEN -->
-			<VBox fx:id="playerFour">
-				<stylesheets>
-					<String fx:value="/stylesheet/game/playerColors.css"/>
-				</stylesheets>
-				<VBox.margin>
-					<Insets top="10"/>
-				</VBox.margin>
-				<HBox alignment="CENTER">
-					<Label fx:id="smartBomb4">
-						<HBox.margin>
-							<Insets top="20"/>
-						</HBox.margin>
-					</Label>
-					<Label text="0" fx:id="smartBombNumberPL4" style="-fx-text-fill: white; -fx-font-size: 20"/>
-					<Label text="Wizard" id="labelWizard">
-						<HBox.margin>
-							<Insets top="10" right="50" left="50"/>
-						</HBox.margin>
-					</Label>
-					<Label text="0" fx:id="keysNumberPL4" style="-fx-text-fill: white; -fx-font-size: 20"/>
-					<Label fx:id="keys4">
-						<HBox.margin>
-							<Insets top="20"/>
-						</HBox.margin>
-					</Label>
-				</HBox>
-				<GridPane alignment="CENTER" id="wizardSL" hgap="50">
-					<Label text="Score" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-text-fill: green; -fx-font-size: 30"/>
-					<Label text="0" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-text-fill: green; -fx-font-size: 30"/>
-					<Label text="Life" GridPane.columnIndex="1" GridPane.rowIndex="0" style="-fx-text-fill: green; -fx-font-size: 30"/>
-					<Label text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" style="-fx-text-fill: green; -fx-font-size: 30"/>
-				</GridPane>
-				<GridPane alignment="CENTER" hgap="20">
-					<Label text="Def." GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-					<Label text="Atk." GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-					<Label text="Proj.Rang." GridPane.columnIndex="2" GridPane.rowIndex="0"/>
-					<Label text="Proj.Spd." GridPane.columnIndex="3" GridPane.rowIndex="0"/>
-					<Label text="Spd." GridPane.columnIndex="4" GridPane.rowIndex="0"/>
-				</GridPane>
-			</VBox>  <!-- Fin Player 4 -->
 		</VBox> <!-- Fin Vbox Gauche -->
 	</left>
 	<center>
-		<!--Carte fx:id="carte"/-->
+
 	</center>
 	<bottom>
 		<fx:include fx:id="zoomSlider" source="slider.fxml" onMouseReleased="#slideDrag" onMouseDragged="#slideDrag" />

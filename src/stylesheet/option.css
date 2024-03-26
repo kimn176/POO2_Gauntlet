@@ -32,54 +32,30 @@
     -fx-background-radius: 15;
 }
 
-.button:disabled {
+#l1, #l2, #l3, #l4, #l5, #l6, #l7, #l8, #l9, #l10, #l11{
     -fx-font-family: Righteous ,'Arial Black';
-    -fx-background-color: rgba(240, 230, 140, 0.1);
-    -fx-font-size: 25;
-    -fx-text-fill: rgba(240, 230, 140);
-    -fx-background-radius: 15;
+    -fx-text-fill: #f1c40f;
+    -fx-font-size: 35;
 }
 
-#backButton, #startButton {
+.tab{
     -fx-font-family: Righteous ,'Arial Black';
     -fx-background-color: rgba(240, 230, 140);
-    -fx-font-size: 25;
+    -fx-font-size: 22;
     -fx-background-radius: 15;
     -fx-text-fill: black;
 }
 
-#backButton:hover, #startButton:hover {
-    -fx-background-color: #bdb558;
-    -fx-text-fill: black;
-    -fx-font-size: 25;
-    -fx-font-family: Righteous, 'Arial Black';
+#tb1, #tb2{
+    -fx-font-family: Righteous ,'Arial Black';
+    -fx-background-color: rgba(240, 230, 140);
+    -fx-font-size: 22;
     -fx-background-radius: 15;
-}
-
-#backButton:pressed:hover, #startButton:pressed:hover {
-    -fx-background-color: #bdb558;
     -fx-text-fill: black;
-    -fx-font-size: 25;
-    -fx-font-family: Righteous, 'Arial Black';
-    -fx-background-radius: 15;
 }
 
 .label{
     -fx-font-family: Righteous ,'Arial Black';
-    -fx-font-size: 35;
-}
-
-#warrior{
-    -fx-text-fill: red;
-}
-
-#elf{
-    -fx-text-fill: aqua;
-}
-#wiz{
-    -fx-text-fill: lime;
-}
-
-#val{
-    -fx-text-fill: yellow;
+    -fx-text-fill: #d6dbdf ;
+    -fx-font-size: 30;
 }

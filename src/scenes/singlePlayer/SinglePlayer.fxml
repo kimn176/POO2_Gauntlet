@@ -16,29 +16,29 @@
 	<VBox alignment="CENTER" prefHeight="720" prefWidth="1280" spacing="100">
 		<HBox spacing="50" alignment="CENTER">
 			<VBox alignment="CENTER" >
-				<Label text="WARRIOR" alignment="CENTER" textAlignment="CENTER"/>
+				<Label fx:id="warrior" id="warrior" text="WARRIOR" alignment="CENTER" textAlignment="CENTER"/>
 				<Button fx:id="warriorButton" onAction="#warriorAction" prefWidth="250" prefHeight="450" StackPane.alignment="CENTER" />
 			</VBox>
 
 			<VBox alignment="CENTER">
-				<Label text="VALKYRIE" alignment="CENTER" textAlignment="CENTER"/>
+				<Label fx:id="val" text="VALKYRIE" alignment="CENTER" textAlignment="CENTER"/>
 				<Button fx:id="valkyrieButton"  onAction="#valkyrieAction" prefWidth="250" prefHeight="450" StackPane.alignment="CENTER"/>
 			</VBox>
 
 			<VBox alignment="CENTER">
-				<Label text="ELF" alignment="CENTER" textAlignment="CENTER"/>
+				<Label fx:id="elf" text="ELF" alignment="CENTER" textAlignment="CENTER"/>
 				<Button fx:id="elfButton" onAction="#elfAction" prefWidth="250" prefHeight="450" StackPane.alignment="CENTER"/>
 			</VBox>
 
 			<VBox alignment="CENTER">
-				<Label text="WIZARD" alignment="CENTER" textAlignment="CENTER"/>
+				<Label fx:id="wiz" text="WIZARD" alignment="CENTER" textAlignment="CENTER"/>
 				<Button fx:id="wizardButton" onAction="#wizardAction" prefWidth="250" prefHeight="450" StackPane.alignment="CENTER"/>
 			</VBox>
 		</HBox>
 
 		<HBox alignment="BOTTOM_CENTER" prefWidth="1280" spacing="900">
-			<Button text="BACK" onAction="#backAction" prefWidth="150" prefHeight="50" />
-			<Button text="START" onAction="#startAction" prefWidth="150" prefHeight="50" />
+			<Button text="BACK" onAction="#backAction" prefWidth="150" prefHeight="50" id="backButton"/>
+			<Button text="START" onAction="#startAction" prefWidth="150" prefHeight="50" fx:id="startButton" disable="true"/>
 		</HBox>
 
 	</VBox>
