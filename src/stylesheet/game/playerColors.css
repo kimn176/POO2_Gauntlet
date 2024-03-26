@@ -16,7 +16,7 @@
 /* -- Player Two -- */
 
 #playerTwo {
-    -fx-border-color: steelblue;
+    -fx-border-color: aqua;
     -fx-border-style: solid;
     -fx-border-radius: 3;
     -fx-border-width: 5;
@@ -24,7 +24,7 @@
 }
 
 #labelElf {
-    -fx-text-fill: steelblue;
+    -fx-text-fill: aqua;
     -fx-font-size: 40;
 }
 
@@ -46,7 +46,7 @@
 /* -- Player Four -- */
 
 #playerFour {
-    -fx-border-color: green;
+    -fx-border-color: lime;
     -fx-border-style: solid;
     -fx-border-radius: 3;
     -fx-border-width: 5;
@@ -54,6 +54,6 @@
 }
 
 #labelWizard {
-    -fx-text-fill: green;
+    -fx-text-fill: lime;
     -fx-font-size: 40;
 }

@@ -8,60 +8,61 @@ import java.io.InputStream;
 
 public enum ImageEnum {
 
-    FLOOR("../sprites/floor.png", 1, 1, true, 1),
-    EXIT("../sprites/exit.png", 1, 1, true, 2),
-    KEY("../sprites/key.png", 1, 1, true, 3),
-    KEYRING("../sprites/keyring.png", 1, 1, false, 4),
-    TREASURE("../sprites/treasure.png", 1, 1, true, 5),
-    SMART_BOMB("../sprites/smart_bomb.png", 1, 1, true, 6),
-    POTION_LIFE("../sprites/potion_life.png", 1, 1, true, 7),
-    POTION_DEFENSE("../sprites/potion_defense.png", 1, 1, true, 8),
-    POTION_MAGIC("../sprites/potion_magic.png", 1, 1, true, 9),
-    POTION_PHYSICAL("../sprites/potion_physical.png", 1, 1, true, 10),
-    POTION_POISON("../sprites/potion_poison.png", 1, 1, true, 11),
-    POTION_SPEED("../sprites/potion_speed.png", 1, 1, true, 12),
-    FOOD("../sprites/food.png", 1, 1, true, 13),
-    WALL("../sprites/wall.png", 16, 1, true, 14),
-    SPAWNER_GHOST("../sprites/spawner_ghost.png", 3, 1, true, 15),
-    SPAWNER_GRUNT("../sprites/spawner_grunt.png", 3, 1, true, 16),
-    SPAWNER("../sprites/spawner.png", 3, 2, true, 26),
-    DOOR("../sprites/door.png", 15, 1, true, 32),
+    FLOOR("../sprites/floor.png", 1, 1, true, false, 1),
+    EXIT("../sprites/exit.png", 1, 1, true, true, 2),
+    KEY("../sprites/key.png", 1, 1, true, false, 3),
+    KEYRING("../sprites/keyring.png", 1, 1, false, false, 4),
+    TREASURE("../sprites/treasure.png", 1, 1, true, true, 5),
+    SMART_BOMB("../sprites/smart_bomb.png", 1, 1, true, false, 6),
+    POTION_LIFE("../sprites/potion_life.png", 1, 1, true, false, 7),
+    POTION_DEFENSE("../sprites/potion_defense.png", 1, 1, true, false, 8),
+    POTION_MAGIC("../sprites/potion_magic.png", 1, 1, true, false, 9),
+    POTION_PHYSICAL("../sprites/potion_physical.png", 1, 1, true, false, 10),
+    POTION_POISON("../sprites/potion_poison.png", 1, 1, true, false, 11),
+    POTION_SPEED("../sprites/potion_speed.png", 1, 1, true, false, 12),
+    FOOD("../sprites/food.png", 1, 1, true, false, 13),
+    WALL("../sprites/wall.png", 16, 1, true, true, 14),
+    SPAWNER_GHOST("../sprites/spawner_ghost.png", 3, 1, true, true, 15),
+    SPAWNER_GRUNT("../sprites/spawner_grunt.png", 3, 1, true, true, 16),
+    SPAWNER("../sprites/spawner.png", 3, 2, true, true, 26),
+    DOOR("../sprites/door.png", 15, 1, true, true, 32),
 
     //Playable
-    WARRIOR("../sprites/warrior.png", 8, 2, false, 18),
-    VALKYRIE("../sprites/valkyrie.png", 8, 2, false, 19),
-    ELF("../sprites/elf.png", 8, 2, false, 20),
-    WIZARD("../sprites/wizard.png", 8, 2, false, 21),
+    WARRIOR("../sprites/warrior.png", 8, 2, false, true, 18),
+    VALKYRIE("../sprites/valkyrie.png", 8, 2, false, true, 19),
+    ELF("../sprites/elf.png", 8, 2, false, true, 20),
+    WIZARD("../sprites/wizard.png", 8, 2, false, true, 21),
 
     //Monsters
-    GRUNT("../sprites/grunt.png", 8, 2, true, 17),
-    GHOST("../sprites/ghost.png", 8, 2, true, 22),
-    LOBBER("../sprites/lobber.png", 8, 2, true, 23),
-    DEATH("../sprites/death.png", 8, 2, true, 24),
-    DAEMON("../sprites/daemon.png", 8, 2, true, 25),
+    GRUNT("../sprites/grunt.png", 8, 2, true, true, 17),
+    GHOST("../sprites/ghost.png", 8, 2, true, true, 22),
+    LOBBER("../sprites/lobber.png", 8, 2, true, true, 23),
+    DEATH("../sprites/death.png", 8, 2, true, true, 24),
+    DAEMON("../sprites/daemon.png", 8, 2, true, true, 25),
 
     //PROJECTILE
-    PROJECTILE_DAEMON("../sprites/projectile_daemon.png", 8, 1, false, 26),
-    PROJECTILE_ELF("../sprites/projectile_elf.png", 8, 1, false, 27),
-    PROJECTILE_LOBBER("../sprites/projectile_lobber.png", 8, 1, false, 28),
-    PROJECTILE_VALKYRIE("../sprites/projectile_valkyrie.png", 8, 1, false, 29),
-    PROJECTILE_WARRIOR("../sprites/projectile_warrior.png", 8, 1, false, 30),
-    PROJECTILE_WIZARD("../sprites/projectile_wizard.png", 8, 1, false, 31);
+    PROJECTILE_DAEMON("../sprites/projectile_daemon.png", 8, 1, false, false, 26),
+    PROJECTILE_ELF("../sprites/projectile_elf.png", 8, 1, false, false, 27),
+    PROJECTILE_LOBBER("../sprites/projectile_lobber.png", 8, 1, false, false, 28),
+    PROJECTILE_VALKYRIE("../sprites/projectile_valkyrie.png", 8, 1, false, false, 29),
+    PROJECTILE_WARRIOR("../sprites/projectile_warrior.png", 8, 1, false, false, 30),
+    PROJECTILE_WIZARD("../sprites/projectile_wizard.png", 8, 1, false, false, 31);
 
 
 
     final String file;
     final int spriteNumX, spriteNumY, id;
     double xSize, ySize;
-    final boolean canBePlaced, reversed;
+    final boolean canBePlaced, reversed, colision;
     final Image image;
 
 
-    ImageEnum(String file, int spriteNumX, int spriteNumY, boolean canBePlaced, int id){
+    ImageEnum(String file, int spriteNumX, int spriteNumY, boolean canBePlaced, boolean colision, int id){
         this.file = file;
         this.spriteNumX = spriteNumX;
         this.spriteNumY = spriteNumY;
         this.canBePlaced = canBePlaced;
+        this.colision = colision;
         this.id = id;
         this.reversed = spriteNumY>spriteNumX;
 
@@ -131,5 +132,9 @@ public enum ImageEnum {
             if(imageEnum.getId() == id)
                 return imageEnum;
         return null;
+    }
+
+    public boolean isColision(){
+        return this.colision;
     }
 }

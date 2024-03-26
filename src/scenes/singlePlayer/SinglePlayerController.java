@@ -2,10 +2,6 @@ package scenes.singlePlayer;
 
 
 import character.Character;
-import character.Elf;
-import character.Valkyrie;
-import character.Warrior;
-import character.Wizard;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,10 +14,10 @@ import util.Window;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.scene.layout.Background;
 
 public class SinglePlayerController implements Initializable {
     public StackPane stack = new StackPane();
+    public Button startButton;
 
     @FXML
     Button warriorButton;
@@ -32,11 +28,6 @@ public class SinglePlayerController implements Initializable {
     @FXML
     Button wizardButton;
 
-    //Profils de joueur
-    private final Warrior warriorProfile = new Warrior();
-    private final Valkyrie valkyrieProfile = new Valkyrie();
-    private final Elf elfProfile = new Elf();
-    private final Wizard wizardProfile = new Wizard();
     private boolean warriorChoose = false;
     private boolean valkyrieChoose = false;
     private boolean elfChoose = false;
@@ -44,6 +35,11 @@ public class SinglePlayerController implements Initializable {
     @FXML
     public void warriorAction(ActionEvent event) {
         warriorChoose = !warriorChoose;
+        valkyrieChoose = false;
+        wizardChoose = false;
+        elfChoose = false;
+        disableButton();
+
         if (warriorChoose) {
             warriorButton.setStyle("-fx-background-color:red");
             System.out.println("Warrior choosed");
@@ -58,7 +54,12 @@ public class SinglePlayerController implements Initializable {
 
     @FXML
     public void valkyrieAction(ActionEvent event) {
+        warriorChoose = false;
+        wizardChoose = false;
+        elfChoose = false;
         valkyrieChoose = !valkyrieChoose;
+        disableButton();
+
         if (valkyrieChoose) {
             valkyrieButton.setStyle("-fx-background-color:red");
             System.out.println("Valkyrie choosed");
@@ -73,7 +74,12 @@ public class SinglePlayerController implements Initializable {
 
     @FXML
     public void elfAction(ActionEvent event) throws Exception {
+        warriorChoose = false;
+        valkyrieChoose = false;
+        wizardChoose = false;
         elfChoose = !elfChoose;
+        disableButton();
+
         if (elfChoose) {
             elfButton.setStyle("-fx-background-color:red");
             System.out.println("Elf choosed");
@@ -88,7 +94,12 @@ public class SinglePlayerController implements Initializable {
 
     @FXML
     public void wizardAction(ActionEvent event) throws Exception {
+        warriorChoose = false;
+        valkyrieChoose = false;
+        elfChoose = false;
         wizardChoose = !wizardChoose;
+        disableButton();
+
         if (wizardChoose) {
             wizardButton.setStyle("-fx-background-color:red");
             System.out.println("Wirard chossed");
@@ -110,9 +121,13 @@ public class SinglePlayerController implements Initializable {
 
     @FXML
     public void startAction(ActionEvent event) throws Exception {
-        System.out.println("Action Quitter");
+        System.out.println("Action Quitter : ");
         Window.app.stop();
-        System.exit(0);
+        Character.elf = elfChoose;
+        Character.wizard = wizardChoose;
+        Character.warrior = warriorChoose;
+        Character.valkyrie = valkyrieChoose;
+        Window.app.showGame();
     }
 
 
@@ -137,6 +152,15 @@ public class SinglePlayerController implements Initializable {
         imageView.setFitWidth(100); // Ajustez la largeur selon vos besoins
         imageView.setFitHeight(100); // Ajustez la hauteur selon vos besoins
         return imageView;
+    }
+
+    private void disableButton() {
+        if(!elfChoose && !valkyrieChoose && !warriorChoose && !wizardChoose) {
+            startButton.setDisable(true);
+        }
+        else {
+            startButton.setDisable(false);
+        }
     }
 
     @Override
@@ -185,9 +209,7 @@ public class SinglePlayerController implements Initializable {
             Thread t = new Thread(Et);
             t.start();
         });
-        elfButton.setOnMouseExited(e -> {
-            Et.stop();
-        });
+        elfButton.setOnMouseExited(e -> Et.stop());
 
         //Animation Wizard Button
         wizardButton.setOnMouseEntered(e -> {
@@ -195,9 +217,7 @@ public class SinglePlayerController implements Initializable {
             Thread t = new Thread(Wit);
             t.start();
         });
-        wizardButton.setOnMouseExited(e -> {
-            Wit.stop();
-        });
+        wizardButton.setOnMouseExited(e -> Wit.stop());
 
 
     }
