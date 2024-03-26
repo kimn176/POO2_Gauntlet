@@ -1,10 +1,11 @@
 package character;
 
+import grid.Carte;
 import util.ImageEnum;
 
 public class Valkyrie extends Character{
-    public Valkyrie() {
-        super("Valkyrie", 100, 25, 5f, 1, 35);
+    public Valkyrie(Carte carte) {
+        super(carte, "Valkyrie", 100, 25, 5f, 1, 35);
     }
 
     @Override

@@ -9,7 +9,6 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import util.ImageData;
 import util.ImageEnum;
-import util.Window;
 
 import java.util.ArrayList;
 import java.util.function.BiConsumer;
@@ -17,14 +16,14 @@ import java.util.function.BiConsumer;
 public class Carte extends Pane {
 
     final int size;
-    int defWidth = 40;
+    double defWidth = 40;
     private final CarteGridCase[][] panes;
     private CarteGridCase player1 = null;
     private CarteGridCase player2 = null;
     private CarteGridCase player3 = null;
     private CarteGridCase player4 = null;
     private BiConsumer<ActionEvent, CarteGridCase> actionEventConsumer = (actionEvent, gcase) -> System.out.println("No action");
-    private ArrayList<Button> buttonList = new ArrayList<>();
+    private final ArrayList<Button> buttonList = new ArrayList<>();
 
     public Carte(int size){
         super();
@@ -40,7 +39,7 @@ public class Carte extends Pane {
         return this.player1;
     }
 
-    public int getDefWidth() {
+    public double getDefWidth() {
         return this.defWidth;
     }
 
@@ -93,6 +92,12 @@ public class Carte extends Pane {
         this.buttonList.add(button);
     }
 
+    public CarteGridCase getPixelCase(double x, double y){
+        int caseX = (int) ((x-(x%this.getDefWidth()))/this.getDefWidth());
+        int caseY = (int) ((y-(y%this.getDefWidth()))/this.getDefWidth());
+        return this.getCase(caseX, caseY);
+    }
+
     public void setCell(int x, int y, ImageData imageData){
 
         if(x>size || y>size)
@@ -109,6 +114,7 @@ public class Carte extends Pane {
         CarteGridCase currentPlayerCase4 = this.player4;
 
         if(imageData.getImageEnum().getId() == ImageEnum.FLOOR.getId()) {
+            carteGridCase.setImageData(imageData);
             carteGridCase.getButton().setGraphic(null);
             return;
         }
@@ -190,6 +196,9 @@ public class Carte extends Pane {
     }
 
     public CarteGridCase getCase(int x, int y){
+        System.out.println("X: "+x+" y: "+y);
+        if(x >= size || y >= size)
+            return null;
         return this.panes[x][y];
     }
 

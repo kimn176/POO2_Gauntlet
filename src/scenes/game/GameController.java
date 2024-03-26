@@ -1,6 +1,6 @@
 package scenes.game;
 
-import character.Character;
+import character.Valkyrie;
 import grid.Carte;
 import grid.CarteSaver;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +11,10 @@ import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import util.ImageEnum;
 
 import java.io.IOException;
@@ -46,28 +49,29 @@ public class GameController implements Initializable {
 
 
         /* C'EST POUR ESSAYER */
-        ImageView player = ImageEnum.VALKYRIE.generateImageData(4, 0).generateImageView();    // TRY - Lucas
-        player.setFitWidth(carte.getSize()*2);                                                              // TRY
+        Valkyrie valkyrie = new Valkyrie(carte);
         borderpane.setOnKeyPressed(event -> {                                                               // TRY
-            if(event.getCode() == KeyCode.S && player.getY() >= 0) {                                        // TRY
-                player.setY(player.getY()+10);                                                              // TRY
+            if(event.getCode() == KeyCode.S && valkyrie.getY() >= 0) {
+                valkyrie.move(0, 10);
             }                                                                                               // TRY
                                                                                                             // TRY
-            if(event.getCode() == KeyCode.Z && player.getY()-10 >= 0) {                                     // TRY
-                player.setY(player.getY()-10);                                                              // TRY
+            if(event.getCode() == KeyCode.Z && valkyrie.getY()-10 >= 0) {
+                valkyrie.move(0, -10);// TRY
             }                                                                                               // TRY
                                                                                                             // TRY
-            if(event.getCode() == KeyCode.Q && player.getX()-10 >= 0) {                                     // TRY
-                player.setX(player.getX()-10);                                                              // TRY
+            if(event.getCode() == KeyCode.Q && valkyrie.getX()-10 >= 0) {                                     // TRY
+                valkyrie.move(-10, 0);                                                              // TRY
             }                                                                                               // TRY
                                                                                                             // TRY
-            if(event.getCode() == KeyCode.D && player.getX()+10 >= 0) {                                     // TRY
-                player.setX(player.getX()+10);                                                              // TRY
+            if(event.getCode() == KeyCode.D && valkyrie.getX()+10 >= 0) {                                     // TRY
+                valkyrie.move(+10, 0);                                                              // TRY
             }                                                                                               // TRY
+            if(event.getCode() == KeyCode.E){
+                valkyrie.pickupItem();
+            }
         });                                                                                                 // TRY
         /* Fin d'essaie pourri */
 
-        carte.getChildren().add(player);
         borderpane.setCenter(scrollPaneCenter);
 
         // Player One
