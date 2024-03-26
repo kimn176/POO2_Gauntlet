@@ -27,6 +27,13 @@ public class MultiPlayerController implements Initializable {
     }
 
     @FXML
+    void actionSelect(ActionEvent event) throws Exception{
+        System.out.println("Select player 1");
+        Window poo_projet = Window.app;
+        poo_projet.showChoixPlayer();
+    }
+
+    @FXML
     public void backAction(ActionEvent event) throws Exception {
         System.out.println("Action Back");
         Window poo_projet = Window.app;

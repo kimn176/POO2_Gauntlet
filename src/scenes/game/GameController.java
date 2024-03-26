@@ -4,6 +4,8 @@ import character.*;
 import character.Character;
 import grid.Carte;
 import grid.CarteSaver;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -16,7 +18,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import util.ImageData;
 import util.ImageEnum;
+import util.Window;
 
 import java.io.IOException;
 import java.net.URL;
@@ -34,6 +38,29 @@ public class GameController implements Initializable {
     public Label bestScore;
     public Label level;
     private HBox box;
+    private final util.Window Window = util.Window.getApp();
+    public ScrollPane scrollPaneCenter;
+    private ImageData selectionReminder = null;
+
+    public void exitApp(ActionEvent actionEvent) throws Exception {
+        Window.stop();
+        System.exit(0);
+    }
+
+    @FXML
+    public void exitGame(ActionEvent event) {
+        Window.showHome();
+    }
+
+    @FXML
+    public void loadItemMap(ActionEvent event) {
+        Carte carte1 = new CarteSaver().read();
+        if(carte1 != null) {
+            this.carte = carte1;
+            this.carte.setOnClick((actionEvent, gridCase) -> carte1.setCell(gridCase.getX(), gridCase.getY(), selectionReminder));
+            this.scrollPaneCenter.setContent(carte1);
+        }
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources){

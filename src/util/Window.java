@@ -97,7 +97,7 @@ public class Window extends Application {
     }
 
     public void showOption(){
-        primaryStage.setTitle("options");
+        primaryStage.setTitle("Options");
         primaryStage.setScene(this.generateScene("/scenes/option/Option.fxml", new OptionListener()));
     }
 
@@ -106,6 +106,11 @@ public class Window extends Application {
         primaryStage.setScene(this.generateScene("/scenes/game/Game.fxml", new GameListener()));
         primaryStage.setX(20);
         primaryStage.setY(20);
+    }
+
+    public void showChoixPlayer(){
+        primaryStage.setTitle("MultiPlayer");
+        primaryStage.setScene(this.generateScene("/scenes/choixPlayer/ChoixPlayer.fxml", new SingleListener()));
     }
 
     public static Window getApp() {

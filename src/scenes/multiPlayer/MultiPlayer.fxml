@@ -22,14 +22,14 @@
             prefHeight="50" prefWidth="150" text="BACK"/>
     <Button fx:id="localButton" layoutX="577.0" layoutY="186.0" mnemonicParsing="false" onAction="#actionLocal"
             prefHeight="50" prefWidth="150" text="Local"/>
-    <HBox layoutX="91.0" layoutY="255.0" prefHeight="330.0" prefWidth="1109.0" style="-fx-background-color: 240, 230, 140, 0.3; -fx-border-width: 2px; -fx-border-color: black;" alignment="CENTER" spacing="50">
-        <Button fx:id="addPl1" mnemonicParsing="false" onAction="#actionLocal"
+    <HBox layoutX="91.0" layoutY="255.0" prefHeight="330.0" prefWidth="1109.0" style="-fx-border-width: 2px; -fx-border-color: black;" alignment="CENTER" spacing="50">
+        <Button fx:id="addPl1" mnemonicParsing="false" onAction="#actionSelect"
                 prefHeight="50" text="Player 1"/>
-        <Button fx:id="addPl2" mnemonicParsing="false" onAction="#actionLocal"
+        <Button fx:id="addPl2" mnemonicParsing="false" onAction="#actionSelect"
                 prefHeight="50" text="Player 2"/>
-        <Button fx:id="addPl3" mnemonicParsing="false" onAction="#actionLocal"
+        <Button fx:id="addPl3" mnemonicParsing="false" onAction="#actionSelect"
                 prefHeight="50" text="Player 3"/>
-        <Button fx:id="addPl4" mnemonicParsing="false" onAction="#actionLocal"
+        <Button fx:id="addPl4" mnemonicParsing="false" onAction="#actionSelect"
                 prefHeight="50" text="Player 4"/>
     </HBox>
 </Pane>
