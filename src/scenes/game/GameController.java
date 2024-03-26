@@ -1,6 +1,7 @@
 package scenes.game;
 
-import character.Valkyrie;
+import character.*;
+import character.Character;
 import grid.Carte;
 import grid.CarteSaver;
 import javafx.fxml.FXMLLoader;

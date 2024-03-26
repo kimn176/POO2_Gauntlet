@@ -20,8 +20,9 @@ public abstract class Character {
 
     static public boolean warrior, wizard, elf, valkyrie = false;
 
-    public Character(String name, float pv, float damage, float speed, int rangeAttack, int defense) {
+    public Character(Carte carte, String name, float pv, float damage, float speed, int rangeAttack, int defense) {
         this.name = name;
+        this.carte = carte;
         if(pv > 0)
             this.pv = pv;
         else this.pv = 1;
