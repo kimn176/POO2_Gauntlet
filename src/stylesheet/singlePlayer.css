@@ -32,8 +32,38 @@
     -fx-background-radius: 15;
 }
 
+.button:disabled {
+    -fx-font-family: Righteous ,'Arial Black';
+    -fx-background-color: rgba(240, 230, 140, 0.1);
+    -fx-font-size: 25;
+    -fx-text-fill: rgba(240, 230, 140);
+    -fx-background-radius: 15;
+}
+
+#backButton, #startButton {
+    -fx-font-family: Righteous ,'Arial Black';
+    -fx-background-color: rgba(240, 230, 140);
+    -fx-font-size: 25;
+    -fx-background-radius: 15;
+    -fx-text-fill: black;
+}
+
 .label{
     -fx-font-family: Righteous ,'Arial Black';
-    -fx-text-fill: red;
     -fx-font-size: 35;
+}
+
+#warrior{
+    -fx-text-fill: red;
+}
+
+#elf{
+    -fx-text-fill: aqua;
+}
+#wiz{
+    -fx-text-fill: lime;
+}
+
+#val{
+    -fx-text-fill: yellow;
 }
