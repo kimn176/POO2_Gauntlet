@@ -1,7 +1,6 @@
 package scenes.game;
 
 import character.Character;
-import character.Warrior;
 import grid.Carte;
 import grid.CarteSaver;
 import javafx.fxml.FXMLLoader;

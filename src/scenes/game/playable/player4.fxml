@@ -46,10 +46,10 @@
 		</Label>
 	</HBox>
 	<GridPane alignment="CENTER" id="wizardSL" hgap="50">
-		<Label text="Score" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-text-fill: green; -fx-font-size: 30"/>
-		<Label text="0" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-text-fill: green; -fx-font-size: 30"/>
-		<Label text="Life" GridPane.columnIndex="1" GridPane.rowIndex="0" style="-fx-text-fill: green; -fx-font-size: 30"/>
-		<Label text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" style="-fx-text-fill: green; -fx-font-size: 30"/>
+		<Label text="Score" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-text-fill: lime; -fx-font-size: 30"/>
+		<Label text="0" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-text-fill: lime; -fx-font-size: 30"/>
+		<Label text="Life" GridPane.columnIndex="1" GridPane.rowIndex="0" style="-fx-text-fill: lime; -fx-font-size: 30"/>
+		<Label text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" style="-fx-text-fill: lime; -fx-font-size: 30"/>
 	</GridPane>
 	<GridPane alignment="CENTER" hgap="20">
 		<Label text="Def." GridPane.columnIndex="0" GridPane.rowIndex="0"/>

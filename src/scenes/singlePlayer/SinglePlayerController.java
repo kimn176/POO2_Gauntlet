@@ -22,6 +22,7 @@ import javafx.scene.layout.Background;
 
 public class SinglePlayerController implements Initializable {
     public StackPane stack = new StackPane();
+    public Button startButton;
 
     @FXML
     Button warriorButton;
@@ -47,6 +48,7 @@ public class SinglePlayerController implements Initializable {
         valkyrieChoose = false;
         wizardChoose = false;
         elfChoose = false;
+        disableButton();
 
         if (warriorChoose) {
             warriorButton.setStyle("-fx-background-color:red");
@@ -66,6 +68,7 @@ public class SinglePlayerController implements Initializable {
         wizardChoose = false;
         elfChoose = false;
         valkyrieChoose = !valkyrieChoose;
+        disableButton();
 
         if (valkyrieChoose) {
             valkyrieButton.setStyle("-fx-background-color:red");
@@ -85,6 +88,8 @@ public class SinglePlayerController implements Initializable {
         valkyrieChoose = false;
         wizardChoose = false;
         elfChoose = !elfChoose;
+        disableButton();
+
         if (elfChoose) {
             elfButton.setStyle("-fx-background-color:red");
             System.out.println("Elf choosed");
@@ -103,6 +108,7 @@ public class SinglePlayerController implements Initializable {
         valkyrieChoose = false;
         elfChoose = false;
         wizardChoose = !wizardChoose;
+        disableButton();
 
         if (wizardChoose) {
             wizardButton.setStyle("-fx-background-color:red");
@@ -156,6 +162,15 @@ public class SinglePlayerController implements Initializable {
         imageView.setFitWidth(100); // Ajustez la largeur selon vos besoins
         imageView.setFitHeight(100); // Ajustez la hauteur selon vos besoins
         return imageView;
+    }
+
+    private void disableButton() {
+        if(!elfChoose && !valkyrieChoose && !warriorChoose && !wizardChoose) {
+            startButton.setDisable(true);
+        }
+        else {
+            startButton.setDisable(false);
+        }
     }
 
     @Override
