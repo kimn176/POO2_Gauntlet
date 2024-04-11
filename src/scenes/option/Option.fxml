@@ -133,14 +133,14 @@
                                             <Label fx:id="l10" text="PLAYER 3" textFill="#ffc32c" GridPane.columnIndex="3"/>
                                             <Label fx:id="l11" text="PLAYER 4" textFill="#ffc32c" GridPane.columnIndex="4"/>
 
-                                            <Label text="Up"  GridPane.rowIndex="1" textAlignment="CENTER"/>
-                                            <Label onKeyPressed="#changeKey" onMouseClicked="#clickedChoose" text="UP" textFill="#ffc32c" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                                            <Label text="UP"  GridPane.rowIndex="1" textAlignment="CENTER"/>
+                                            <Label onKeyPressed="#changeKey" onMouseClicked="#clickedChoose" text="NUMPAD8" textFill="#ffc32c" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
                                             <Label onKeyPressed="#changeKey" onMouseClicked="#clickedChoose" text="Z" textFill="#ffc32c" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
                                             <Label onKeyPressed="#changeKey" onMouseClicked="#clickedChoose" text="Y" textFill="#ffc32c" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
                                             <Label onKeyPressed="#changeKey" onMouseClicked="#clickedChoose" text="O" textFill="#ffc32c" GridPane.columnIndex="4" GridPane.rowIndex="1"/>
 
                                             <Label text="DOWN" textFill="#ffc32c" GridPane.rowIndex="2"/>
-                                            <Label onKeyPressed="#changeKey" onMouseClicked="#clickedChoose" text="DOWN" textFill="#ffc32c" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                                            <Label onKeyPressed="#changeKey" onMouseClicked="#clickedChoose" text="NUMPAD5" textFill="#ffc32c" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
                                             <Label onKeyPressed="#changeKey" onMouseClicked="#clickedChoose" text="S" textFill="#ffc32c" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
                                             <Label onKeyPressed="#changeKey" onMouseClicked="#clickedChoose" text="H" textFill="#ffc32c" GridPane.columnIndex="3" GridPane.rowIndex="2"/>
                                             <Label onKeyPressed="#changeKey" onMouseClicked="#clickedChoose" text="L" textFill="#ffc32c" GridPane.columnIndex="4" GridPane.rowIndex="2"/>
@@ -151,8 +151,8 @@
                                             <Label text="RESURECT" textFill="#ffc32c" GridPane.rowIndex="6"/>
                                             <Label text="USE BOMB" textFill="#ffc32c" GridPane.rowIndex="7"/>
 
-                                            <Label onKeyPressed="#changeKey" onMouseClicked="#clickedChoose" text="LEFT" textFill="#ffc32c" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-                                            <Label onKeyPressed="#changeKey" onMouseClicked="#clickedChoose" text="RIGHT" textFill="#ffc32c" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                                            <Label onKeyPressed="#changeKey" onMouseClicked="#clickedChoose" text="NUMPAD4" textFill="#ffc32c" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                                            <Label onKeyPressed="#changeKey" onMouseClicked="#clickedChoose" text="NUMPAD6" textFill="#ffc32c" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
                                             <Label onKeyPressed="#changeKey" onMouseClicked="#clickedChoose" text="Q" textFill="#ffc32c" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
                                             <Label onKeyPressed="#changeKey" onMouseClicked="#clickedChoose" text="D" textFill="#ffc32c" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
                                             <Label onKeyPressed="#changeKey" onMouseClicked="#clickedChoose" text="SPACE" textFill="#ffc32c" GridPane.columnIndex="1" GridPane.rowIndex="5"/>

@@ -1,9 +1,0 @@
-*.class
-.vscode
-.idea
-.iml
-/build/
-/out/
-/nbproject/
-/projet.iml
-/build-jar
